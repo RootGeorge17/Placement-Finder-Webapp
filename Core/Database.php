@@ -15,7 +15,7 @@ class Database
 
         if (self::$dbInstance === null) { //checks if the PDO exists
             // creates new instance if not, sending in connection info
-            self::$dbInstance = new self($config['database'], $username = 'sgc017', $password = 'LF3VbFtiP4UX6Cy');
+            self::$dbInstance = new self($config['database'], $username = '', $password = '');
         }
 
         return self::$dbInstance;
