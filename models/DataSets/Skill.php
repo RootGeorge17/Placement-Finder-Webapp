@@ -1,5 +1,5 @@
 <?php
-namespace DataSets;
+namespace models\DataSets;
 class skill
 {
 

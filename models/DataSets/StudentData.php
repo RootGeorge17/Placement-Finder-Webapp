@@ -1,6 +1,6 @@
 <?php
 
-namespace DataSets;
+namespace models\DataSets;
     class StudentData
     {
         protected $id, $firstName, $lastName, $email, $phoneNumber, $location, $cv, $course, $institution, $prefIndustry, $skill1, $skill2, $skill3;

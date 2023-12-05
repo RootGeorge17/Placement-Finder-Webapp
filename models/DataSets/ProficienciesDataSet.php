@@ -1,6 +1,7 @@
 <?php
 
-namespace DataSets;
+namespace models\DataSets;
+
 require_once('Core/Database.php');
 require_once('DataSets/Proficiency.php');
 
@@ -10,7 +11,7 @@ class ProficienciesDataSet
 
 
     public function __construct() {
-        $this->dbInstance = \Core\Database::getInstance();
+        $this->dbInstance = \models\Core\Database::getInstance();
         $this->dbHandle = $this->dbInstance->getdbConnection();
     }
 

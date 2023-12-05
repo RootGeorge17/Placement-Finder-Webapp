@@ -1,6 +1,6 @@
 <?php
 
-namespace DataSets;
+namespace models\DataSets;
     class User
     {
         protected $id, $username, $password, $userType, $studentData, $companyData;

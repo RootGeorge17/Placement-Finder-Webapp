@@ -1,27 +1,26 @@
 <?php
 
-namespace DataSets;
+namespace models\DataSets;
 
-class Industry
+class UserType
 {
-
-    protected $id, $industry;
+    protected $id, $type;
 
     public function __construct($dbRow)
     {
         $this->id = $dbRow['id'];
-        $this->industry = $dbRow['industry'];
+        $this->type = $dbRow['type'];
     }
-
     public function getId()
     {
         return $this->id;
     }
 
-    public function getIndustry()
+    public function getType()
     {
-        return $this->industry;
+        return $this->type;
     }
+
 
 
 }
