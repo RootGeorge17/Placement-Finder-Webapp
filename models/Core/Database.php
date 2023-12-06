@@ -1,9 +1,5 @@
 <?php
 
-namespace models\Core;
-use PDO;
-use PDOException;
-
 class Database
 {
     protected static $dbInstance = null;
@@ -11,11 +7,12 @@ class Database
 
     public static function getInstance()
     {
-        $config = require_once('config.php');
+        $config = require_once(base_path('config.php'));
 
         if (self::$dbInstance === null) { //checks if the PDO exists
             // creates new instance if not, sending in connection info
-            self::$dbInstance = new self($config['database'], $username = '', $password = '');
+            self::$dbInstance = new self($config['database'], $config['username'], $config['password']);
+//            $config['username'], $config['password'] i muj use this.
         }
 
         return self::$dbInstance;

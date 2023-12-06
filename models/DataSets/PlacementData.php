@@ -1,16 +1,14 @@
 <?php
 
-namespace models\DataSets;
 class PlacementData
 {
-    protected $id, $companyId, $company, $description, $industry, $salary, $location, $startDate, $endDate, $skill1, $skill2, $skill3;
+    protected $id, $companyId, $description, $industry, $salary, $location, $startDate, $endDate, $skill1, $skill2, $skill3;
 
     public function __construct($dbRow)
     {
 
         $this->id = $dbRow['id'];
         $this->companyId = $dbRow['companyId'];
-        $this->company = $dbRow['company'];
         $this->description = $dbRow['description'];
         $this->industry = $dbRow['industry'];
         $this->salary = $dbRow['salary'];
@@ -31,11 +29,6 @@ class PlacementData
     public function getCompanyId()
     {
         return $this->companyId;
-    }
-
-    public function getCompany()
-    {
-        return $this->company;
     }
 
     public function getDescription()
@@ -84,12 +77,4 @@ class PlacementData
     {
         return $this->skill3;
     }
-
-
-
-
-
-
-
-
 }

@@ -1,7 +1,5 @@
 <?php
 
-namespace models\DataSets;
-
 class UserType
 {
     protected $id, $type;

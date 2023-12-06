@@ -1,0 +1,24 @@
+<?php require_once(base_path('views/partials/head.phtml')) ?>
+<?php require_once(base_path('views/partials/nav.phtml')) ?>
+<?php require_once(base_path('views/partials/header.phtml')) ?>
+
+    <div class="container">
+        <div>
+            <H1>High Match</H1>
+            <div class="card">
+                <h5 class="card-header"><?= $companies->fetchCompanyName($placementsDataSet[0]->getCompanyId())['companyName'] ?></h5>
+                <div class="card-body">
+                    <h5 class="card-title"><?= $placementsDataSet[0]->getDescription() ?></h5>
+                    <a href="#" class="btn btn-primary">Apply!</a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <H1>Medium Match</H1>
+        </div>
+        <div>
+            <H1>Low Match</H1>
+        </div>
+    </div>
+
+<?php require_once(base_path('views/partials/footer.phtml')) ?>

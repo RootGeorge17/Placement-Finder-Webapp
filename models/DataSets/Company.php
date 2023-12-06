@@ -1,6 +1,5 @@
 <?php
 
-namespace models\DataSets;
 
 class Company
 {
