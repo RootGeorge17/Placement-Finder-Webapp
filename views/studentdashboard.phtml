@@ -5,7 +5,8 @@
     <div class="container">
         <div>
             <H1>High Match</H1>
-            <div class="card">
+            <!-- card -->
+            <div class="card bg-success">
                 <h5 class="card-header"><?= $companies->fetchCompanyName($placementsDataSet[0]->getCompanyId())['companyName'] ?></h5>
                 <div class="card-body">
                     <h5 class="card-title"><?= $placementsDataSet[0]->getDescription() ?></h5>
@@ -15,9 +16,35 @@
         </div>
         <div>
             <H1>Medium Match</H1>
+            <!-- card -->
+            <div class="card bg-warning">
+                <h5 class="card-header"><?= $companies->fetchCompanyName($placementsDataSet[1]->getCompanyId())['companyName'] ?></h5>
+                <div class="card-body">
+                    <h5 class="card-title"><?= $placementsDataSet[1]->getDescription() ?></h5>
+                    <a href="#" class="btn btn-primary">Apply!</a>
+                </div>
+            </div>
+
         </div>
         <div>
             <H1>Low Match</H1>
+            <!-- card -->
+            <div class="card bg-danger">
+                <h5 class="card-header"><?= $companies->fetchCompanyName($placementsDataSet[2]->getCompanyId())['companyName'] ?></h5>
+                <div class="card-body">
+                    <h5 class="card-title"><?= $placementsDataSet[0]->getDescription() ?></h5>
+                    <a href="#" class="btn btn-primary">Apply!</a>
+                </div>
+            </div>
+
+            <!-- card -->
+            <div class="card bg-danger">
+                <h5 class="card-header"><?= $companies->fetchCompanyName($placementsDataSet[3]->getCompanyId())['companyName'] ?></h5>
+                <div class="card-body">
+                    <h5 class="card-title"><?= $placementsDataSet[0]->getDescription() ?></h5>
+                    <a href="#" class="btn btn-primary">Apply!</a>
+                </div>
+            </div>
         </div>
     </div>
 

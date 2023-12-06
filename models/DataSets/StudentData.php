@@ -2,7 +2,7 @@
 
     class StudentData
     {
-        protected $id, $firstName, $lastName, $email, $phoneNumber, $location, $cv, $course, $institution, $prefIndustry, $skill1, $skill2, $skill3;
+        protected $id, $firstName, $lastName, $location, $cv, $course, $institution, $prefIndustry, $skill1, $skill2, $skill3;
 
 
         public function __construct($dbRow)
@@ -10,8 +10,6 @@
             $this->id = $dbRow['id'];
             $this->firstName = $dbRow['firstName'];
             $this->lastName = $dbRow['lastName'];
-            $this->email = $dbRow['email'];
-            $this->phoneNumber = $dbRow['phoneNumber'];
             $this->location = $dbRow['location'];
             $this->cv = $dbRow['cv'];
             $this->course = $dbRow['course'];
@@ -37,16 +35,6 @@
         public function getLastName()
         {
             return $this->lastName;
-        }
-
-        public function getEmail()
-        {
-            return $this->email;
-        }
-
-        public function getPhoneNumber()
-        {
-            return $this->phoneNumber;
         }
 
         public function getLocation()

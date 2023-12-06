@@ -3,14 +3,12 @@
 
 class Company
 {
-    protected $id, $companyName, $email, $phoneNumber;
+    protected $id, $companyName;
 
     public function __construct($dbRow)
     {
         $this->id = $dbRow['id'];
         $this->companyName = $dbRow['companyName'];
-        $this->email = $dbRow['email'];
-        $this->phoneNumber = $dbRow['phoneNumber'];
     }
 
     public function getId()
@@ -22,16 +20,5 @@ class Company
     {
         return $this->companyName;
     }
-
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    public function getPhoneNumber()
-    {
-        return $this->phoneNumber;
-    }
-
 
 }
