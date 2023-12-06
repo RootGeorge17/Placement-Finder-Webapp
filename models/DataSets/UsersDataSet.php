@@ -1,16 +1,13 @@
 <?php
-
-namespace models\DataSets;
-
-require_once('models\Core\Database.php');
-require_once('models\DataSets\User.php');
+require_once(base_path('models\Core\Database.php'));
+require_once(base_path('models\DataSets\User.php'));
 class UsersDataSet
 {
     protected $dbHandle, $dbInstance;
 
 
     public function __construct() {
-        $this->dbInstance = \models\Core\Database::getInstance();
+        $this->dbInstance = Database::getInstance();
         $this->dbHandle = $this->dbInstance->getdbConnection();
     }
 

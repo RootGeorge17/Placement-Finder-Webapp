@@ -1,9 +1,7 @@
 <?php
 
-namespace models\DataSets;
-
-require_once('models/Core/Database.php');
-require_once('models/DataSets/Skill.php');
+require_once(base_path('models/Core/Database.php'));
+require_once(base_path('models/DataSets/Skill.php'));
 
 class SkillsDataSet
 {
@@ -11,7 +9,7 @@ class SkillsDataSet
 
 
     public function __construct() {
-        $this->dbInstance = \models\Core\Database::getInstance();
+        $this->dbInstance = Database::getInstance();
         $this->dbHandle = $this->dbInstance->getdbConnection();
     }
 

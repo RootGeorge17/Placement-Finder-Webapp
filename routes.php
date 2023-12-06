@@ -2,4 +2,4 @@
 
 $router->get('/', 'controllers/index.php');
 
-$router->get('/display', 'controllers/display.php');
+$router->get('/dashboard', 'controllers/studentdashboard.php');

@@ -1,9 +1,7 @@
 <?php
 
-namespace models\DataSets;
-
-require_once('Core/Database.php');
-require_once('DataSets/UserType.php');
+require_once(base_path('Core/Database.php'));
+require_once(base_path('DataSets/UserType.php'));
 
 
 class UserTypesDataSet
@@ -12,7 +10,7 @@ class UserTypesDataSet
 
 
     public function __construct() {
-        $this->dbInstance = \models\Core\Database::getInstance();
+        $this->dbInstance = Database::getInstance();
         $this->dbHandle = $this->dbInstance->getdbConnection();
     }
 

@@ -1,10 +1,7 @@
 <?php
 
-namespace models\DataSets;
-
-
-require_once('models\Core\Database.php');
-require_once('models\DataSets\StudentData.php');
+require_once(base_path('models\Core\Database.php'));
+require_once(base_path('models\DataSets\StudentData.php'));
 
 class StudentsDataSet
 {
@@ -12,11 +9,11 @@ class StudentsDataSet
 
 
     public function __construct() {
-        $this->dbInstance = \models\Core\Database::getInstance();
+        $this->dbInstance = Database::getInstance();
         $this->dbHandle = $this->dbInstance->getdbConnection();
     }
 
-    public function fetchAllStudents()
+    public function fetchAllStudentData()
     {
         $sqlQuery = 'SELECT * FROM studentData';
 

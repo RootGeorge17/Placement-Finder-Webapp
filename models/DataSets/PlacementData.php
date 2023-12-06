@@ -1,6 +1,5 @@
 <?php
 
-namespace models\DataSets;
 class PlacementData
 {
     protected $id, $companyId, $description, $industry, $salary, $location, $startDate, $endDate, $skill1, $skill2, $skill3;
