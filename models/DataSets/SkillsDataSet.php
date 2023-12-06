@@ -28,4 +28,51 @@ class SkillsDataSet
         return $dataSet;
     }
 
+    public function fetchSkillById($id)
+    {
+        $sqlQuery = 'SELECT * FROM skills WHERE id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(['id' => $id]); // execute the PDO statement
+
+        $row = $statement->fetch();
+        return new Skill($row);
+    }
+
+    public function fetchSkillByName($name)
+    {
+        $sqlQuery = 'SELECT * FROM skills WHERE skillName = :name';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(['name' => $name]); // execute the PDO statement
+
+        $row = $statement->fetch();
+        return new Skill($row);
+    }
+
+    public function fetchSkillByProficiency($proficiency)
+    {
+        $sqlQuery = 'SELECT * FROM skills WHERE proficiency = :proficiency';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(['proficiency' => $proficiency]); // execute the PDO statement
+
+        $row = $statement->fetch();
+        return new Skill($row);
+    }
+
+    public function fetchProficiencyById($id)
+    {
+        $sqlQuery = 'SELECT proficiency FROM skills WHERE id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(['id' => $id]); // execute the PDO statement
+
+        $row = $statement->fetch();
+        if ($row) {
+            return $row['proficiency'];
+        }
+        return null;
+    }
+
 }
