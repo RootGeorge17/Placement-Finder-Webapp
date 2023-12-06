@@ -26,7 +26,6 @@ class SkillsDataSet
             $dataSet[] = new Skill($row);
         }
         return $dataSet;
-
     }
 
 }
