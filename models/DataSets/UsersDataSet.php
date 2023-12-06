@@ -27,6 +27,12 @@ class UsersDataSet
             $dataSet[] = new User($row);
         }
         return $dataSet;
+    }
+
+    public function credentialsMatch($email, $password)
+    {
+        $sqlQuery = 'SELECT email, password from users where $email = :email, $password = :password';
+
 
     }
 }
