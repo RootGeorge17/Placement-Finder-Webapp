@@ -22,8 +22,7 @@ class Router
     protected function abort($code = 404) {
         http_response_code($code); // Set the HTTP response code (default is 404, but can be customized)
 
-        require base_path("views/{$code}.php"); // Include the corresponding error view based on the provided code
-
+        require base_path("views/{$code}.phtml"); // Include the corresponding error view based on the provided code
 
         die(); // Terminate script execution to prevent further processing
     }

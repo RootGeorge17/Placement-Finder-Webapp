@@ -1,15 +1,15 @@
 <?php
 
-require(base_path("models/DataSets/PlacementsDataSet.php"));
-require(base_path("models/DataSets/StudentsDataSet.php"));
-require(base_path("models/DataSets/SkillsDataSet.php"));
-require(base_path("models/DataSets/CompaniesDataSet.php"));
-require(base_path("models/Extensions/PlacementHelpers.php"));
+require_once(base_path("models/DataSets/PlacementsDataSet.php"));
+require_once(base_path("models/DataSets/StudentsDataSet.php"));
+require_once(base_path("models/DataSets/SkillsDataSet.php"));
+require_once(base_path("models/DataSets/CompaniesDataSet.php"));
+require_once(base_path("models/Extensions/PlacementHelpers.php"));
+require_once base_path("models/DataSets/IndustriesDataSet.php");
 
 if($_SESSION['user']['usertype'] == 1)
 {
     require_once base_path("models/DataSets/ProficienciesDataSet.php");
-    require_once base_path("models/DataSets/IndustriesDataSet.php");
 
     $placementsDataSet = new PlacementsDataSet();
     $studentsDataSet = new StudentsDataSet();
@@ -24,7 +24,7 @@ if($_SESSION['user']['usertype'] == 1)
     $allPlacements = $placementsDataSet->fetchAllPlacements();
     $allCompanies = $companiesDataSet->fetchAllCompanies();
     $allSkills = $skillsDataSet->fetchAllSkills();
-    $testStudent = $studentsDataSet->fetchStudentDataById(1);
+    $testStudent = $studentsDataSet->fetchStudentDataById($_SESSION['user']['id']); // dont mind the naming cba refactoring everything else
 
     view("studentdashboard.phtml",[
         'pageTitle' => 'Student Dashboard',
@@ -44,17 +44,24 @@ if($_SESSION['user']['usertype'] == 1)
 } elseif($_SESSION['user']['usertype'] == 2)
 {
 
+    require_once base_path("models/DataSets/UsersDataSet.php");
+
     $placementsDataSet = new PlacementsDataSet();
     $studentsDataSet = new StudentsDataSet();
     $skillsDataSet = new SkillsDataSet();
     $companiesDataSet = new CompaniesDataSet();
     $placementHelpers = new PlacementHelpers();
+    $usersDataSet = new UsersDataSet();
+    $industriesDataSet = new IndustriesDataSet();
     $allStudents = $studentsDataSet->fetchAllStudentData();
 
 
     view("employerdashboard.phtml",[
         'pageTitle' => 'Employer Dashboard',
         'studentsDataSet' => $studentsDataSet,
+        'companiesDataSet' => $companiesDataSet,
+        'usersDataSet' => $usersDataSet,
+        'industriesDataSet' => $industriesDataSet,
         'allStudents' => $allStudents,
         'placementHelpers' => $placementHelpers,
     ]);

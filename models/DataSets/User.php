@@ -64,7 +64,7 @@
             return $this->studentData;
         }
 
-        public function getCompanyData()
+        public function getCompanyId()
         {
             return $this->companyData;
         }

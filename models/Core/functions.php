@@ -21,7 +21,6 @@ function abort($code = 404) {
 
     require base_path("views/{$code}.php"); // Include the corresponding error view based on the provided code
 
-
     die(); // Terminate script execution to prevent further processing
 }
 
