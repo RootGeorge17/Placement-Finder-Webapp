@@ -1,0 +1,31 @@
+<?php require_once(base_path('views/partials/head.phtml')) ?>
+<?php require_once(base_path('views/partials/nav.phtml')) ?>
+<?php require_once(base_path('views/partials/header.phtml')) ?>
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <section class="container-fluid body-content">
+        <div class="row font-weight-bold">
+            <strong><p class="font-weight-bold">Log in using your email address and password.</p></strong>
+        </div>
+
+        <form action="/login" method="POST">
+            <div class="flex row">
+                <row class="mb-4" id="">
+                    <input type="text" id="email" name="email" placeholder="Email address">
+                </row>
+
+                <row class="mb-4" id="">
+                    <input type="text" id="password" name="password" placeholder="Password">
+                </row>
+            </div>
+
+            <button class="button btn-lg btn-success" type="submit" value="Log in">Log in</button>
+        </form>
+
+        <row>
+            <a class="underline text-success">Having trouble logging in?</a>
+        </row>
+    </section>
+</div>
+
+<?php require_once(base_path('views/partials/footer.phtml')) ?>
