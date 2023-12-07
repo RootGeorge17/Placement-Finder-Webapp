@@ -22,7 +22,6 @@ class StudentsDataSet
 
         $dataSet = [];
         while ($row = $statement->fetch()) {
-            var_dump($row);
             $dataSet[] = new StudentData($row);
         }
         return $dataSet;

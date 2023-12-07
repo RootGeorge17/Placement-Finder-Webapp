@@ -2,20 +2,18 @@
 <?php require_once(base_path('views/partials/nav.phtml')) ?>
 <?php require_once(base_path('views/partials/header.phtml')) ?>
 
-<?php
-
-$matches = getPlacementMatches($testStudent, $allPlacements) ?>
+<?php $placementMatches = $placementHelpers->getPlacementMatches($testStudent, $allPlacements, $allProficiencies, $allSkills) ?>
 
     <div class="container">
-        <?php $skillNames = getSkillNames($testStudent, $allSkills) ?>
+        <?php $skillNames = $placementHelpers->getSkillNames($testStudent, $allSkills) ?>
         <p>Based on your Skills: <?= $skillNames[0] ?>, <?= $skillNames[1] ?>, <?= $skillNames[2] ?>. We have determined these Placements for you! </p>
 
         <h1>Placement Matches</h1>
 
-        <?php if (isset($matches['high'])): ?>
+        <?php if (isset($placementMatches['high'])): ?>
             <div>
-                <h1>High Match</h1>
-                <?php foreach ($matches['high'] as $placement): ?>
+                <h1>Excellent Match(s)</h1>
+                <?php foreach ($placementMatches['high'] as $placement): ?>
                     <div class="card bg-success">
                         <h5 class="card-header"><?= $companiesDataSet->fetchCompanyName($placement->getCompanyId())['companyName'] ?></h5>
                         <div class="card-body">
@@ -52,10 +50,10 @@ $matches = getPlacementMatches($testStudent, $allPlacements) ?>
             </div>
         <?php endif; ?>
 
-        <?php if (isset($matches['medium'])): ?>
+        <?php if (isset($placementMatches['medium'])): ?>
             <div>
-                <h1>Medium Match</h1>
-                <?php foreach ($matches['medium'] as $placement): ?>
+                <h1>Good Match(s)</h1>
+                <?php foreach ($placementMatches['medium'] as $placement): ?>
                     <div class="card bg-warning">
                         <h5 class="card-header"><?= $companiesDataSet->fetchCompanyName($placement->getCompanyId())['companyName'] ?></h5>
                         <div class="card-body">
@@ -91,10 +89,10 @@ $matches = getPlacementMatches($testStudent, $allPlacements) ?>
             </div>
         <?php endif; ?>
 
-        <?php if (isset($matches['low'])): ?>
+        <?php if (isset($placementMatches['low'])): ?>
             <div>
-                <h1>Low Match</h1>
-                <?php foreach ($matches['low'] as $placement): ?>
+                <h1>Poor Match(s)</h1>
+                <?php foreach ($placementMatches['low'] as $placement): ?>
                     <div class="card bg-danger">
                         <h5 class="card-header"><?= $companiesDataSet->fetchCompanyName($placement->getCompanyId())['companyName'] ?></h5>
                         <div class="card-body">

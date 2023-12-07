@@ -2,12 +2,15 @@
 <?php require_once(base_path('views/partials/nav.phtml')) ?>
 <?php require_once(base_path('views/partials/header.phtml')) ?>
 
+<?php $studentMatches = $placementHelpers->getStudentMatchesForCompany(1, $allStudents) ?>
+
 <div class="container">
 
     <p>Based on the placements you have posted, the following students have been identified as potential matches.</p>
 
     <h1>Student Matches</h1>
 
+    <?= var_dump($studentMatches) ?>
 
 </div>
 
