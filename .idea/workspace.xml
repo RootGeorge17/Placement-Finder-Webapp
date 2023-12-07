@@ -10,6 +10,23 @@
       <change afterPath="$PROJECT_DIR$/.idea/dataSources/b705ffbe-e9ab-47ff-90bf-ff62fa30aa05/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/dataSources/b705ffbe-e9ab-47ff-90bf-ff62fa30aa05/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CSS/hackcampCSS.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/Authentication/login/login.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/Authentication/login/store.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/Authentication/register/register.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/bcs-logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/Authentication/login.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/Authentication/register.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/Authentication/register2.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/Authentication/register3.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Core/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Core/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/DataSets/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/DataSets/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/DataSets/UsersDataSet.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/DataSets/UsersDataSet.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/index.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/head.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/head.phtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +96,7 @@
       <workItem from="1701776195351" duration="427000" />
       <workItem from="1701794847837" duration="2454000" />
       <workItem from="1701889395226" duration="1132000" />
-      <workItem from="1701940049077" duration="10734000" />
+      <workItem from="1701940049077" duration="11247000" />
     </task>
     <servers />
   </component>

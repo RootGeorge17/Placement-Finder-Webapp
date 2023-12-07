@@ -38,4 +38,15 @@ class CompaniesDataSet
         return $statement->fetch();
     }
 
+    public function fetchCompanyById($id)
+    {
+        $sqlQuery = 'SELECT * FROM company WHERE id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(['id' => $id]); // execute the PDO statement
+
+        $row = $statement->fetch();
+        return new Company($row);
+    }
+
 }

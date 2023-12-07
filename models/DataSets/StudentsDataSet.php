@@ -22,11 +22,20 @@ class StudentsDataSet
 
         $dataSet = [];
         while ($row = $statement->fetch()) {
-            var_dump($row);
             $dataSet[] = new StudentData($row);
         }
         return $dataSet;
+    }
 
+    public function fetchStudentDataById($id)
+    {
+        $sqlQuery = 'SELECT * FROM studentData WHERE id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(['id' => $id]); // execute the PDO statement
+
+        $row = $statement->fetch();
+        return new StudentData($row);
     }
 
 }
