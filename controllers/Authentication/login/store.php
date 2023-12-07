@@ -35,7 +35,7 @@ $userDetails = $usersDataSet->getUserDetails($email);
 login(
     $userDetails['id'],
     $userDetails['email'],
-    $userDetails['usertypeid']
+    $userDetails['userType']
 );
 
 header('Location: /dashboard');

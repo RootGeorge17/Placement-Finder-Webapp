@@ -1,7 +1,7 @@
 <?php
 
 $router->get('/', 'controllers/index.php');
-$router->get('/dashboard', 'controllers/studentdashboard.php');
+$router->get('/dashboard', 'controllers/dashboard.php');
 
 // Authentication
 $router->get('/login', 'controllers/Authentication/login/login.php');

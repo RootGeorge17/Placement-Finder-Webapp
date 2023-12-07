@@ -38,14 +38,14 @@ function view($path, $fields = [])
     require base_path('views/' . $path);
 }
 
-function login($id, $email, $usertypeid)
+function login($id, $email, $usertype)
 {
     $loggedIn = true;
 
     $_SESSION['user'] = [
         'id' => $id,
         'email' => $email,
-        'usertypeid' => $usertypeid,
+        'usertype' => $usertype,
         'loggedIn' => $loggedIn,
     ];
 
