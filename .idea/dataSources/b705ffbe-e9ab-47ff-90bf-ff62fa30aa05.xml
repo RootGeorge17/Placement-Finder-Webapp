@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="@poseidon.salford.ac.uk">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.45">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.49">
     <root id="1">
       <DefaultCasing>exact</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -927,6 +927,8 @@ hc23\\_17\\_hackcamp|schema||hc23-17||grant option|G</Grants>
     </collation>
     <schema id="288" parent="1" name="hc23_17_hackcamp">
       <Current>1</Current>
+      <IntrospectionTimestamp>2023-12-07.14:09:36</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-12-07.14:09:37</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="289" parent="1" name="information_schema">
@@ -973,7 +975,7 @@ hc23\\_17\\_hackcamp|schema||hc23-17||grant option|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
     <column id="301" parent="292" name="id">
-      <AutoIncrement>2</AutoIncrement>
+      <AutoIncrement>5</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1039,7 +1041,7 @@ hc23\\_17\\_hackcamp|schema||hc23-17||grant option|G</Grants>
       <UnderlyingIndexName>coursesName_UNIQUE</UnderlyingIndexName>
     </key>
     <column id="315" parent="294" name="id">
-      <AutoIncrement>2</AutoIncrement>
+      <AutoIncrement>5</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1068,7 +1070,7 @@ hc23\\_17\\_hackcamp|schema||hc23-17||grant option|G</Grants>
       <UnderlyingIndexName>industry_UNIQUE</UnderlyingIndexName>
     </key>
     <column id="321" parent="295" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>6</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1205,7 +1207,7 @@ hc23\\_17\\_hackcamp|schema||hc23-17||grant option|G</Grants>
       <UnderlyingIndexName>proficiency_UNIQUE</UnderlyingIndexName>
     </key>
     <column id="350" parent="297" name="id">
-      <AutoIncrement>5</AutoIncrement>
+      <AutoIncrement>7</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1253,7 +1255,7 @@ hc23\\_17\\_hackcamp|schema||hc23-17||grant option|G</Grants>
       <UnderlyingIndexName>skillName_UNIQUE</UnderlyingIndexName>
     </key>
     <column id="360" parent="298" name="id">
-      <AutoIncrement>2</AutoIncrement>
+      <AutoIncrement>3</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1360,7 +1362,7 @@ hc23\\_17\\_hackcamp|schema||hc23-17||grant option|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="383" parent="299" name="id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>2</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1409,7 +1411,7 @@ hc23\\_17\\_hackcamp|schema||hc23-17||grant option|G</Grants>
       <RefColNames>id</RefColNames>
       <RefTableName>studentData</RefTableName>
     </foreign-key>
-    <foreign-key id="393" parent="299" name="user_companyData_placementData_id">
+    <foreign-key id="393" parent="299" name="user_companyData_company_id">
       <ColNames>companyData</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
