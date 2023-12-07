@@ -37,3 +37,17 @@ function view($path, $fields = [])
     extract($fields); // Turns array into set of variables accessible by the method, variable name = key, variable value = key-value
     require base_path('views/' . $path);
 }
+
+function login($id, $email, $usertypeid)
+{
+    $loggedIn = true;
+
+    $_SESSION['user'] = [
+        'id' => $id,
+        'email' => $email,
+        'usertypeid' => $usertypeid,
+        'loggedIn' => $loggedIn,
+    ];
+
+    session_regenerate_id(true);
+}
