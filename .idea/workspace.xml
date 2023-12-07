@@ -7,12 +7,9 @@
     <list default="true" id="5a5d524c-1f09-49f6-8564-5f6fac1a17e1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/Authentication/login/store.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Authentication/login/store.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/employerdashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/studentdashboard.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Core/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Core/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/DataSets/UsersDataSet.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/DataSets/UsersDataSet.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/dashboard.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/Authentication/login.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/Authentication/login.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/Authentication/register2.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/Authentication/register2.phtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

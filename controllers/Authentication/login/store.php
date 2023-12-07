@@ -7,14 +7,6 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $errors = [];
 
-if(!Validator::email($email)) {
-    $errors['InvalidEmail'] = "You have provided an invalid email";
-}
-
-if(!Validator::string($password, 5, 45)) {
-    $errors['InvalidPassword'] = "Password must be more than 5 characters and maximum 45 characters";
-}
-
 if(!empty($errors)) {
     return view('Authentication/login.phtml', [
         'errors' => $errors
@@ -24,7 +16,7 @@ if(!empty($errors)) {
 $userMatch = $usersDataSet->credentialsMatch($email, $password);
 
 if(!$userMatch) {
-    $errors['NoAccount'] = "Account doesn't exist!";
+    $errors['NoAccount'] = "Sorry we didn't recognise those details.";
     return view('Authentication/login.phtml', [
         'errors' => $errors
     ]);

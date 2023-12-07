@@ -2,9 +2,13 @@
 
 if($_SESSION['user']['usertype'] == 1)
 {
-    require(base_path("models/DataSets/ProficienciesDataSet.php"));
-    require(base_path("models/Extensions/PlacementHelpers.php"));
+    require_once base_path("models/DataSets/PlacementsDataSet.php");
+    require_once base_path('models/DataSets/StudentsDataSet.php');
+    require_once base_path('models/DataSets/SkillsDataSet.php');
+    require_once base_path("models/DataSets/ProficienciesDataSet.php");
+    require_once base_path("models/DataSets/CompaniesDataSet.php");
 
+    require_once base_path("models/Extensions/PlacementHelpers.php");
 
     $placementsDataSet = new PlacementsDataSet();
     $studentsDataSet = new StudentsDataSet();
