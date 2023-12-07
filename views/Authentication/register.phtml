@@ -1,0 +1,71 @@
+<?php require base_path('views/partials/head.phtml') ?>
+
+
+
+<div class="container mb-5">
+    <form name="register1" action="/register" method="post">
+        <h1 class="mb-3 text-center">Create your BCS Placement Finder account</h1>
+        <p class="text-center">Already have an account? <a href="">Log in</a></p>
+
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="firstName">First Name</label>
+                <input type="text" class="form-control" name="firstName" id="firstName">
+            </div>
+            <div class="col-md-6 ">
+                <label class="mb-2" for="lastName">Last Name</label>
+                <input type="text" class="form-control" name="lastName" id="lastName">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="accountType">Account Type</label>
+                <select class="form-select" name="accountType" id="accountType">
+                    <option value="student">Student</option>
+                    <option value="employer">Employer</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="mb-2" for="email">Email</label>
+                <input type="text" class="form-control" name="email" id="email">
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="password">Password</label>
+                <input type="text" class="form-control" name="password" id="password">
+            </div>
+            <div class="col-md-6">
+                <label class="mb-2" for="confirmPassword">Confirm Password</label>
+                <input type="text" class="form-control" name="confirmPassword" id="confirmPassword">
+            </div>
+        </div>
+
+        <h6 class="mb-3 text-center">How we use your data</h6>
+        <p>We’ll store your basic personal information such as your name and email address so we can communicate with you about the services
+            you’ve registered for. This includes welcome communications and information about accessing,
+            using and getting the most from the services.</p>
+
+        <p>
+            We will never sell your data. If you are applying for membership we will only pass your details to our 3rd party fulfilment
+            partner who will process your membership pack and digital assets. To find out more, please view our Data Privacy Notice
+        </p>
+
+        <div class="row mb-5">
+            <div class="col-md-12 text-center" >
+                <button class="btn btn-success btn-lg btn-block dark-green-bg" name="submit1" type="submit">Register and Continue    <i class="bi bi-arrow-right"></i></button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<br>
+
+
+
+<?php require base_path('views/partials/nav.phtml') ?>
+
+
+
