@@ -9,22 +9,22 @@ require(base_path("models/Extensions/PlacementHelpers.php"));
 if($_SESSION['user']['usertype'] == 1)
 {
     require_once base_path("models/DataSets/ProficienciesDataSet.php");
-
+    require_once base_path("models/DataSets/IndustriesDataSet.php");
 
     $placementsDataSet = new PlacementsDataSet();
     $studentsDataSet = new StudentsDataSet();
     $skillsDataSet = new SkillsDataSet();
     $companiesDataSet = new CompaniesDataSet();
     $placementHelpers = new PlacementHelpers();
-    $proficiencies = new ProficienciesDataSet();
+    $proficienciesDataSet = new ProficienciesDataSet();
+    $industriesDataSet = new IndustriesDataSet();
 
 
-    $allProficiencies = $proficiencies->fetchAllProficiencies();
+    $allProficiencies = $proficienciesDataSet->fetchAllProficiencies();
     $allPlacements = $placementsDataSet->fetchAllPlacements();
     $allCompanies = $companiesDataSet->fetchAllCompanies();
     $allSkills = $skillsDataSet->fetchAllSkills();
     $testStudent = $studentsDataSet->fetchStudentDataById(1);
-
 
     view("studentdashboard.phtml",[
         'pageTitle' => 'Student Dashboard',
@@ -32,6 +32,8 @@ if($_SESSION['user']['usertype'] == 1)
         'studentsDataSet' => $studentsDataSet,
         'companiesDataSet' => $companiesDataSet,
         'testStudent' => $testStudent,
+        'industriesDataSet' => $industriesDataSet,
+
         'allPlacements' => $allPlacements,
         'allCompanies' => $allCompanies,
         'allSkills' => $allSkills,

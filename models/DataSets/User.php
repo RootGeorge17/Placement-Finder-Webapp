@@ -1,7 +1,7 @@
 <?php
     class User
     {
-        protected $id, $username, $password, $email, $phoneNumber, $userType, $studentData, $companyData;
+        protected $id, $username, $password, $firstName, $lastName, $email, $phoneNumber, $userType, $studentData, $companyData;
 
 
         public function __construct($dbRow)
@@ -11,10 +11,22 @@
             $this->username = $dbRow['username'];
             $this->password = $dbRow['password'];
             $this->email = $dbRow['email'];
-            $this->phoneNumber = $dbRow['phoneNumber'];
+            $this->firstName = $dbRow['firstName'];
+            $this->lastName = $dbRow['lastName'];
+            $this->phoneNumber = $dbRow['phoneNumber'] ?? null;
             $this->userType = $dbRow['userType'];
             $this->studentData = $dbRow['studentData'] ?? null;
             $this->companyData = $dbRow['companyData'] ?? null;
+        }
+
+        public function getFirstName(): mixed
+        {
+            return $this->firstName;
+        }
+
+        public function getLastName(): mixed
+        {
+            return $this->lastName;
         }
 
         public function getId()

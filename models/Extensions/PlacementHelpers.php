@@ -10,7 +10,17 @@ class PlacementHelpers
     {
     }
 
-    public function getPlacementMatches(StudentData $studentData, $placementData, $allProficiencies, $allSkills)
+    /**
+     * this function returns an array of placements that match the student's skills and proficiencies
+     *
+     * muj - 07/12/2023
+     * @param StudentData $studentData the student you want the matches for
+     * @param PlacementData[] $placementsData
+     * @param Proficiency[] $allProficiencies all proficiencies
+     * @param skill[] $allSkills all skills
+     * @return array
+     */
+    public function getPlacementMatches(StudentData $studentData, $placementsData, array $allProficiencies, array $allSkills): array
     {
         $skills = new SkillsDataSet();
 
@@ -36,7 +46,7 @@ class PlacementHelpers
 
         $matches = [];
 
-        foreach ($placementData as $placement) {
+        foreach ($placementsData as $placement) {
             $skillMatchCount = 0;
             $sameProficiencyCount = 0;
 
@@ -83,23 +93,69 @@ class PlacementHelpers
         return $matches;
     }
 
-    public function getSkillNames($studentData, $allSkills){
+    /**
+     * this function returns an array of skill names the student has
+     *
+     * muj - 07/12/2023
+     * @param StudentData $studentData the student you want the skill names for
+     * @param skill[] $allSkills all skills
+     * @return array
+     */
+    public function getSkillNames(StudentData $studentData, array $allSkills, array $allProficiencies): array
+    {
         $skillNames = [];
-        foreach ($allSkills as $skill){
-            if ($skill->getId() == $studentData->getSkill1()){
-                $skillNames[] = $skill->getSkillName();
-            }
-            if ($skill->getId() == $studentData->getSkill2()){
-                $skillNames[] = $skill->getSkillName();
-            }
-            if ($skill->getId() == $studentData->getSkill3()){
-                $skillNames[] = $skill->getSkillName();
+        $studentSkillsIds = [
+            $studentData->getSkill1(),
+            $studentData->getSkill2(),
+            $studentData->getSkill3()
+        ];
+
+        foreach ($studentSkillsIds as $studentSkillId) {
+            foreach ($allSkills as $skill) {
+                if ($skill->getId() == $studentSkillId) {
+                    $skillId = $skill->getId();
+                    $skillName = $skill->getSkillName();
+                    $studentSkillProficiency = $skill->getProficiency();
+
+                    // Find proficiency level based on skill proficiency
+                    foreach ($allProficiencies as $proficiency) {
+                        if ($proficiency->getId() === $studentSkillProficiency) {
+                            $skillNames[$studentSkillId] = [
+                                'skillId' => $skillId,
+                                'skillName' => $skillName,
+                                'skillProficiency' => $proficiency->getProficiency(),
+                            ];
+                            break; // Stop checking other proficiencies once a match is found
+                        }
+                    }
+                    break; // Stop checking other skills once a match is found
+                }
             }
         }
         return $skillNames;
     }
 
-    public function getStudentMatchesForCompany($companyId, $allStudents) {
+    public function getProficiencyFromSkill(skill $skill, array $allProficiencies): string
+    {
+        foreach ($allProficiencies as $proficiency) {
+            if ($proficiency->getId() == $skill->getProficiency()) {
+                return $proficiency->getProficiency();
+            }
+        }
+        return '';
+    }
+
+    /**
+     * this function returns an array of students and the placements that match their skills and proficiencies
+     * that the company has posted
+     *
+     * muj - 07/12/2023
+     * @param int $companyId the company id you want the matches for
+     * @param StudentData[] $allStudents all students
+     * @return array
+     */
+    public function getStudentMatchesForCompany(int $companyId, array $allStudents): array
+    {
         $placementDataSet = new PlacementsDataSet();
         $proficienciesDataSet = new ProficienciesDataSet();
         $skillsDataSet = new SkillsDataSet();
