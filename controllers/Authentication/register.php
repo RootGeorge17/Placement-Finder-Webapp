@@ -21,8 +21,7 @@ switch ($step) {
         ]);
         break;
     default:
-        header('Location: /register?step=1');
-        break;
         // Handle cases (if step parameter is missing or invalid) => Redirect
+        header('Location: /register?step=1');
         break;
 }
