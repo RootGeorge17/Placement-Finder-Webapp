@@ -28,4 +28,18 @@ class PlacementsDataSet
         return $dataSet;
     }
 
+    public function fetchPlacementsByCompanyId($id)
+    {
+        $sqlQuery = 'SELECT * FROM placementData WHERE companyId = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(['id' => $id]); // execute the PDO statement
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new PlacementData($row);
+        }
+        return $dataSet;
+    }
+
 }
