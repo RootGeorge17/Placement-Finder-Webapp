@@ -1,7 +1,7 @@
 <?php require base_path('views/partials/head.phtml') ?>
 
 <div class="container mb-5">
-    <form name="register2" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+    <form name="register2" action="/register" method="post">
         <h1 class="mb-3 text-center">Tell us more about YOU</h1>
 
         <div class="row mb-3">
@@ -35,6 +35,22 @@
                 <input type="text" class="form-control" name="salary" id="salary" placeholder="£">
             </div>
         </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="startDate">Start Date</label><br>
+                <input type="date" id="startDate" name="startDate" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
+            </div>
+
+
+
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="endDate">End Date</label><br>
+                <input type="date" id="endDate" name="endDate" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
+            </div>
+        </div>
+
+
 
         <div class="row justify-content-center mb-2">
             <div class="col-md-3 text-center ">
