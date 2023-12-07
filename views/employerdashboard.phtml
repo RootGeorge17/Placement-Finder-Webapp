@@ -2,7 +2,7 @@
 <?php require_once(base_path('views/partials/nav.phtml')) ?>
 <?php require_once(base_path('views/partials/header.phtml')) ?>
 
-<?php $studentMatches = $placementHelpers->getStudentMatchesForCompany(1, $allStudents) ?>
+<?php $matches = $placementHelpers->getStudentMatchesForCompany(1, $allStudents) ?>
 
 <div class="container">
 
@@ -10,7 +10,52 @@
 
     <h1>Student Matches</h1>
 
-    <?= var_dump($studentMatches) ?>
+    <?= var_dump($matches) ?>
+
+    <div class="container mt-5">
+        <?php foreach ($matches as $studentId => $studentMatches) : ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Student ID: <?php echo $studentId; ?></h3>
+                </div>
+            </div>
+            <?php foreach ($studentMatches as $matchType => $cards) : ?>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4><?php echo ucfirst($matchType); ?> Matches</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <?php foreach ($cards as $card) : ?>
+                    <div class="card col-md-4">
+                        <div class="placement-details">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p><strong>Industry:</strong> <?= $card->getIndustry() ?></p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <p><strong>Salary:</strong> <?= $card->getSalary() ?></p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <p><strong>Location:</strong> <?= $card->getLocation() ?></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p><strong>Start Date:</strong> <?= $card->getStartDate() ?></p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <p><strong>End Date:</strong> <?= $card->getEndDate() ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endforeach; ?>
+        <?php endforeach; ?>
+    </div>
+
 
 </div>
 
