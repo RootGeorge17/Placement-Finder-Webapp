@@ -16,7 +16,7 @@ $allCompanies = $companiesDataSet->fetchAllCompanies();
 $allSkills = $skillsDataSet->fetchAllSkills();
 $testStudent = $studentsDataSet->fetchStudentDataById(1);
 
-function getMatches(StudentData $studentData, $placementData, $skillsDataSet)
+function getPlacementMatches(StudentData $studentData, $placementData)
 {
     $skills = new SkillsDataSet();
 
@@ -86,7 +86,7 @@ function getSkillNames($studentData, $allSkills){
 }
 
 view("studentdashboard.phtml",[
-    'pageTitle' => 'Dashboard',
+    'pageTitle' => 'Student Dashboard',
     'placementsDataSet' => $placementsDataSet,
     'allPlacements' => $allPlacements,
     'companiesDataSet' => $companiesDataSet,
