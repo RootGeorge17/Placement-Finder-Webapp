@@ -1,0 +1,109 @@
+<?php require base_path('views/partials/head.phtml') ?>
+
+<div class="container mb-5">
+    <form name="register2" action="/register" method="post">
+        <h1 class="mb-3 text-center">Tell us more about YOU</h1>
+
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="companyName">Company Name</label>
+                <input type="text" class="form-control" name="companyName" id="companyName">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+
+            <div class="col-md-12 mb-2">
+                <label for="description">Company Description</label>
+                <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+            </div>
+
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="industry">Industry</label>
+                <select class="form-select" name="industry" id="industry">
+                    <option value="test">test</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="mb-2" for="salary">Salary</label>
+                <input type="text" class="form-control" name="salary" id="salary" placeholder="£">
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-2">
+            <div class="col-md-3 text-center ">
+                <label class="mb-2" for="location">Location</label>
+                <input type="text" class="form-control" name="location" id="location">
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-2">
+            <div class="col-md-3 mb-2">
+                <label class="mb-2" for="skill1">Skill 1</label>
+                <select class="form-select" name="skill1" id="skill1">
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="mb-2" for="proficiency1">Proficiency</label>
+                <select class="form-select" name="proficiency1" id="proficiency1">
+                </select>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-2">
+            <div class="col-md-3 mb-2">
+                <label class="mb-2" for="skill2">Skill 2</label>
+                <select class="form-select" name="skill2" id="skill2">
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="mb-2" for="proficiency2">Proficiency</label>
+                <select class="form-select" name="proficiency2" id="proficiency2">
+                </select>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-2">
+            <div class="col-md-3 mb-2">
+                <label class="mb-2" for="skill3">Skill 3</label>
+                <select class="form-select" name="skill3" id="skill3">
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="mb-2" for="proficiency3">Proficiency</label>
+                <select class="form-select" name="proficiency3" id="proficiency3">
+                </select>
+            </div>
+        </div>
+
+        <h6 class="mb-3 text-center">How we use your data</h6>
+
+        <p>We’ll store your basic personal information such as your name and email address so we can communicate with you about the services
+            you’ve registered for. This includes welcome communications and information about accessing,
+            using and getting the most from the services.
+        </p>
+
+        <p>
+            We will never sell your data. If you are applying for membership we will only pass your details to our 3rd party fulfilment
+            partner who will process your membership pack and digital assets. To find out more, please view our Data Privacy Notice
+        </p>
+
+        <div class="row mb-5">
+            <div class="col-md-12 text-center" >
+                <button class="btn btn-success btn-lg btn-block" type="submit">Register and Continue    <i class="bi bi-arrow-right"></i></button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<br>
+
+
+
+<?php require base_path('views/partials/nav.phtml') ?>
+
