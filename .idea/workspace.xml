@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a5d524c-1f09-49f6-8564-5f6fac1a17e1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/controllers/Authentication/register/store.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b705ffbe-e9ab-47ff-90bf-ff62fa30aa05.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b705ffbe-e9ab-47ff-90bf-ff62fa30aa05.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/Authentication/login/store.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Authentication/login/store.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/Authentication/register/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Authentication/register/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/Authentication/login.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/Authentication/login.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/Authentication/register.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/Authentication/register.phtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/Authentication/register2.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/Authentication/register2.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/head.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/head.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/header.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/header.phtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,23 +37,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "true",
-    "last_opened_file_path": "C:/Users/George/Desktop/Projects/Websites/Placement-Finder-Webapp/controllers",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/George/Desktop/Projects/Websites/Placement-Finder-Webapp/controllers/Authentication/register&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\George\Desktop\Projects\Websites\Placement-Finder-Webapp\controllers" />
       <recent name="C:\Users\George\Desktop\Projects\Websites\Placement-Finder-Webapp\controllers\Authentication\register" />
+      <recent name="C:\Users\George\Desktop\Projects\Websites\Placement-Finder-Webapp\controllers" />
       <recent name="C:\Users\George\Desktop\Projects\Websites\HackCamp\views\partials" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
