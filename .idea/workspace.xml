@@ -16,6 +16,9 @@
       <change beforePath="$PROJECT_DIR$/views/Authentication/register2.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/Authentication/register2.phtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/partials/head.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/head.phtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/partials/header.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/header.phtml" afterDir="false" />
+    <list default="true" id="5a5d524c-1f09-49f6-8564-5f6fac1a17e1" name="Changes" comment="error 404 😱😱😱😱😱&#10;&#10;student dashboard finished&#10;&#10;prototyping employer dashboard">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/employerdashboard.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/employerdashboard.phtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +34,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 8.0" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2Z7Yz08NXB9BLE6Vt1dLek0O7hv" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -42,11 +48,13 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/George/Desktop/Projects/Websites/Placement-Finder-Webapp/controllers/Authentication/register&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;muj/feature/updated-cards&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/George/Desktop/Projects/Websites/Placement-Finder-Webapp/controllers&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.webide.settings.project.settings.php&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -87,10 +95,65 @@
       <workItem from="1701794847837" duration="2454000" />
       <workItem from="1701889395226" duration="1132000" />
       <workItem from="1701940049077" duration="11247000" />
+      <workItem from="1701960691789" duration="20445000" />
     </task>
+    <task id="LOCAL-00001" summary="dashboard.php fixed">
+      <option name="closed" value="true" />
+      <created>1701958630501</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701958630501</updated>
+    </task>
+    <task id="LOCAL-00002" summary="database changes (added firstname and lastname to user and removed them from student data, phonenumber in user made nullable)&#10;&#10;skill tags will include proficiency now.">
+      <option name="closed" value="true" />
+      <created>1701972188658</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1701972188658</updated>
+    </task>
+    <task id="LOCAL-00003" summary="error 404 😱😱😱😱😱&#10;&#10;student dashboard finished&#10;&#10;prototyping employer dashboard">
+      <option name="closed" value="true" />
+      <created>1701986975321</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701986975321</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="muj/feature/updated-cards" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="dashboard.php fixed" />
+    <MESSAGE value="database changes (added firstname and lastname to user and removed them from student data, phonenumber in user made nullable)&#10;&#10;skill tags will include proficiency now." />
+    <MESSAGE value="error 404 &#10;&#10;student dashboard finished&#10;&#10;prototyping employer dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="error 404 &#10;&#10;student dashboard finished&#10;&#10;prototyping employer dashboard" />
   </component>
 </project>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="@poseidon.salford.ac.uk">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.45">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.49">
     <root id="1">
       <DefaultCasing>exact</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -927,6 +927,8 @@ hc23\\_17\\_hackcamp|schema||hc23-17||grant option|G</Grants>
     </collation>
     <schema id="288" parent="1" name="hc23_17_hackcamp">
       <Current>1</Current>
+      <IntrospectionTimestamp>2023-12-07.17:32:00</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-12-07.17:32:01</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="289" parent="1" name="information_schema">

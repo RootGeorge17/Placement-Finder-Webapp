@@ -81,4 +81,32 @@ class UsersDataSet
 
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function fetchUserById($id): ?User
+    {
+        $sqlQuery = 'SELECT * FROM user WHERE id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(['id' => $id]); // execute the PDO statement
+
+        if($row = $statement->fetch()) {
+            return new User($row);
+        } else {
+            return null;
+        }
+    }
+
+    public function fetchStudentDataById($id)
+    {
+        $sqlQuery = 'SELECT studentData.* 
+                     FROM studentData 
+                     INNER JOIN user ON studentData.id = user.id
+                     WHERE user.id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(['id' => $id]); // execute the PDO statement
+
+        $row = $statement->fetch();
+        return new StudentData($row);
+    }
 }
