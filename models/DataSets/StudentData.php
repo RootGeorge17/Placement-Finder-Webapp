@@ -2,12 +2,14 @@
 
     class StudentData
     {
-        protected $id, $location, $cv, $course, $institution, $prefIndustry, $skill1, $skill2, $skill3;
+        protected $id, $firstName, $lastName, $location, $cv, $course, $institution, $prefIndustry, $skill1, $skill2, $skill3;
 
 
         public function __construct($dbRow)
         {
             $this->id = $dbRow['id'];
+            $this->firstName = $dbRow['firstName'];
+            $this->lastName = $dbRow['lastName'];
             $this->location = $dbRow['location'];
             $this->cv = $dbRow['cv'];
             $this->course = $dbRow['course'];
@@ -23,6 +25,16 @@
         public function getId()
         {
             return $this->id;
+        }
+
+        public function getFirstName()
+        {
+            return $this->firstName;
+        }
+
+        public function getLastName()
+        {
+            return $this->lastName;
         }
 
         public function getLocation()

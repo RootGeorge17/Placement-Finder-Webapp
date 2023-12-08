@@ -25,21 +25,7 @@ class IndustriesDataSet
             $dataSet[] = new Industry($row);
         }
         return $dataSet;
-    }
 
-    public function fetchIndustryNameById($id): mixed
-    {
-        $sqlQuery = 'SELECT industry FROM industry WHERE id = :id';
-
-        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
-        $statement->bindParam(':id', $id, PDO::PARAM_INT);
-        $statement->execute(); // execute the PDO statement
-
-        if ($row = $statement->fetch()) {
-            return $row['industry'];
-        } else {
-            return null;
-        }
     }
 
 }

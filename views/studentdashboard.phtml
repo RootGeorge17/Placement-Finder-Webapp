@@ -2,153 +2,197 @@
 <?php require_once(base_path('views/partials/nav.phtml')) ?>
 <?php require_once(base_path('views/partials/header.phtml')) ?>
 
-<?php $placementMatches = $placementHelpers->getPlacementMatches($testStudent, $allPlacements, $allProficiencies, $allSkills);
-$studentSkills = [
-    $testStudent->getSkill1(),
-    $testStudent->getSkill2(),
-    $testStudent->getSkill3()
-];
-?>
+<?php $placementMatches = $placementHelpers->getPlacementMatches($testStudent, $allPlacements, $allProficiencies, $allSkills) ?>
 
     <div class="container">
-        <?php $skillNames = $placementHelpers->getSkillNames($testStudent, $allSkills, $allProficiencies); ?>
+        <?php $skillNames = $placementHelpers->getSkillNames($testStudent, $allSkills) ?>
+        <p>Based on your Skills: <?= $skillNames[0] ?>, <?= $skillNames[1] ?>, <?= $skillNames[2] ?>. We have determined these Placements for you! </p>
 
         <h1>Placement Matches</h1>
-        <p>Based on your Skills:
-            <?php foreach ($skillNames as $skillId => $skillData) : ?>
-                <span class="badge bg-success rounded-pill text-light">
-                    <?= $skillData['skillName'] ?> (Proficiency: <?= $skillData['skillProficiency'] ?>)
-                </span>
-            <?php endforeach; ?>
-            We have determined these Placements for you!
-        </p>
 
+        <?php if (isset($placementMatches['high'])): ?>
+            <div>
+                <h1>Excellent Match(s)</h1>
+                <?php foreach ($placementMatches['high'] as $placement): ?>
+                    <div class="card border-success mb-3">
+                        <h5 class="card-header"><?= $companiesDataSet->fetchCompanyName($placement->getCompanyId())['companyName'] ?></h5>
 
-        <div class="container">
-            <div class="placement-matches">
-                <?php foreach ($placementMatches as $matchType => $placements): ?>
-                    <?php if (!empty($placements)): ?>
-                        <h3><?= ucfirst($matchType) ?> Matches</h3>
-                        <div class="match-type">
-                            <?php foreach ($placements as $placement): ?>
-                                <div class="card border-<?php
-                                echo ($matchType === 'excellent') ? 'success' :
-                                    (($matchType === 'good') ? 'warning' : 'danger');
-                                ?> mb-3">
-                                    <!-- Display placement details -->
-                                    <div class="card-body">
-                                        <div class="placement-details">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <p><strong>Company:</strong> <?= $companiesDataSet->fetchCompanyName($placement->getCompanyId()) ?></p>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <p><strong>Description:</strong> <?= $placement->getDescription() ?></p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <p>
-                                                        <strong>Industry:</strong> <?= $industriesDataSet->fetchIndustryNameById($placement->getIndustry()) ?>
-                                                    </p>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <p><strong>Salary:</strong>
-                                                        £<?= number_format($placement->getSalary(), 0, '.', ',') ?></p>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <p><strong>Location:</strong> <?= $placement->getLocation() ?></p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <p><strong>Start Date:</strong> <?= $placement->getStartDate() ?></p>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <p><strong>End Date:</strong> <?= $placement->getEndDate() ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="btn btn-success">Apply!</a>
+                        <div class="card-body">
+                            <div class="placement-details">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <p><strong>Industry:</strong> <?= $placement->getIndustry() ?></p>
                                     </div>
-
-                                    <div class="card-footer">
-                                        <small>Matched Skills:</small>
-                                        <?php
-                                        $userSkills = [
-                                            $testStudent->getSkill1(),
-                                            $testStudent->getSkill2(),
-                                            $testStudent->getSkill3()
-                                        ];
-
-                                        $placementSkills = [
-                                            $placement->getSkill1(),
-                                            $placement->getSkill2(),
-                                            $placement->getSkill3()
-                                        ];
-                                        ?>
-                                        <?php foreach ($placementSkills as $skillId): ?>
-                                            <?php foreach ($allSkills as $skill): ?>
-                                                <?php if ($skill->getId() === $skillId && in_array($skillId, $userSkills)): ?>
-                                                    <span class="badge bg-success rounded-pill text-light"><?= $skill->getSkillName() ?> (<?= $placementHelpers->getProficiencyFromSkill($skill, $allProficiencies) ?>)</span>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        <?php endforeach; ?>
+                                    <div class="col-sm-4">
+                                        <p><strong>Salary:</strong> <?= $placement->getSalary() ?></p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <p><strong>Location:</strong> <?= $placement->getLocation() ?></p>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <p><strong>Start Date:</strong> <?= $placement->getStartDate() ?></p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <p><strong>End Date:</strong> <?= $placement->getEndDate() ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-primary">Apply!</a>
+                        </div>
+
+                        <div class="card-footer">
+                            <small>Matched Skills:</small>
+                            <?php
+                            // Assuming $userSkills contains the user's skills
+                            $userSkills = [
+                                $testStudent->getSkill1(),
+                                $testStudent->getSkill2(),
+                                $testStudent->getSkill3()
+                            ];
+
+                            $placementSkills = [
+                                $placement->getSkill1(),
+                                $placement->getSkill2(),
+                                $placement->getSkill3()
+                            ];
+                            ?>
+                            <?php foreach ($placementSkills as $skillId): ?>
+                                <?php foreach ($allSkills as $skill): ?>
+                                    <?php if ($skill->getId() === $skillId && in_array($skillId, $userSkills)): ?>
+                                        <span class="badge bg-primary rounded-pill text-light"><?= $skill->getSkillName() ?></span>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             <?php endforeach; ?>
                         </div>
-                    <?php endif; ?>
+                    </div>
                 <?php endforeach; ?>
             </div>
-        </div>
+        <?php endif; ?>
 
-    </div>
+        <?php if (isset($placementMatches['medium'])): ?>
+            <div>
+                <h1>Good Match(s)</h1>
+                <?php foreach ($placementMatches['medium'] as $placement): ?>
+                    <div class="card border-warning mb-3">
+                        <h5 class="card-header"><?= $companiesDataSet->fetchCompanyName($placement->getCompanyId())['companyName'] ?></h5>
 
-<?php
-function displayPlacementCard($placement, $companiesDataSet, $industriesDataSet, $allSkills, $testStudent, $placementHelpers, $allProficiencies)
-{
-    ?>
-    <div class="card border-<?php echo ($placement->getMatchType() === 'high') ? 'success' : (($placement->getMatchType() === 'medium') ? 'warning' : 'danger'); ?> mb-3">
-        <h5 class="card-header"><?= $companiesDataSet->fetchCompanyName($placement->getCompanyId()) ?></h5>
+                        <div class="card-body">
+                            <div class="placement-details">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <p><strong>Industry:</strong> <?= $placement->getIndustry() ?></p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <p><strong>Salary:</strong> <?= $placement->getSalary() ?></p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <p><strong>Location:</strong> <?= $placement->getLocation() ?></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <p><strong>Start Date:</strong> <?= $placement->getStartDate() ?></p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <p><strong>End Date:</strong> <?= $placement->getEndDate() ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-primary">Apply!</a>
+                        </div>
 
-        <div class="card-body">
-            <div class="placement-details">
-                <!-- Display placement details -->
-                <!-- ... -->
-            </div>
-            <a href="#" class="btn btn-success">Apply!</a>
-        </div>
+                        <div class="card-footer">
+                            <small>Matched Skills:</small>
+                            <?php
+                            // Assuming $userSkills contains the user's skills
+                            $userSkills = [
+                                $testStudent->getSkill1(),
+                                $testStudent->getSkill2(),
+                                $testStudent->getSkill3()
+                            ];
 
-        <div class="card-footer">
-            <small>Matched Skills:</small>
-            <?php
-            $userSkills = [
-                $testStudent->getSkill1(),
-                $testStudent->getSkill2(),
-                $testStudent->getSkill3()
-            ];
-
-            $placementSkills = [
-                $placement->getSkill1(),
-                $placement->getSkill2(),
-                $placement->getSkill3()
-            ];
-            ?>
-            <?php foreach ($placementSkills as $skillId): ?>
-                <?php foreach ($allSkills as $skill): ?>
-                    <?php if ($skill->getId() === $skillId && in_array($skillId, $userSkills)): ?>
-                        <span class="badge bg-success rounded-pill text-light"><?= $skill->getSkillName() ?> (<?= $placementHelpers->getProficiencyFromSkill($skill, $allProficiencies) ?>)</span>
-                    <?php endif; ?>
+                            $placementSkills = [
+                                $placement->getSkill1(),
+                                $placement->getSkill2(),
+                                $placement->getSkill3()
+                            ];
+                            ?>
+                            <?php foreach ($placementSkills as $skillId): ?>
+                                <?php foreach ($allSkills as $skill): ?>
+                                    <?php if ($skill->getId() === $skillId && in_array($skillId, $userSkills)): ?>
+                                        <span class="badge bg-primary rounded-pill text-light"><?= $skill->getSkillName() ?></span>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </div>
-    </div>
-    <?php
-}
+            </div>
+        <?php endif; ?>
 
-?>
+        <?php if (isset($placementMatches['low'])): ?>
+            <div>
+                <h1>Poor Match(s)</h1>
+                <?php foreach ($placementMatches['low'] as $placement): ?>
+                    <div class="card border-danger mb-3">
+                        <h5 class="card-header"><?= $companiesDataSet->fetchCompanyName($placement->getCompanyId())['companyName'] ?></h5>
+
+                        <div class="card-body">
+                            <div class="placement-details">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <p><strong>Industry:</strong> <?= $placement->getIndustry() ?></p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <p><strong>Salary:</strong> <?= $placement->getSalary() ?></p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <p><strong>Location:</strong> <?= $placement->getLocation() ?></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <p><strong>Start Date:</strong> <?= $placement->getStartDate() ?></p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <p><strong>End Date:</strong> <?= $placement->getEndDate() ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-primary">Apply!</a>
+                        </div>
+
+                        <div class="card-footer">
+                            <small>Matched Skills:</small>
+                            <?php
+                            // Assuming $userSkills contains the user's skills
+                            $userSkills = [
+                                $testStudent->getSkill1(),
+                                $testStudent->getSkill2(),
+                                $testStudent->getSkill3()
+                            ];
+
+                            $placementSkills = [
+                                $placement->getSkill1(),
+                                $placement->getSkill2(),
+                                $placement->getSkill3()
+                            ];
+                            ?>
+                            <?php foreach ($placementSkills as $skillId): ?>
+                                <?php foreach ($allSkills as $skill): ?>
+                                    <?php if ($skill->getId() === $skillId && in_array($skillId, $userSkills)): ?>
+                                        <span class="badge bg-primary rounded-pill text-light"><?= $skill->getSkillName() ?></span>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    </div>
 
 
 <?php require_once(base_path('views/partials/footer.phtml')) ?>

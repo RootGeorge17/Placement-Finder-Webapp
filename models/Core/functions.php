@@ -21,6 +21,7 @@ function abort($code = 404) {
 
     require base_path("views/{$code}.php"); // Include the corresponding error view based on the provided code
 
+
     die(); // Terminate script execution to prevent further processing
 }
 
@@ -49,23 +50,4 @@ function login($id, $email, $usertype)
     ];
 
     session_regenerate_id(true);
-}
-
-function logout()
-{
-    $_SESSION = [];
-    session_destroy();
-
-    $params = session_get_cookie_params();
-    setcookie("PHPSESSID", '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
-}
-
-function authenticated(): bool
-{
-    if (isset($_SESSION['user']['loggedIn']))
-    {
-        return true;
-    } else {
-        return false;
-    }
 }

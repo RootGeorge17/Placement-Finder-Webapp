@@ -10,20 +10,14 @@ $step = $query['step'] ?? '';
 switch ($step) {
     case '1':
         // Handle registration step 1 logic
-        return view("Authentication/register.phtml", [
-            'pageTitle' => 'Registration',
+        view("Authentication/register2.phtml", [
+            'pageTitle' => 'Registration - Step 1',
         ]);
         break;
     case '2':
         // Handle registration step 2 logic
-        return view("Authentication/register2.phtml", [
-            'pageTitle' => 'Registration',
-        ]);
-        break;
-    case '3':
-        // Handle registration step 2 logic
-        return view("Authentication/register3.phtml", [
-            'pageTitle' => 'Registration',
+        view("Authentication/register3.phtml", [
+            'pageTitle' => 'Registration - Step 2',
         ]);
         break;
     default:

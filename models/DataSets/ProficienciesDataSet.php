@@ -25,6 +25,7 @@ class ProficienciesDataSet
             $dataSet[] = new Proficiency($row);
         }
         return $dataSet;
+
     }
 
 }
