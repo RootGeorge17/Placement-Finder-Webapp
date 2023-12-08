@@ -1,39 +1,63 @@
 <?php require_once(base_path('views/partials/head.phtml')) ?>
-<?php require_once(base_path('views/partials/nav.phtml')) ?>
-<?php require_once(base_path('views/partials/header.phtml')) ?>
 
-<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-    <section class="container-fluid body-content">
-        <div class="row font-weight-bold">
-            <strong><p class="font-weight-bold">Log in using your email address and password.</p></strong>
-        </div>
+<style>
+    .has-error {
+        background-color: #ffcccc;
+        border: 3px solid;
+        border-color: rgba(226,0,0,.25);
+    }
+</style>
 
-        <form action="/login" method="POST">
-            <div class="flex row">
-                <row class="mb-4" id="">
-                    <input type="text" id="email" name="email" placeholder="Email address">
-                </row>
+<div id="main-content">
+    <section class="vh-100">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-12 col-xl-15">
+                    <div class="card text-black border-0">
+                        <div class="card-body p-md-5">
+                            <div class="row justify-content-center">
+                                <div class="col-md-10 col-lg-6 col-xl-15 order-2 order-lg-1">
+                                    <img src="https://sts.bcs.org/bcs-logo.svg" alt="Image not found!" class="img-fluid mx-auto mb-4" style="max-width: 25%;" />                                    <p class="d-flex text-center justify-content-center h5 fw-bold mx-4 mb-3 mb-lg-4">Log in using your email address and password</p>
 
-                <row class="mb-4" id="">
-                    <input type="text" id="password" name="password" placeholder="Password">
-                </row>
+                                    <form class="mx-1 mx-md-4" action="/login" method="POST">
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="text" id="email" name="email" placeholder="Email address" class="form-control <?= !empty($errors) ? 'has-error' : '' ?>" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="password" id="password" name="password" placeholder="Password" class="form-control <?= !empty($errors) ? 'has-error' : '' ?>" required>
+                                            </div>
+                                        </div>
+                                        <?php if (!empty($errors)) : ?>
+                                            <ul class="error-list list-unstyled d-flex justify-content-center mx-6 mb-3 mb-lg-4">
+                                                <?php foreach ($errors as $error) : ?>
+                                                    <strong><li class="text-danger mt-2 list"><?= $error ?></li></strong>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        <?php endif; ?>
+
+                                        <div class="d-flex justify-content-center mx-6 mb-3 mb-lg-4">
+                                            <button class="btn btn-success btn-lg btn-block" type="submit">Login <i class="bi bi-arrow-right"></i></button>
+                                        </div>
+
+                                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                            <a href="/register" class="underline text-success">Don't Have an Account? Register Here!</a>
+                                        </div>
+                                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                            <a href="#" class="underline text-success">Having trouble logging in?</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <button class="button btn-lg btn-success" type="submit" value="Log in">Log in</button>
-        </form>
-
-        <row>
-            <a class="underline text-success">Having trouble logging in?</a>
-        </row>
+        </div>
     </section>
-    <?php if (!empty($errors)) : ?>
-        <ul class="error-list">
-            <?php foreach ($errors as $error) : ?>
-                <li class="text-danger small mt-2"><?= $error ?></li>
-            <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
-
 </div>
-
-<?php require_once(base_path('views/partials/footer.phtml')) ?>
