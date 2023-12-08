@@ -6,6 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="5a5d524c-1f09-49f6-8564-5f6fac1a17e1" name="Changes" comment="employer dash board not finished yet">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="5a5d524c-1f09-49f6-8564-5f6fac1a17e1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/controllers/Authentication/register/store.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b705ffbe-e9ab-47ff-90bf-ff62fa30aa05.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b705ffbe-e9ab-47ff-90bf-ff62fa30aa05.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/Authentication/login/store.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Authentication/login/store.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/Authentication/register/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Authentication/register/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/Authentication/login.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/Authentication/login.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/Authentication/register.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/Authentication/register.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/Authentication/register2.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/Authentication/register2.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/head.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/head.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/header.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/header.phtml" afterDir="false" />
+    <list default="true" id="5a5d524c-1f09-49f6-8564-5f6fac1a17e1" name="Changes" comment="error 404 😱😱😱😱😱&#10;&#10;student dashboard finished&#10;&#10;prototyping employer dashboard">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/dashboard.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/DataSets/CoursesDataSet.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/DataSets/CoursesDataSet.php" afterDir="false" />
@@ -53,8 +66,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\George\Desktop\Projects\Websites\Placement-Finder-Webapp\controllers" />
       <recent name="C:\Users\George\Desktop\Projects\Websites\Placement-Finder-Webapp\controllers\Authentication\register" />
+      <recent name="C:\Users\George\Desktop\Projects\Websites\Placement-Finder-Webapp\controllers" />
       <recent name="C:\Users\George\Desktop\Projects\Websites\HackCamp\views\partials" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
