@@ -96,6 +96,19 @@ class UsersDataSet
         }
     }
 
+    public function fetchUserByStudentId($id){
+        $sqlQuery = 'SELECT * FROM user WHERE studentData = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(['id' => $id]); // execute the PDO statement
+
+        if($row = $statement->fetch()) {
+            return new User($row);
+        } else {
+            return null;
+        }
+    }
+
     public function fetchStudentDataById($id)
     {
         $sqlQuery = 'SELECT studentData.* 

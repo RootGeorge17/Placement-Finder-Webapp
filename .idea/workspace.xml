@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a5d524c-1f09-49f6-8564-5f6fac1a17e1" name="Changes" comment="error 404 😱😱😱😱😱&#10;&#10;student dashboard finished&#10;&#10;prototyping employer dashboard">
+    <list default="true" id="5a5d524c-1f09-49f6-8564-5f6fac1a17e1" name="Changes" comment="employer dash board not finished yet">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/DataSets/CoursesDataSet.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/DataSets/CoursesDataSet.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/DataSets/UsersDataSet.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/DataSets/UsersDataSet.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Extensions/PlacementHelpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Extensions/PlacementHelpers.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/employerdashboard.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/employerdashboard.phtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,6 +89,7 @@
       <workItem from="1701889395226" duration="1132000" />
       <workItem from="1701940049077" duration="11247000" />
       <workItem from="1701960691789" duration="20445000" />
+      <workItem from="1702030335287" duration="1342000" />
     </task>
     <task id="LOCAL-00001" summary="dashboard.php fixed">
       <option name="closed" value="true" />
@@ -109,7 +115,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701986975321</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="employer dash board not finished yet">
+      <option name="closed" value="true" />
+      <created>1702030623700</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1702030623700</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,6 +156,7 @@
     <MESSAGE value="dashboard.php fixed" />
     <MESSAGE value="database changes (added firstname and lastname to user and removed them from student data, phonenumber in user made nullable)&#10;&#10;skill tags will include proficiency now." />
     <MESSAGE value="error 404 &#10;&#10;student dashboard finished&#10;&#10;prototyping employer dashboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="error 404 &#10;&#10;student dashboard finished&#10;&#10;prototyping employer dashboard" />
+    <MESSAGE value="employer dash board not finished yet" />
+    <option name="LAST_COMMIT_MESSAGE" value="employer dash board not finished yet" />
   </component>
 </project>
