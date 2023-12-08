@@ -73,8 +73,8 @@ $matches = $placementHelpers->getStudentMatchesForCompany($user->getCompanyId(),
                                             <strong>Student Institution:</strong> <?= $studentData['studentData']->getInstitution() ?><br>
                                             <strong>Student Preferred Industry:</strong> <?= $prefIndustry ?><br>
                                             <strong>Student Location:</strong> <?= $studentData['studentData']->getLocation() ?><br>
-                                            <a href="#" class="btn btn-success float-end">Contact</a>
-                                            <span class="badge bg-success rounded-pill text-light">(Compatibility: <?= $studentData['grade'] ?>)</span><br>
+                                            <a href="#" class="btn btn-success float-end mb-2">Contact</a>
+                                            <span class="badge bg-success rounded-pill text-light mb-3">(Compatibility: <?= $studentData['grade'] ?>)</span>
                                         </p>
                                     </div>
                                 <?php endforeach; ?>
