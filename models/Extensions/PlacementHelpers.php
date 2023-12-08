@@ -205,7 +205,8 @@ class PlacementHelpers
                     // Include match grade in the student's matches
                     $placementMatches['students'][$studentId] = [
                         'matches' => $studentMatches,
-                        'grade' => $matchGrade // Add match grade here
+                        'grade' => $matchGrade, // Add match grade here
+                        'studentData' => $studentData,
                     ];
                 }
             }

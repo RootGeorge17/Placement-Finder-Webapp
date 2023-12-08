@@ -48,12 +48,17 @@ if($_SESSION['user']['usertype'] == 1)
 } elseif($_SESSION['user']['usertype'] == 2)
 {
 
+    require_once base_path("models/DataSets/UsersDataSet.php");
+    require_once base_path("models/DataSets/CoursesDataSet.php");
+
     $placementsDataSet = new PlacementsDataSet();
     $studentsDataSet = new StudentsDataSet();
     $skillsDataSet = new SkillsDataSet();
     $companiesDataSet = new CompaniesDataSet();
     $placementHelpers = new PlacementHelpers();
     $industriesDataSet = new IndustriesDataSet();
+    $usersDataSet = new UsersDataSet();
+    $coursesDataSet = new CoursesDataSet();
     $allStudents = $studentsDataSet->fetchAllStudentData();
 
 
@@ -61,7 +66,9 @@ if($_SESSION['user']['usertype'] == 1)
         'pageTitle' => 'Employer Dashboard',
         'studentsDataSet' => $studentsDataSet,
         'companiesDataSet' => $companiesDataSet,
+        'usersDataSet' => $usersDataSet,
         'industriesDataSet' => $industriesDataSet,
+        'coursesDataSet' => $coursesDataSet,
         'allStudents' => $allStudents,
         'placementHelpers' => $placementHelpers,
     ]);
