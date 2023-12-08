@@ -1,5 +1,11 @@
 <?php
 
+if(!authenticated())
+{
+    header('location: /login');
+    exit();
+}
+
 require_once(base_path("models/DataSets/PlacementsDataSet.php"));
 require_once(base_path("models/DataSets/StudentsDataSet.php"));
 require_once(base_path("models/DataSets/SkillsDataSet.php"));
