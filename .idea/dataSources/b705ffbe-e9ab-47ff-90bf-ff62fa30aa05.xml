@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="@poseidon.salford.ac.uk">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.49">
+    <root id="1"/>
+    <collation id="2" parent="1" name="armscii8_bin">
     <root id="1">
       <DefaultCasing>exact</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
