@@ -4,12 +4,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-5 col-12">
-                    <!-- Start Logo -->
                     <div class="logo">
-                        <a href="index.html"><img style="width:70px;height:70px;" src="bcs-logo.svg" alt="#"></a>
+                        <a href="/dashboard"><img style="width:70px;height:70px;" src="bcs-logo.svg" alt="#"></a>
                     </div>
                     <!-- Contact -->
                     <ul class="top-link">
+                        <!-- Start Logo -->
 
                     </ul>
                     <!-- End Contact -->
@@ -22,12 +22,12 @@
                         <li><a href="#">About Placements</a></li>
                         <li><a href="#">Our Team</a></li>
                         <?php if (!$_SESSION['user']['loggedIn']) : ?>
-                            <li class="nav-item btn btn-sm">
-                                <a class="nav-link login-button" href="/login">Login to MyBCS</a>
+                            <li>
+                                <a class="btn btn-success" href="/login">Login to MyBCS</a>
                             </li>
                         <?php else : ?>
-                            <li class="nav-item btn btn-sm">
-                                <a class="nav-link login-button" href="/signout">Sign out</a>
+                            <li>
+                                <a class="btn btn-success" href="/signout">Sign out</a>
                             </li>
                         <?php endif; ?>
                     </ul>
