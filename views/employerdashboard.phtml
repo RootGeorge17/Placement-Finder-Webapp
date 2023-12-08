@@ -63,9 +63,12 @@ $matches = $placementHelpers->getStudentMatchesForCompany($user->getCompanyId(),
                                 <?php foreach ($placementMatches['students'] as $studentId => $studentData) : ?>
                                 <div class="card col-md-6">
                                     <p>
-                                        Student ID: <?= $usersDataSet->fetchStudentDataById($studentId)->getId() ?>
+                                        <?php $user = $usersDataSet->fetchUserById($studentId) ?>
+
+                                        Student ID: <?= $user->getId() ?>
                                         <span class="badge bg-success rounded-pill text-light">(Compatibility: <?= $studentData['grade'] ?>)</span>
-                                        <a href="£" class="btn btn-success float-end">Contact</a>
+                                        Student Name: <?= $usersDataSet->fetchStudentDataById($studentId)->getFirstName() ?> <?= $usersDataSet->fetchStudentDataById($studentId)->getLastName() ?>
+                                        <a href="#" class="btn btn-success float-end">Contact</a>
                                     </p>
                                 </div>
                                 <?php endforeach; ?>

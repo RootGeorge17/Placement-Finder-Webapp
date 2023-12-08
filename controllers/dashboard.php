@@ -7,6 +7,10 @@ require_once(base_path("models/DataSets/CompaniesDataSet.php"));
 require_once(base_path("models/Extensions/PlacementHelpers.php"));
 require_once base_path("models/DataSets/IndustriesDataSet.php");
 
+if (!isset($_SESSION['user'])) {
+    header("Location: /");
+    exit();
+}
 if($_SESSION['user']['usertype'] == 1)
 {
     require_once base_path("models/DataSets/ProficienciesDataSet.php");
@@ -44,14 +48,11 @@ if($_SESSION['user']['usertype'] == 1)
 } elseif($_SESSION['user']['usertype'] == 2)
 {
 
-    require_once base_path("models/DataSets/UsersDataSet.php");
-
     $placementsDataSet = new PlacementsDataSet();
     $studentsDataSet = new StudentsDataSet();
     $skillsDataSet = new SkillsDataSet();
     $companiesDataSet = new CompaniesDataSet();
     $placementHelpers = new PlacementHelpers();
-    $usersDataSet = new UsersDataSet();
     $industriesDataSet = new IndustriesDataSet();
     $allStudents = $studentsDataSet->fetchAllStudentData();
 
@@ -60,7 +61,6 @@ if($_SESSION['user']['usertype'] == 1)
         'pageTitle' => 'Employer Dashboard',
         'studentsDataSet' => $studentsDataSet,
         'companiesDataSet' => $companiesDataSet,
-        'usersDataSet' => $usersDataSet,
         'industriesDataSet' => $industriesDataSet,
         'allStudents' => $allStudents,
         'placementHelpers' => $placementHelpers,

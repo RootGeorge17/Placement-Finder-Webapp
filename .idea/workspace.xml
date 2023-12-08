@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a5d524c-1f09-49f6-8564-5f6fac1a17e1" name="Changes" comment="database changes (added firstname and lastname to user and removed them from student data, phonenumber in user made nullable)&#10;&#10;skill tags will include proficiency now.">
-      <change afterPath="$PROJECT_DIR$/views/404.phtml" afterDir="false" />
+    <list default="true" id="5a5d524c-1f09-49f6-8564-5f6fac1a17e1" name="Changes" comment="error 404 😱😱😱😱😱&#10;&#10;student dashboard finished&#10;&#10;prototyping employer dashboard">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Core/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Core/Router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Core/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Core/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/DataSets/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/DataSets/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/DataSets/UsersDataSet.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/DataSets/UsersDataSet.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Extensions/PlacementHelpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Extensions/PlacementHelpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/Authentication/login.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/Authentication/login.phtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/employerdashboard.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/employerdashboard.phtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/studentdashboard.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/studentdashboard.phtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,9 +23,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2Z7Yz08NXB9BLE6Vt1dLek0O7hv" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -92,7 +83,7 @@
       <workItem from="1701794847837" duration="2454000" />
       <workItem from="1701889395226" duration="1132000" />
       <workItem from="1701940049077" duration="11247000" />
-      <workItem from="1701960691789" duration="19027000" />
+      <workItem from="1701960691789" duration="20445000" />
     </task>
     <task id="LOCAL-00001" summary="dashboard.php fixed">
       <option name="closed" value="true" />
@@ -110,7 +101,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701972188658</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="error 404 😱😱😱😱😱&#10;&#10;student dashboard finished&#10;&#10;prototyping employer dashboard">
+      <option name="closed" value="true" />
+      <created>1701986975321</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701986975321</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,6 +141,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="dashboard.php fixed" />
     <MESSAGE value="database changes (added firstname and lastname to user and removed them from student data, phonenumber in user made nullable)&#10;&#10;skill tags will include proficiency now." />
-    <option name="LAST_COMMIT_MESSAGE" value="database changes (added firstname and lastname to user and removed them from student data, phonenumber in user made nullable)&#10;&#10;skill tags will include proficiency now." />
+    <MESSAGE value="error 404 &#10;&#10;student dashboard finished&#10;&#10;prototyping employer dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="error 404 &#10;&#10;student dashboard finished&#10;&#10;prototyping employer dashboard" />
   </component>
 </project>
