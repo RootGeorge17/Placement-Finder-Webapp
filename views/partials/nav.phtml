@@ -21,9 +21,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="">About us</a>
                 </li>
+                <?php if(!$_SESSION['user']['loggedIn']) : ?>
                 <li class="nav-item text-center"">
                 <a class="nav-link login-button" href="/login">Login to MyBCS</a>
                 </li>
+                <?php else : ?>
+                <li class="nav-item text-center"">
+                <a class="nav-link login-button" href="/signout">Sign out</a>
+                </li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>
