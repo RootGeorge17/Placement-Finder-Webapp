@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="@poseidon.salford.ac.uk">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.45">
-    <root id="1">
-      <DefaultCasing>exact</DefaultCasing>
-      <DefaultEngine>InnoDB</DefaultEngine>
-      <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
-      <Grants>hc23\\_17\\_hackcamp|schema||hc23-17||ALTER|G
-hc23\\_17\\_hackcamp|schema||hc23-17||ALTER ROUTINE|G
-hc23\\_17\\_hackcamp|schema||hc23-17||CREATE|G
-hc23\\_17\\_hackcamp|schema||hc23-17||CREATE ROUTINE|G
-hc23\\_17\\_hackcamp|schema||hc23-17||CREATE TEMPORARY TABLES|G
-hc23\\_17\\_hackcamp|schema||hc23-17||CREATE VIEW|G
-hc23\\_17\\_hackcamp|schema||hc23-17||DELETE|G
-hc23\\_17\\_hackcamp|schema||hc23-17||DROP|G
-hc23\\_17\\_hackcamp|schema||hc23-17||EVENT|G
-hc23\\_17\\_hackcamp|schema||hc23-17||EXECUTE|G
-hc23\\_17\\_hackcamp|schema||hc23-17||INDEX|G
-hc23\\_17\\_hackcamp|schema||hc23-17||INSERT|G
-hc23\\_17\\_hackcamp|schema||hc23-17||LOCK TABLES|G
-hc23\\_17\\_hackcamp|schema||hc23-17||REFERENCES|G
-hc23\\_17\\_hackcamp|schema||hc23-17||SELECT|G
-hc23\\_17\\_hackcamp|schema||hc23-17||SHOW VIEW|G
-hc23\\_17\\_hackcamp|schema||hc23-17||TRIGGER|G
-hc23\\_17\\_hackcamp|schema||hc23-17||UPDATE|G
-hc23\\_17\\_hackcamp|schema||hc23-17||grant option|G</Grants>
-      <ServerVersion>8.0.35</ServerVersion>
-    </root>
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.49">
+    <root id="1"/>
     <collation id="2" parent="1" name="armscii8_bin">
       <Charset>armscii8</Charset>
     </collation>

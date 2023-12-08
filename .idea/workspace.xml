@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a5d524c-1f09-49f6-8564-5f6fac1a17e1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/public/hackcampCSS.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b705ffbe-e9ab-47ff-90bf-ff62fa30aa05.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b705ffbe-e9ab-47ff-90bf-ff62fa30aa05.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/Authentication/login/store.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/Authentication/login/store.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/employerdashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/studentdashboard.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Core/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Core/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/DataSets/UsersDataSet.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/DataSets/UsersDataSet.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSS/hackcampCSS.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSS/hackcampCSS.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/Authentication/login.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/Authentication/login.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/head.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/head.phtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/nav.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/nav.phtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,46 +28,58 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 8.0" />
+  <component name="PhpTemplates">
+    <option name="NEW_PHP_FILE_LAST_EXTENSION" value="phtml" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2Z7Yz08NXB9BLE6Vt1dLek0O7hv" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "true",
-    "last_opened_file_path": "C:/Users/George/Desktop/Projects/Websites/Placement-Finder-Webapp/controllers",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;firaas/feature/register-view&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/firaa/Desktop/Placement-Finder-Webapp/CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.webide.settings.project.settings.php&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\firaa\Desktop\Placement-Finder-Webapp\CSS" />
+      <recent name="C:\Users\firaa\Desktop\Placement-Finder-Webapp\views\partials" />
       <recent name="C:\Users\George\Desktop\Projects\Websites\Placement-Finder-Webapp\controllers" />
       <recent name="C:\Users\George\Desktop\Projects\Websites\Placement-Finder-Webapp\controllers\Authentication\register" />
       <recent name="C:\Users\George\Desktop\Projects\Websites\HackCamp\views\partials" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\firaa\Desktop\Placement-Finder-Webapp\public" />
       <recent name="C:\Users\George\Desktop\Projects\Websites\Placement-Finder-Webapp\controllers\Authentication\login" />
       <recent name="C:\Users\George\Desktop\Projects\Websites\Placement-Finder-Webapp\models\Core" />
       <recent name="C:\Users\George\Desktop\Projects\Websites\HackCamp\public" />
     </key>
   </component>
-  <component name="RunManager" selected="PHP Built-in Web Server.Unnamed">
-    <configuration name="Unnamed" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server" nameIsGenerated="true" document_root="$PROJECT_DIR$/public" port="5000">
+  <component name="RunManager" selected="PHP Built-in Web Server.WebServer">
+    <configuration name="WebServer" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server" document_root="$PROJECT_DIR$/public" port="8000">
       <method v="2" />
     </configuration>
     <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/public/index.php">
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="PHP Built-in Web Server.Unnamed" />
+      <item itemvalue="PHP Built-in Web Server.WebServer" />
       <item itemvalue="PHP Script.index.php" />
     </list>
   </component>
@@ -84,6 +96,9 @@
       <workItem from="1701794847837" duration="2454000" />
       <workItem from="1701889395226" duration="1132000" />
       <workItem from="1701940049077" duration="11247000" />
+      <workItem from="1701963427681" duration="3006000" />
+      <workItem from="1701966662697" duration="6436000" />
+      <workItem from="1702030456029" duration="266000" />
     </task>
     <servers />
   </component>
