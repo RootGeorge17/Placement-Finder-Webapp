@@ -426,12 +426,12 @@ Preloader Area CSS
 }
 
 .btn {
-	color: #fff;
 	padding: 8px 9px;
 	font-size: 14px;
 	text-transform: capitalize;
 	font-weight: 500;
-	background: #bccf00;
+	background-color: #bccf00;
+	color: #000;
 	position: relative;
 	box-shadow: none;
 	display: inline-block;
@@ -445,7 +445,7 @@ Preloader Area CSS
 	border-radius:4px;
 }
 .btn:hover{
-	color:#bccf00;
+	color:#fff;
 }
 .btn:before{
 	content: "";
@@ -455,7 +455,7 @@ Preloader Area CSS
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background: #bccf00;
+	background: #2C2D3F;
 	-webkit-transform: scaleX(0);
 	transform: scaleX(0);
 	-webkit-transform-origin: 50%;

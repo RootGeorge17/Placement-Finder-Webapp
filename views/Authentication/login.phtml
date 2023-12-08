@@ -21,14 +21,12 @@
 
                                     <form class="mx-1 mx-md-4" action="/login" method="POST">
                                         <div class="d-flex flex-row align-items-center mb-4">
-                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <input type="text" id="email" name="email" placeholder="Email address" class="form-control <?= !empty($errors) ? 'has-error' : '' ?>" required>
                                             </div>
                                         </div>
 
                                         <div class="d-flex flex-row align-items-center mb-4">
-                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <input type="password" id="password" name="password" placeholder="Password" class="form-control <?= !empty($errors) ? 'has-error' : '' ?>" required>
                                             </div>
