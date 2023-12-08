@@ -27,7 +27,8 @@ class CompaniesDataSet
         return $dataSet;
     }
 
-    public function fetchCompanyName($id){
+    public function fetchCompanyName($id): mixed
+    {
         $sqlQuery = 'SELECT companyName FROM company WHERE id = :id';
 
         $statement = $this->dbHandle->prepare($sqlQuery);
@@ -35,18 +36,25 @@ class CompaniesDataSet
             ':id' => $id
         ]);
 
-        return $statement->fetch();
+        if ($row = $statement->fetch()){
+            return $row['companyName'];
+        } else {
+            return null;
+        }
     }
 
-    public function fetchCompanyById($id)
+    public function fetchCompanyById($id): ?Company
     {
         $sqlQuery = 'SELECT * FROM company WHERE id = :id';
 
         $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
         $statement->execute(['id' => $id]); // execute the PDO statement
 
-        $row = $statement->fetch();
-        return new Company($row);
+        if($row = $statement->fetch()) {
+            return new Company($row);
+        } else {
+            return null;
+        }
     }
 
 }
