@@ -36,6 +36,11 @@
                 <label class="mb-2" for="contactNumber">Contact Number</label>
                 <input type="text" class="form-control" name="contactNumber" id="contactNumber" value="<?= $user->getPhoneNumber() ?>">
             </div>
+
+            <!--submit button-->
+            <div class="col-md-3 col-sm-6 col-lg-6 align-self-end">
+                <button class="btn btn-success btn-lg btn-block dark-green-bg mb-2" id="changepassword" name="changepassword" value="changepassword" type="submit">Change Password<i class="bi bi-arrow-right"></i></button>
+            </div>
         </div>
 
         <!--course and institution-->
@@ -43,64 +48,34 @@
             <div class="col-md-6 mb-2">
                 <label class="mb-2" for="course">Course</label>
                 <select class="form-select" name="course" id="course">
-                    <option value="<?= $userCourse->getCourseName() ?>"><?= $userCourse->getCourseName() ?></option>
+                    <?php generateSelectOptions($userCourse->getCourseName(), $courses, 'getCourseName', 0); ?>
                 </select>
             </div>
             <div class="col-md-6">
                 <label class="mb-2" for="institution">Institution</label>
                 <select class="form-select" name="institution" id="institution">
-                    <option value="<?= $userStudentData->getInstitution() ?>"><?= $userStudentData->getInstitution() ?></option>
+                    <?php generateSelectOptions($userStudentData->getInstitution(), $universities, 'name', 1); ?>
                 </select>
             </div>
         </div>
 
-        <!--skill 1 and proficiency-->
-        <div class="row mb-2">
-            <div class="col-md-6 mb-2">
-                <label class="mb-2" for="skill1">Skill 1</label>
-                <select class="form-select" name="skill1" id="skill1">
-                    <option value="<?= $userSkills[0]->getSkillName() ?>"><?= $userSkills[0]->getSkillName() ?></option>
-                </select>
+        <!-- skill and proficiency -->
+        <?php for ($i = 0; $i < 3; $i++) : ?>
+            <div class="row mb-2">
+                <div class="col-md-6 mb-2">
+                    <label class="mb-2" for="skill<?= $i + 1 ?>">Skill <?= $i + 1 ?></label>
+                    <select class="form-select" name="skill<?= $i + 1 ?>" id="skill<?= $i + 1 ?>">
+                        <?php generateSkillSelectOptions($userSkills[$i], $allSkills, $userSkills[$i]); ?>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="mb-2" for="proficiency<?= $i + 1 ?>">Proficiency</label>
+                    <select class="form-select" name="proficiency<?= $i + 1 ?>" id="proficiency<?= $i + 1 ?>">
+                        <?php generateProficiencySelectOptions($userSkillsAndProficiencies[$i], $allProficiencies, $userSkillsAndProficiencies[$i]); ?>
+                    </select>
+                </div>
             </div>
-            <div class="col-md-6">
-                <label class="mb-2" for="proficiency1">Proficiency</label>
-                <select class="form-select" name="proficiency1" id="proficiency1">
-                    <option value="<?= $userSkillsAndProficiencies[0]['proficiency']->getProficiency() ?>"><?=$userSkillsAndProficiencies[0]['proficiency']->getProficiency()?></option>
-                </select>
-            </div>
-        </div>
-
-        <!--skill 2 and proficiency-->
-        <div class="row mb-2">
-            <div class="col-md-6 mb-2">
-                <label class="mb-2" for="skill2">Skill 2</label>
-                <select class="form-select" name="skill2" id="skill2">
-                    <option value="<?= $userSkills[1]->getSkillName() ?>"><?= $userSkills[1]->getSkillName() ?></option>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label class="mb-2" for="proficiency2">Proficiency</label>
-                <select class="form-select" name="proficiency2" id="proficiency2">
-                    <option value="<?= $userSkillsAndProficiencies[1]['proficiency']->getProficiency() ?>"><?=$userSkillsAndProficiencies[1]['proficiency']->getProficiency()?></option>
-                </select>
-            </div>
-        </div>
-
-        <!--skill 3 and proficiency-->
-        <div class="row justify-content-center mb-2">
-            <div class="col-md-6 mb-2">
-                <label class="mb-2" for="skill3">Skill 3</label>
-                <select class="form-select" name="skill3" id="skill3">
-                    <option value="<?= $userSkills[2]->getSkillName() ?>"><?= $userSkills[2]->getSkillName() ?></option>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label class="mb-2" for="proficiency3">Proficiency</label>
-                <select class="form-select" name="proficiency3" id="proficiency3">
-                    <option value="<?= $userSkillsAndProficiencies[2]['proficiency']->getProficiency() ?>"><?=$userSkillsAndProficiencies[2]['proficiency']->getProficiency()?></option>
-                </select>
-            </div>
-        </div>
+        <?php endfor; ?>
 
         <!--submit button-->
         <div class="row justify-content-center mb-2">

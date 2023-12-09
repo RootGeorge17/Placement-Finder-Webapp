@@ -17,7 +17,7 @@ $studentSkills = [
         <p>Based on your Skills:
             <?php foreach ($skillNames as $skillId => $skillData) : ?>
                 <span class="badge bg-success rounded-pill text-light">
-                    <?= $skillData['skillName'] ?> (Proficiency: <?= $skillData['skillProficiency'] ?>)
+                    <?= $skillData['skillName'] ?> (<?= $skillData['skillProficiency'] ?>)
                 </span>
             <?php endforeach; ?>
             We have determined these Placements for you!

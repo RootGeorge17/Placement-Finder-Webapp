@@ -13,7 +13,7 @@ $router->get('/register', 'controllers/Authentication/register/register.php');
 $router->post('/register', 'controllers/Authentication/register/store.php');
 
 // Edit Profile
-$router->get('/editprofile', 'controllers/editprofile.php');
-$router->post('/editprofile', 'controllers/editprofile.php');
+$router->get('/editprofile', 'controllers/editprofile/editprofile_get.php');
+$router->post('/editprofile', 'controllers/editprofile/editprofile_post.php');
 
 
