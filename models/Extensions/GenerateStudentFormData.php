@@ -163,5 +163,4 @@ class GenerateStudentFormData
             echo "<option value='" . $proficiency->getProficiency() . "'>" . $proficiency->getProficiency() . "</option>";
         }
     }
-
 }
