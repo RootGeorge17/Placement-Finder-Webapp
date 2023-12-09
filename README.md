@@ -5,13 +5,13 @@ OGs only no sweats
 
 ## Installation
 
-### Clone repository using SSH:
+#### Clone repository using SSH:
     - Click on the "Code" button and select "SSH"
     - Copy the SSH URL provided
     - In your terminal, navigate to the directory where you want to clone the repository
     - Run the command: git clone <SSH_URL> : replacing <SSH_URL> with the copied SSH URL.
 
-### Clone repository using HTTPS:
+#### Clone repository using HTTPS:
     - Click on the "Code" button and select "HTTPS"
     - Copy the HTTPS URL provided
     - In your terminal, navigate to the directory where you want to clone the repository
@@ -24,6 +24,10 @@ OGs only no sweats
     - Click the `+` icon.
     - Choose `PHP Built-in Web Server`.
     - Set the document root to the `public` folder (pathtoproject\public).
+    - Create a student or company account and search for placements or students, respectively.
+
+2. If you are running on our Website:
+    - Access the website on:
     - Create a student or company account and search for placements or students, respectively.
 
 ![alt text]()
