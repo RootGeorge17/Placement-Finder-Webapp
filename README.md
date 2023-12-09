@@ -12,7 +12,7 @@ OGs only no sweats
     - Run the command: git clone <SSH_URL> : replacing <SSH_URL> with the copied SSH URL.
 
 ### Clone repository using SSH:
-    - Click on the "Code> button and select HTTPS
+    - Click on the "Code" button and select "HTTPS"
     - Copy the HTTPS URL provided
     - In your terminal, navigate to the directory where you want to clone the repository
     - Run the command: git clone <HTTPS_URL> : replacing <HTTPS_URL> with the copied HTTPS URL.
