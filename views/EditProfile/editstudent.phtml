@@ -48,13 +48,13 @@
             <div class="col-md-6 mb-2">
                 <label class="mb-2" for="course">Course</label>
                 <select class="form-select" name="course" id="course">
-                    <?php generateSelectOptions($userCourse->getCourseName(), $courses, 'getCourseName', 0); ?>
+                    <?php $generateStudentFormData->generateSelectOptions($userCourse->getCourseName(), $courses, 'getCourseName', 0); ?>
                 </select>
             </div>
             <div class="col-md-6">
                 <label class="mb-2" for="institution">Institution</label>
                 <select class="form-select" name="institution" id="institution">
-                    <?php generateSelectOptions($userStudentData->getInstitution(), $universities, 'name', 1); ?>
+                    <?php $generateStudentFormData->generateSelectOptions($userStudentData->getInstitution(), $universities, 'name', 1); ?>
                 </select>
             </div>
         </div>
@@ -65,13 +65,13 @@
                 <div class="col-md-6 mb-2">
                     <label class="mb-2" for="skill<?= $i + 1 ?>">Skill <?= $i + 1 ?></label>
                     <select class="form-select" name="skill<?= $i + 1 ?>" id="skill<?= $i + 1 ?>">
-                        <?php generateSkillSelectOptions($userSkills[$i], $allSkills, $userSkills[$i]); ?>
+                        <?php $generateStudentFormData->generateSkillSelectOptions($userSkills[$i], $allSkills, $userSkills[$i]); ?>
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label class="mb-2" for="proficiency<?= $i + 1 ?>">Proficiency</label>
                     <select class="form-select" name="proficiency<?= $i + 1 ?>" id="proficiency<?= $i + 1 ?>">
-                        <?php generateProficiencySelectOptions($userSkillsAndProficiencies[$i], $allProficiencies, $userSkillsAndProficiencies[$i]); ?>
+                        <?php $generateStudentFormData->generateProficiencySelectOptions($userSkillsAndProficiencies[$i], $allProficiencies, $userSkillsAndProficiencies[$i]); ?>
                     </select>
                 </div>
             </div>
