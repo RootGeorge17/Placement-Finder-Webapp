@@ -1,0 +1,90 @@
+<?php require_once(base_path('views/partials/head.phtml')) ?>
+<?php require_once(base_path('views/partials/nav.phtml')) ?>
+<?php require_once(base_path('views/partials/header.phtml')) ?>
+
+<div class="container mb-5">
+    <form name="edit-student" action="/editprofile" method="post">
+        <h1 class="mb-3 text-center">Edit your profile</h1>
+
+        <!--first name and last name-->
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="firstName">First Name</label>
+                <input type="text" class="form-control" name="firstName" id="firstName" value="<?= $user->getFirstName() ?>">
+            </div>
+            <div class="col-md-6 ">
+                <label class="mb-2" for="lastName">Last Name</label>
+                <input type="text" class="form-control" name="lastName" id="lastName" value="<?= $user->getLastName() ?>">
+            </div>
+        </div>
+
+        <!--email and location-->
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="email">Email</label>
+                <input type="text" class="form-control" name="email" id="email" value="<?= $user->getEmail() ?>">
+            </div>
+            <div class="col-md-6 ">
+                <label class="mb-2" for="location">Location</label>
+                <input type="text" class="form-control" name="location" id="location" value="<?= $userStudentData->getLocation() ?>">
+            </div>
+        </div>
+
+        <!--contact number and location-->
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="contactNumber">Contact Number</label>
+                <input type="text" class="form-control" name="contactNumber" id="contactNumber" value="<?= $user->getPhoneNumber() ?>">
+            </div>
+
+            <!--submit button-->
+            <div class="col-md-3 col-sm-6 col-lg-6 align-self-end">
+                <button class="btn btn-success btn-lg btn-block dark-green-bg mb-2" id="changepassword" name="changepassword" value="changepassword" type="submit">Change Password<i class="bi bi-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!--course and institution-->
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="course">Course</label>
+                <select class="form-select" name="course" id="course">
+                    <?php $generateStudentFormData->generateSelectOptions($userCourse->getCourseName(), $courses, 'getCourseName', 0); ?>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="mb-2" for="institution">Institution</label>
+                <select class="form-select" name="institution" id="institution">
+                    <?php $generateStudentFormData->generateSelectOptions($userStudentData->getInstitution(), $universities, 'name', 1); ?>
+                </select>
+            </div>
+        </div>
+
+        <!-- skill and proficiency -->
+        <?php for ($i = 0; $i < 3; $i++) : ?>
+            <div class="row mb-2">
+                <div class="col-md-6 mb-2">
+                    <label class="mb-2" for="skill<?= $i + 1 ?>">Skill <?= $i + 1 ?></label>
+                    <select class="form-select" name="skill<?= $i + 1 ?>" id="skill<?= $i + 1 ?>">
+                        <?php $generateStudentFormData->generateSkillSelectOptions($userSkills[$i], $allSkills, $userSkills[$i]); ?>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="mb-2" for="proficiency<?= $i + 1 ?>">Proficiency</label>
+                    <select class="form-select" name="proficiency<?= $i + 1 ?>" id="proficiency<?= $i + 1 ?>">
+                        <?php $generateStudentFormData->generateProficiencySelectOptions($userSkillsAndProficiencies[$i], $allProficiencies, $userSkillsAndProficiencies[$i]); ?>
+                    </select>
+                </div>
+            </div>
+        <?php endfor; ?>
+
+        <!--submit button-->
+        <div class="row justify-content-center mb-2">
+            <div class="col-md-3 text-center ">
+                <button class="btn btn-success btn-lg btn-block dark-green-bg" id="submit" name="submit" value="first" type="submit">Save Changes    <i class="bi bi-arrow-right"></i></button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<?php require_once(base_path('views/partials/footer.phtml')) ?>
