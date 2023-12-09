@@ -19,11 +19,11 @@
                         <?php if (authenticated()) : ?>
                             <?php if (!$_SESSION['user']['loggedIn']) : ?>
                                 <li class="nav-item btn btn-sm">
-                                    <a class="nav-link login-button" href="/login">Login to MyBCS</a>
+                                    <a class="login-button" href="/login">Login to MyBCS</a>
                                 </li>
                             <?php else : ?>
                                 <li class="nav-item btn btn-sm">
-                                    <a class="nav-link login-button" href="/signout">Sign out</a>
+                                    <a class="login-button" href="/signout">Sign out</a>
                                 </li>
                             <?php endif; ?>
                         <?php endif; ?>
