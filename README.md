@@ -5,7 +5,17 @@ OGs only no sweats
 
 ## Installation
 
-should just run if you have a php enabled server
+### Clone repository using SSH:
+    - Click on the "Code" button and select "SSH"
+    - Copy the SSH URL provided
+    - In your terminal, navigate to the directory where you want to clone the repository
+    - Run the command <code>git clone <SSH_URL></code> : replacing <SSH_URL> with the copied SSH URL.
+
+### Clone repository using SSH:
+    - Click on the "Code> button and select HTTPS
+    - Copy the HTTPS URL provided
+    - In your terminal, navigate to the directory where you want to clone the repository
+    - Run the command <code>git clone <HTTPS_URL></code> : replacing <HTTPS_URL> with the copied HTTPS URL.
 
 ## Usage
 
@@ -20,11 +30,15 @@ should just run if you have a php enabled server
 ## Credits
 
 This project was made possible by the following contributors:
+- George Sopov (Scrum Master)
+- Mujahid Islam 
+- Arslan Iqbal
 - Abdulla Alfedhala
 - Ahmad S Gh M Alenezi
-- Arslan Iqbal
 - Firaas Mir
-- George Sopov
-- Mujahid Islam
 - Sheryar Afzal
+
+## License
+
+MIT
 
