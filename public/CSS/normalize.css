@@ -30,6 +30,12 @@ body {
 img{
 	max-width:100%;
 }
+
+.has-error {
+	background-color: #ffcccc;
+	border: 3px solid rgba(226, 0, 0, .25);
+}
+
 article,
 aside,
 details,

@@ -2,7 +2,16 @@
 
 <div class="container mb-5">
     <form name="register2" action="/register" method="post">
-        <h1 class="mb-3 text-center">Tell us more about YOU</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="https://sts.bcs.org/bcs-logo.svg" alt="Image not found!" class="img-fluid mx-auto mb-4" style="max-width: 25%;" />
+            </div>
+            <div class="col-md-4">
+                <h1 class="mb-3 text-center">Tell us more about the Company</h1>
+                <u><p class="text-center mb-4 text-success"><a href="/login">Already have an account? Log in</a></p></u>
+            </div>
+        </div>
+
 
         <div class="row mb-3">
             <div class="col-md-6 mb-2">
@@ -27,74 +36,6 @@
                     <option value="test">test</option>
                 </select>
             </div>
-
-            <div class="col-md-6">
-                <label class="mb-2" for="salary">Salary</label>
-                <input type="text" class="form-control" name="salary" id="salary" placeholder="£">
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-md-6 mb-2">
-                <label class="mb-2" for="startDate">Start Date</label><br>
-                <input type="date" id="startDate" name="startDate" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
-            </div>
-
-
-
-            <div class="col-md-6 mb-2">
-                <label class="mb-2" for="endDate">End Date</label><br>
-                <input type="date" id="endDate" name="endDate" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
-            </div>
-        </div>
-
-
-
-        <div class="row justify-content-center mb-2">
-            <div class="col-md-3 text-center ">
-                <label class="mb-2" for="location">Location</label>
-                <input type="text" class="form-control" name="location" id="location">
-            </div>
-        </div>
-
-        <div class="row justify-content-center mb-2">
-            <div class="col-md-3 mb-2">
-                <label class="mb-2" for="skill1">Skill 1</label>
-                <select class="form-select" name="skill1" id="skill1">
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label class="mb-2" for="proficiency1">Proficiency</label>
-                <select class="form-select" name="proficiency1" id="proficiency1">
-                </select>
-            </div>
-        </div>
-
-        <div class="row justify-content-center mb-2">
-            <div class="col-md-3 mb-2">
-                <label class="mb-2" for="skill2">Skill 2</label>
-                <select class="form-select" name="skill2" id="skill2">
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label class="mb-2" for="proficiency2">Proficiency</label>
-                <select class="form-select" name="proficiency2" id="proficiency2">
-                </select>
-            </div>
-        </div>
-
-        <div class="row justify-content-center mb-2">
-            <div class="col-md-3 mb-2">
-                <label class="mb-2" for="skill3">Skill 3</label>
-                <select class="form-select" name="skill3" id="skill3">
-                </select>
-            </div>
-
-            <div class="col-md-3">
-                <label class="mb-2" for="proficiency3">Proficiency</label>
-                <select class="form-select" name="proficiency3" id="proficiency3">
-                </select>
-            </div>
         </div>
 
         <h6 class="mb-3 text-center">How we use your data</h6>
@@ -109,7 +50,7 @@
             partner who will process your membership pack and digital assets. To find out more, please view our Data Privacy Notice
         </p>
 
-        <div class="row mb-5">
+        <div class="row mt-3">
             <div class="col-md-12 text-center" >
                 <button class="btn btn-success btn-lg btn-block" type="submit">Register and Continue    <i class="bi bi-arrow-right"></i></button>
             </div>
