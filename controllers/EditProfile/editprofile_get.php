@@ -1,10 +1,4 @@
 <?php
-
-require base_path("models/DataSets/UsersDataSet.php");
-require base_path("models/DataSets/SkillsDataSet.php");
-require base_path("models/DataSets/StudentsDataSet.php");
-require base_path("models/DataSets/CoursesDataSet.php");
-require base_path("models/DataSets/ProficienciesDataSet.php");
 require base_path("models/Extensions/GenerateStudentFormData.php");
 
 if (!authenticated()) {
@@ -12,20 +6,10 @@ if (!authenticated()) {
     exit();
 }
 
-$usersDataSet = new UsersDataSet();
-$skillsDataSet = new SkillsDataSet();
-$studentDataSet = new StudentsDataSet();
-$coursesDataSet = new CoursesDataSet();
-$proficienciesDataSet = new ProficienciesDataSet();
 $generateStudentFormData = new GenerateStudentFormData();
+$generateStudentFormData->setUser($_SESSION['user']['id']); // set user data
+$user = $generateStudentFormData->getUser(); // get user data
 
-if (isset($_SESSION['user'])) {
-    $generateStudentFormData->setUser($_SESSION['user']['id']); // set user data
-    $user = $generateStudentFormData->getUser(); // get user data
-} else {
-    header('location: /login'); // redirect to login page
-    exit();
-}
 
 if ($_SESSION['user']['usertype'] == 1) {
     $universities = $generateStudentFormData->getUniversities(); // get array of universities
@@ -68,6 +52,9 @@ if ($_SESSION['user']['usertype'] == 1) {
         'userSkillsAndProficiencies' => $userSkillsAndProficiencies,
     ]);
 } else if ($_SESSION['user']['usertype'] == 2) {
+
+
+
     view("EditProfile/editemployer.phtml", [
         'pageTitle' => 'Edit Profile',
         'user' => $user,

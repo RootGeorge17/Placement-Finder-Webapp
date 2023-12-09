@@ -33,7 +33,12 @@
             <div class="col-md-6 mb-2">
                 <label class="mb-2" for="industry">Industry</label>
                 <select class="form-select" name="industry" id="industry">
-                    <option value="test">test</option>
+                    <option value="" selected disabled>Select Your Preferred Industry</option>
+                    <?php foreach ($industries as $industry): ?>
+                        <option value="<?= $industry->getIndustry() ?>">
+                            <?= $industry->getIndustry() ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>

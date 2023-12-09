@@ -1,5 +1,11 @@
 <?php
 
+require base_path("models/DataSets/UsersDataSet.php");
+require base_path("models/DataSets/SkillsDataSet.php");
+require base_path("models/DataSets/StudentsDataSet.php");
+require base_path("models/DataSets/CoursesDataSet.php");
+require base_path("models/DataSets/ProficienciesDataSet.php");
+
 class GenerateStudentFormData
 {
     protected $userStudentData, $user;
