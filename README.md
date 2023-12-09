@@ -24,6 +24,7 @@ OGs only no sweats
     - Click the `+` icon.
     - Choose `PHP Built-in Web Server`.
     - Set the document root to the `public` folder (pathtoproject\public).
+    - Create a student or company account and search for placements or students, respectively.
 
 ![alt text]()
 
