@@ -26,7 +26,7 @@ OGs only no sweats
     - Set the document root to the `public` folder (pathtoproject\public).
     - Create a student or company account and search for placements or students, respectively.
 
-2. If you are running on our Website:
+2. If running on the Website:
     - Access the website on:
     - Create a student or company account and search for placements or students, respectively.
 
