@@ -6,11 +6,7 @@ require base_path("models/DataSets/StudentsDataSet.php");
 require base_path("models/DataSets/CoursesDataSet.php");
 require base_path("models/DataSets/ProficienciesDataSet.php");
 require base_path("models/Extensions/GenerateStudentFormData.php");
-
-if (!authenticated()) {
-    header('location: /login');
-    exit();
-}
+require base_path("models/DataSets/CompaniesDataSet.php");
 
 $usersDataSet = new UsersDataSet();
 $skillsDataSet = new SkillsDataSet();
@@ -19,13 +15,14 @@ $coursesDataSet = new CoursesDataSet();
 $proficienciesDataSet = new ProficienciesDataSet();
 $generateStudentFormData = new GenerateStudentFormData();
 
-if (isset($_SESSION['user'])) {
+if (!authenticated()) {
+    header('location: /login');
+    exit();
+} else {
     $generateStudentFormData->setUser($_SESSION['user']['id']); // set user data
     $user = $generateStudentFormData->getUser(); // get user data
-} else {
-    header('location: /login'); // redirect to login page
-    exit();
 }
+
 
 if ($_SESSION['user']['usertype'] == 1) {
     $universities = $generateStudentFormData->getUniversities(); // get array of universities
@@ -68,8 +65,14 @@ if ($_SESSION['user']['usertype'] == 1) {
         'userSkillsAndProficiencies' => $userSkillsAndProficiencies,
     ]);
 } else if ($_SESSION['user']['usertype'] == 2) {
+    $companiesDataSet = new CompaniesDataSet();
+
+    // Fetch company data by ID
+    $userCompanyData = $companiesDataSet->fetchCompanyById($user->getCompanyId());
+
     view("EditProfile/editemployer.phtml", [
         'pageTitle' => 'Edit Profile',
+        'userCompanyData' => $userCompanyData,
         'user' => $user,
     ]);
 }
