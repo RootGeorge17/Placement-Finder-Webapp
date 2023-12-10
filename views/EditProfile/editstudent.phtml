@@ -30,14 +30,14 @@
             </div>
         </div>
 
-        <!--contact number and location-->
+        <!--contact number and password button-->
         <div class="row mb-3">
             <div class="col-md-6 mb-2">
                 <label class="mb-2" for="contactNumber">Contact Number</label>
                 <input type="text" class="form-control" name="contactNumber" id="contactNumber" value="<?= $user->getPhoneNumber() ?>">
             </div>
 
-            <!--submit button-->
+            <!--password button-->
             <div class="col-md-3 col-sm-6 col-lg-6 align-self-end">
                 <button class="btn btn-success btn-lg btn-block dark-green-bg mb-2" id="changepassword" name="changepassword" value="changepassword" type="submit">Change Password<i class="bi bi-arrow-right"></i></button>
             </div>
@@ -48,13 +48,26 @@
             <div class="col-md-6 mb-2">
                 <label class="mb-2" for="course">Course</label>
                 <select class="form-select" name="course" id="course">
-                    <?php $generateStudentFormData->generateSelectOptions($userCourse->getCourseName(), $courses, 'getCourseName', 0); ?>
+                    <option value="<?= $userCourse->getCourseName() ?>"><?= $userCourse->getCourseName() ?></option> <!-- get the course name from the user's preferred course object -->
+                    <?php foreach ($courses as $course) : ?>
+                        <?php if ($course->getCourseName() == $userStudentData->getCourse()) :
+                            continue;  // check if the course is already in selection ?>
+                        <?php endif; ?>
+                        <option value="<?= $course->getCourseName() ?>"><?= $course->getCourseName() ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
+
             <div class="col-md-6">
                 <label class="mb-2" for="institution">Institution</label>
                 <select class="form-select" name="institution" id="institution">
-                    <?php $generateStudentFormData->generateSelectOptions($userStudentData->getInstitution(), $universities, 'name', 1); ?>
+                    <option value="<?= $userStudentData->getInstitution() ?>"><?= $userStudentData->getInstitution() ?></option> <!-- get the institution name from the user's student data object -->
+                    <?php foreach ($universities as $university) : ?>
+                        <?php if ($universities['name'] == $userStudentData->getInstitution()) :
+                            continue; // check if the university is already in selection ?>
+                        <?php endif; ?>
+                        <option value="<?= $universities['name'] ?>"><?= $universities['name'] ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
@@ -65,13 +78,25 @@
                 <div class="col-md-6 mb-2">
                     <label class="mb-2" for="skill<?= $i + 1 ?>">Skill <?= $i + 1 ?></label>
                     <select class="form-select" name="skill<?= $i + 1 ?>" id="skill<?= $i + 1 ?>">
-                        <?php $generateStudentFormData->generateSkillSelectOptions($userSkills[$i], $allSkills, $userSkills[$i]); ?>
+                        <option value="<?= $userSkills[$i]->getSkillName() ?>"><?= $userSkills[$i]->getSkillName() ?></option> <!-- get the skill name from the user's skill object -->
+                        <?php foreach ($allSkills as $skill) : ?>
+                            <?php if ($skill->getSkillName() == $userSkills[$i]->getSkillName()) :
+                                continue; // check if the skill is already in selection ?>
+                            <?php endif; ?>
+                            <option value="<?= $skill->getSkillName() ?>"><?= $skill->getSkillName() ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label class="mb-2" for="proficiency<?= $i + 1 ?>">Proficiency</label>
                     <select class="form-select" name="proficiency<?= $i + 1 ?>" id="proficiency<?= $i + 1 ?>">
-                        <?php $generateStudentFormData->generateProficiencySelectOptions($userSkillsAndProficiencies[$i], $allProficiencies, $userSkillsAndProficiencies[$i]); ?>
+                        <option value="<?= $userSkillsAndProficiencies[$i]['proficiency']->getProficiency() ?>"><?= $userSkillsAndProficiencies[$i]['proficiency']->getProficiency() ?></option> <!-- get the proficiency name from the user's skill and proficiency object -->
+                        <?php foreach ($allProficiencies as $proficiency) : ?>
+                            <?php if ($proficiency->getProficiency() == $userSkillsAndProficiencies[$i]['proficiency']->getProficiency()) :
+                                continue; // check if the proficiency is already in selection ?>
+                            <?php endif; ?>
+                            <option value="<?= $proficiency->getProficiency() ?>"><?= $proficiency->getProficiency() ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
             </div>
