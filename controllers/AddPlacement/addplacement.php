@@ -20,4 +20,5 @@ view("AddPlacement/AddPlacement.phtml", [
     'allIndustries' => $addPlacementFormData->getIndustries(),
     'allSkills' => $addPlacementFormData->getSkills(),
     'allProficiencies' => $addPlacementFormData->getProficiencies(),
+    'allLocation' => $addPlacementFormData->getLocations(),
 ]);

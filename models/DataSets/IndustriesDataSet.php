@@ -42,4 +42,18 @@ class IndustriesDataSet
         }
     }
 
+    public function fetchIndustryById($id): ?Industry
+    {
+        $sqlQuery = 'SELECT * FROM industry WHERE id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute(); // execute the PDO statement
+
+        if ($row = $statement->fetch()) {
+            return new Industry($row);
+        } else {
+            return null;
+        }
+    }
 }

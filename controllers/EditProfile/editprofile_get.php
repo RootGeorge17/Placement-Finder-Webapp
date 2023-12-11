@@ -5,8 +5,10 @@ require base_path("models/DataSets/SkillsDataSet.php");
 require base_path("models/DataSets/StudentsDataSet.php");
 require base_path("models/DataSets/CoursesDataSet.php");
 require base_path("models/DataSets/ProficienciesDataSet.php");
-require base_path("models/Extensions/GenerateStudentFormData.php");
 require base_path("models/DataSets/CompaniesDataSet.php");
+require base_path("models/DataSets/IndustriesDataSet.php");
+
+require base_path("models/Extensions/GenerateStudentFormData.php");
 
 $usersDataSet = new UsersDataSet();
 $skillsDataSet = new SkillsDataSet();
@@ -25,7 +27,6 @@ if (!authenticated()) {
 
 
 if ($_SESSION['user']['usertype'] == 1) {
-    $universities = $generateStudentFormData->getUniversities(); // get array of universities
     $userStudentData = $generateStudentFormData->getUserStudentData(); // get student data
     $userCourse = $generateStudentFormData->getPreferredCourse(); // get preferred course data
 
@@ -36,36 +37,28 @@ if ($_SESSION['user']['usertype'] == 1) {
         $userStudentData->getSkill3(),
     ];
 
-    // Fetch all skills by their IDs
-    $userSkills = $skillsDataSet->fetchSkillsbyIdArray($userSkillIds);
-
-    // Fetch all skills
-    $allSkills = $skillsDataSet->fetchAllSkills();
-
-    // Fetch all proficiencies
-    $allProficiencies = $proficienciesDataSet->fetchAllProficiencies();
-
-    // Map user skills to their respective proficiencies
-    $userSkillsAndProficiencies = $generateStudentFormData->getStudentSkillsAndProficiencies($userSkills, $allProficiencies);
-
-    // Fetch all courses
-    $courses = $coursesDataSet->fetchAllCourses();
+    $universities = $generateStudentFormData->getUniversities(); // get universities data
 
     view("EditProfile/editstudent.phtml", [
         'pageTitle' => 'Edit Profile',
         'user' => $user,
         'userStudentData' => $userStudentData,
-        'userSkills' => $userSkills,
+        'userSkills' => $skillsDataSet->fetchSkillsbyIdArray($userSkillIds), // get the user's skills objects
         'userCourse' => $userCourse,
-        'courses' => $courses,
-        'universities' => $universities,
+        'courses' => $coursesDataSet->fetchAllCourses(), // get all courses
+        'universities' => $universities, // get all universities
         'generateStudentFormData' => $generateStudentFormData,
-        'allSkills' => $allSkills,
-        'allProficiencies' => $allProficiencies,
-        'userSkillsAndProficiencies' => $userSkillsAndProficiencies,
+        'allSkills' => $skillsDataSet->fetchAllSkills(), // get all skills
+        'allProficiencies' => $proficienciesDataSet->fetchAllProficiencies(), // get all proficiencies
+        'userSkillsAndProficiencies' => $generateStudentFormData->getStudentSkillsAndProficiencies( // get the user's skills and proficiencies
+            $skillsDataSet->fetchSkillsbyIdArray($userSkillIds), // get the user's skills objects
+            $proficienciesDataSet->fetchAllProficiencies()), // get all proficiencies
+        'allLocations' => $generateStudentFormData->getLocations(), // get all locations
     ]);
+
 } else if ($_SESSION['user']['usertype'] == 2) {
     $companiesDataSet = new CompaniesDataSet();
+    $industriesDataSet = new IndustriesDataSet();
 
     // Fetch company data by ID
     $userCompanyData = $companiesDataSet->fetchCompanyById($user->getCompanyId());
@@ -73,6 +66,8 @@ if ($_SESSION['user']['usertype'] == 1) {
     view("EditProfile/editemployer.phtml", [
         'pageTitle' => 'Edit Profile',
         'userCompanyData' => $userCompanyData,
+        'companyIndustry' => $industriesDataSet->fetchIndustryById($userCompanyData->getCompanyIndustry()), // get company industry object
+        'allIndustries' => $industriesDataSet->fetchAllIndustries(), // get all industries
         'user' => $user,
     ]);
 }

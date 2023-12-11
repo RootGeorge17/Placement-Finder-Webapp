@@ -71,6 +71,15 @@ class GenerateStudentFormData
         return $universities;
     }
 
+    public function getLocations()
+    {
+        $json = file_get_contents(base_path('models/JsonData/uk-cities.json'));
+
+        $locations = json_decode($json, true);
+
+        return $locations;
+    }
+
     // maps the user skills objects to the proficiencies
     public function getStudentSkillsAndProficiencies($userSkills, $allProficiencies): array
     {

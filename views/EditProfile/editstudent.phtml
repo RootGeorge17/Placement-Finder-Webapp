@@ -26,7 +26,16 @@
             </div>
             <div class="col-md-6 ">
                 <label class="mb-2" for="location">Location</label>
-                <input type="text" class="form-control" name="location" id="location" value="<?= $userStudentData->getLocation() ?>">
+                <select  class="form-select" name="location" id="location">
+                    <option value="<?= $userStudentData->getLocation() ?>"><?= $userStudentData->getLocation() ?></option> <!-- get the location name from the user's student data object -->
+                    <?php foreach ($allLocations as $location) : ?>
+                        <?php if (strtolower($location['city']) ==  strtolower($userStudentData->getLocation())) :
+                            continue; // check if the location is already in selection ?>
+                        <?php endif; ?>
+                        <option value="<?= $location['city'] ?>"><?= $location['city'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+
             </div>
         </div>
 
@@ -48,12 +57,12 @@
             <div class="col-md-6 mb-2">
                 <label class="mb-2" for="course">Course</label>
                 <select class="form-select" name="course" id="course">
-                    <option value="<?= $userCourse->getCourseName() ?>"><?= $userCourse->getCourseName() ?></option> <!-- get the course name from the user's preferred course object -->
+                    <option value="<?= $userCourse->getId() ?>"><?= $userCourse->getCourseName() ?></option> <!-- get the course name from the user's preferred course object -->
                     <?php foreach ($courses as $course) : ?>
-                        <?php if ($course->getCourseName() == $userStudentData->getCourse()) :
+                        <?php if ($course->getId() == $userStudentData->getCourse()) :
                             continue;  // check if the course is already in selection ?>
                         <?php endif; ?>
-                        <option value="<?= $course->getCourseName() ?>"><?= $course->getCourseName() ?></option>
+                        <option value="<?= $course->getId() ?>"><?= $course->getCourseName() ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -63,10 +72,10 @@
                 <select class="form-select" name="institution" id="institution">
                     <option value="<?= $userStudentData->getInstitution() ?>"><?= $userStudentData->getInstitution() ?></option> <!-- get the institution name from the user's student data object -->
                     <?php foreach ($universities as $university) : ?>
-                        <?php if ($universities['name'] == $userStudentData->getInstitution()) :
+                        <?php if ($university['name'] == $userStudentData->getInstitution()) :
                             continue; // check if the university is already in selection ?>
                         <?php endif; ?>
-                        <option value="<?= $universities['name'] ?>"><?= $universities['name'] ?></option>
+                        <option value="<?= $university['name'] ?>"><?= $university['name'] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -78,24 +87,24 @@
                 <div class="col-md-6 mb-2">
                     <label class="mb-2" for="skill<?= $i + 1 ?>">Skill <?= $i + 1 ?></label>
                     <select class="form-select" name="skill<?= $i + 1 ?>" id="skill<?= $i + 1 ?>">
-                        <option value="<?= $userSkills[$i]->getSkillName() ?>"><?= $userSkills[$i]->getSkillName() ?></option> <!-- get the skill name from the user's skill object -->
+                        <option value="<?= $userSkills[$i]->getId() ?>"><?= $userSkills[$i]->getSkillName() ?></option> <!-- get the skill name from the user's skill object -->
                         <?php foreach ($allSkills as $skill) : ?>
-                            <?php if ($skill->getSkillName() == $userSkills[$i]->getSkillName()) :
+                            <?php if ($skill->getId() == $userSkills[$i]->getId()) :
                                 continue; // check if the skill is already in selection ?>
                             <?php endif; ?>
-                            <option value="<?= $skill->getSkillName() ?>"><?= $skill->getSkillName() ?></option>
+                            <option value="<?= $skill->getId() ?>"><?= $skill->getSkillName() ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="col-md-6">
                     <label class="mb-2" for="proficiency<?= $i + 1 ?>">Proficiency</label>
                     <select class="form-select" name="proficiency<?= $i + 1 ?>" id="proficiency<?= $i + 1 ?>">
-                        <option value="<?= $userSkillsAndProficiencies[$i]['proficiency']->getProficiency() ?>"><?= $userSkillsAndProficiencies[$i]['proficiency']->getProficiency() ?></option> <!-- get the proficiency name from the user's skill and proficiency object -->
+                        <option value="<?= $userSkillsAndProficiencies[$i]['proficiency']->getId() ?>"><?= $userSkillsAndProficiencies[$i]['proficiency']->getProficiency() ?></option> <!-- get the proficiency name from the user's skill and proficiency object -->
                         <?php foreach ($allProficiencies as $proficiency) : ?>
-                            <?php if ($proficiency->getProficiency() == $userSkillsAndProficiencies[$i]['proficiency']->getProficiency()) :
+                            <?php if ($proficiency->getId() == $userSkillsAndProficiencies[$i]['proficiency']->getId()) :
                                 continue; // check if the proficiency is already in selection ?>
                             <?php endif; ?>
-                            <option value="<?= $proficiency->getProficiency() ?>"><?= $proficiency->getProficiency() ?></option>
+                            <option value="<?= $proficiency->getId() ?>"><?= $proficiency->getProficiency() ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
