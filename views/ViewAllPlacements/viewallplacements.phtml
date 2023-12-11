@@ -15,6 +15,8 @@
             $placementSkills = $skillsDataSet->fetchSkillsbyIdArray($placementSkillIds);
         ?>
 
+        <!--  TODO pagination      -->
+
 
         <div class="card mb-2">
             <div class="card-body">
@@ -56,7 +58,7 @@
             <div class="card-footer">
                 <small>Skills</small>
                 <?php foreach ($placementSkills as $skill) : ?>
-                    <span class="badge bg-success rounded-pill text-light"><?= $skill->getSkillName() ?></span>
+                    <span class="badge bg-success rounded-pill text-light"><?= $skill->getSkillName() ?>(<?= $placementHelpers->getProficiencyFromSkill($skill, $allProficiencies) ?>)</span>
                 <?php endforeach; ?>
             </div>
         </div>

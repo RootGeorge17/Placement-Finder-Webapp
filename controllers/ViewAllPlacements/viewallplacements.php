@@ -9,6 +9,7 @@ $placementsDataSet = new PlacementsDataSet();
 $companiesDataSet = new CompaniesDataSet();
 $industriesDataSet = new IndustriesDataSet();
 $placementHelpers = new PlacementHelpers();
+$proficienciesDataSet = new ProficienciesDataSet();
 $skillsDataSet = new SkillsDataSet();
 
 view('/ViewAllPlacements/viewallplacements.phtml', [
@@ -17,6 +18,7 @@ view('/ViewAllPlacements/viewallplacements.phtml', [
         'companiesDataSet' => $companiesDataSet,
         'industriesDataSet' => $industriesDataSet,
         'skillsDataSet' => $skillsDataSet,
+        'allProficiencies' => $proficienciesDataSet->fetchAllProficiencies(),
         'placementHelpers' => $placementHelpers,
         ]
 );
