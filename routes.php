@@ -18,3 +18,5 @@ $router->post('/editprofile', 'controllers/EditProfile/editprofile_post.php');
 $router->post('/editprofile/changepassword', 'controllers/EditProfile/editprofile_post.php');
 
 $router->get('/addplacement', 'controllers/AddPlacement/addplacement.php');
+
+$router->get('/placements', 'controllers/ViewAllPlacements/viewallplacements.php');
