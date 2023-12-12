@@ -1,5 +1,6 @@
 <?php
 
+
 require base_path("models/DataSets/UsersDataSet.php");
 require base_path("models/DataSets/SkillsDataSet.php");
 require base_path("models/DataSets/StudentsDataSet.php");
@@ -7,15 +8,11 @@ require base_path("models/DataSets/CoursesDataSet.php");
 require base_path("models/DataSets/ProficienciesDataSet.php");
 require base_path("models/DataSets/CompaniesDataSet.php");
 require base_path("models/DataSets/IndustriesDataSet.php");
-
 require base_path("models/Extensions/GenerateStudentFormData.php");
 
-$usersDataSet = new UsersDataSet();
-$skillsDataSet = new SkillsDataSet();
-$studentDataSet = new StudentsDataSet();
-$coursesDataSet = new CoursesDataSet();
-$proficienciesDataSet = new ProficienciesDataSet();
 $generateStudentFormData = new GenerateStudentFormData();
+$generateStudentFormData->setUser($_SESSION['user']['id']); // set user data
+$user = $generateStudentFormData->getUser(); // get user data
 
 if (!authenticated()) {
     header('location: /login');
@@ -24,7 +21,6 @@ if (!authenticated()) {
     $generateStudentFormData->setUser($_SESSION['user']['id']); // set user data
     $user = $generateStudentFormData->getUser(); // get user data
 }
-
 
 if ($_SESSION['user']['usertype'] == 1) {
     $userStudentData = $generateStudentFormData->getUserStudentData(); // get student data
@@ -57,6 +53,7 @@ if ($_SESSION['user']['usertype'] == 1) {
     ]);
 
 } else if ($_SESSION['user']['usertype'] == 2) {
+
     $companiesDataSet = new CompaniesDataSet();
     $industriesDataSet = new IndustriesDataSet();
 

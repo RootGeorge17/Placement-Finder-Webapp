@@ -51,6 +51,24 @@ function login($id, $email, $usertype)
     session_regenerate_id(true);
 }
 
+function registerLogin($id, $email, $usertype)
+{
+    $loggedIn = true;
+
+    // Remove any non-serializable data from the session
+    unset($_SESSION['registration']); // Change 'registration' to the key that holds the PDO object, if present
+
+    $_SESSION['user'] = [
+        'id' => $id,
+        'email' => $email,
+        'usertype' => $usertype,
+        'loggedIn' => $loggedIn,
+    ];
+
+    session_regenerate_id(false);
+}
+
+
 function logout()
 {
     $_SESSION = [];
@@ -69,3 +87,4 @@ function authenticated(): bool
         return false;
     }
 }
+

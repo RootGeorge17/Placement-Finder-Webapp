@@ -1,32 +1,26 @@
-<header class="header mb-5">
+
+<header class="header">
     <!-- Topbar -->
     <div class="topbar">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-5 col-12">
-                    <!-- Start Logo -->
-                    <div class="logo">
-                        <a href="/dashboard"><img class="img-fluid mx-auto" style="max-width: 30%;" src="bcs-logo.svg" alt="#"></a>
-                    </div>
+                <div class="col-lg-4 col-md-1">
+                    <!-- Contact -->
+                    <ul class="top-link">
+
+                    </ul>
+                    <!-- End Contact -->
                 </div>
-                <div class="col-lg-8 col-md-7 col-12">
+                <div class="col-lg-8 col-md-11 col-sm-12">
                     <!-- Top Contact -->
                     <ul class="top-contact">
-                        <li><a href="https://www.bcs.org/about-us">About us</a></li>
-                        <li><a href="http://impact.bcs.org">Making IT good for society</a></li>
-                        <li><a href="#">About Placements</a></li>
-                        <li><a href="/team">Our Team</a></li>
-                        <?php if (authenticated()) : ?>
-                            <?php if (!$_SESSION['user']['loggedIn']) : ?>
-                                <li class="nav-item btn btn-sm">
-                                    <a class="nav-link login-button" href="/login">Login to MyBCS</a>
-                                </li>
-                            <?php else : ?>
-                                <li class="nav-item btn btn-sm">
-                                    <a class="nav-link login-button" href="/signout">Sign out</a>
-                                </li>
-                            <?php endif; ?>
-                        <?php endif; ?>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Making good for society</a></li>
+                        <li><a href="#">Training providers</a></li>
+                        <li><a href="#">Employers</a></li>
+                        <li><a href="#">Educations</a></li>
+                        <li><a href="/login"  class="btn logins">Login</a></li>
                     </ul>
                     <!-- End Top Contact -->
                 </div>
@@ -34,36 +28,37 @@
         </div>
     </div>
     <!-- End Topbar -->
-
     <!-- Header Inner -->
     <div class="header-inner">
         <div class="container">
             <div class="inner">
                 <div class="row">
                     <div class="col-lg-1 col-md-3 col-12">
-                        <!-- End Logo -->
-                        <!-- Mobile Nav -->
-                        <div class="mobile-nav">
+                        <!-- Start Logo -->
 
+                        <div class="logo">
+                            <a href="index.html"><img class="logos"
+                                                      src="https://abrfashion.com/demo/logo.png" alt="#"></a>
                         </div>
-                        <!-- End Mobile Nav -->
+
                     </div>
                     <div class="col-lg-10 col-md-9 col-12">
                         <!-- Main Menu -->
                         <div class="main-menu">
                             <nav class="navigation">
                                 <ul class="nav menu">
-                                    <li><a href="#">Membership & registrations</a>
+                                    <li class="active"><a href="#">Membership & registrations <i
+                                                    class="icofont-rounded-down"></i></a>
 
                                     </li>
                                     <li><a href="#">IT careers </a></li>
                                     <li><a href="#">Qualifications & certifications </a></li>
-                                    <li><a href="#">Event & awards</a>
+                                    <li><a href="#">Event & awards <i class="icofont-rounded-down"></i></a>
                                         <ul class="dropdown">
                                             <li><a href="404.html">404 Error</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">opinion & research</a>
+                                    <li><a href="#">opinion & research <i class="icofont-rounded-down"></i></a>
                                         <ul class="dropdown">
                                             <li><a href="blog-single.html">Blog Details</a></li>
                                         </ul>
@@ -74,9 +69,72 @@
                         </div>
                         <!--/ End Main Menu -->
                     </div>
+                    <div class="col-lg-1 col-4">
+                        <ul class="top-contact">
+                            <li><img class="search-im"
+                                     src="https://abrfashion.com/demo/search.png" alt=""></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!--/ End Header Inner -->
+    <div class="containers">
+        <div class="row">
+            <!-- Mobile Nav -->
+
+            <div class="col-12 col-sm-3 col-md-4 em">
+                <div class="mobile-nav">
+                    <button class="navbar-toggler tgl" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                         aria-labelledby="offcanvasExampleLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Menu</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav justify-content-end flex-grew-1 pe-3">
+                                <li class="navbar_item"><a class="navbar_link" href="#">Membership & registrations <i
+                                                class="icofont-rounded-down"></i></a></li>
+                                <li class="navbar_item"><a class="navbar_link" href="#">IT careers </a></li>
+                                <li class="navbar_item"><a class="navbar_link" href="#">Qualifications & certifications </a>
+                                </li>
+                                <li class="navbar_item"><a class="navbar_link" href="#">Event & awards <i
+                                                class="icofont-rounded-down"></i></a></li>
+                                <li class="navbar_item"><a class="navbar_link" href="#">opinion & research <i
+                                                class="icofont-rounded-down"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logo -->
+            <div  class="col-12 col-sm-3 col-md-4 m lg-f">
+                <div class="logo">
+                    <a href="index.html"><img class="logo-mb" src="https://abrfashion.com/demo/logo.png"
+                                              alt="#"></a>
+                </div>
+            </div>
+
+            <!-- Search Icon -->
+            <div class="col-12 col-sm-3 c dvc">
+
+                <img class="search-mb"
+                     src="https://abrfashion.com/demo/search.png" alt="">
+
+            </div>
+        </div>
+    </div>
 </header>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
