@@ -20,3 +20,5 @@ $router->post('/editprofile/changepassword', 'controllers/EditProfile/editprofil
 $router->get('/addplacement', 'controllers/AddPlacement/addplacement.php');
 
 $router->get('/placements', 'controllers/ViewAllPlacements/viewallplacements.php');
+
+$router->get('/students', 'controllers/ViewAllStudents/viewallstudents.php');

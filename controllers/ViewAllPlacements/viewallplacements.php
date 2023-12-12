@@ -12,7 +12,15 @@ $placementHelpers = new PlacementHelpers();
 $proficienciesDataSet = new ProficienciesDataSet();
 $skillsDataSet = new SkillsDataSet();
 
-$limit = 2; // default limit of deliveries per page
+if (authenticated()){
+    if ($_SESSION['user']['usertype'] != 1)
+    {
+        header("Location: /");
+        exit();
+    }
+}
+
+$limit = 16; // default limit of deliveries per page
 $page = 1; // default page number
 if (isset($_GET['limit'])) {
     if ($_GET['limit'] >= 1 && $_GET['limit'] <= 64) {
