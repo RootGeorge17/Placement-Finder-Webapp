@@ -45,33 +45,25 @@
                         <div class="main-menu">
                             <nav class="navigation">
                                 <ul class="nav menu">
-                                    <li class="active"><a href="#">Membership & registrations <i
-                                                    class="icofont-rounded-down"></i></a>
+                                    <li><a href="#">Membership & registrations</a>
 
                                     </li>
                                     <li><a href="#">IT careers </a></li>
                                     <li><a href="#">Qualifications & certifications </a></li>
-                                    <li><a href="#">Event & awards <i class="icofont-rounded-down"></i></a>
+                                    <li><a href="#">Event & awards</a>
                                         <ul class="dropdown">
                                             <li><a href="404.html">404 Error</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">opinion & research <i class="icofont-rounded-down"></i></a>
+                                    <li><a href="#">opinion & research</a>
                                         <ul class="dropdown">
                                             <li><a href="blog-single.html">Blog Details</a></li>
                                         </ul>
                                     </li>
-
                                 </ul>
                             </nav>
                         </div>
                         <!--/ End Main Menu -->
-                    </div>
-                    <div class="col-lg-1 col-4">
-                        <ul class="top-contact">
-                            <li><img class="search-im"
-                                     src="https://abrfashion.com/demo/search.png" alt=""></li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -97,15 +89,31 @@
                         </div>
                         <div class="offcanvas-body">
                             <ul class="navbar-nav justify-content-end flex-grew-1 pe-3">
-                                <li class="navbar_item"><a class="navbar_link" href="#">Membership & registrations <i
-                                                class="icofont-rounded-down"></i></a></li>
-                                <li class="navbar_item"><a class="navbar_link" href="#">IT careers </a></li>
-                                <li class="navbar_item"><a class="navbar_link" href="#">Qualifications & certifications </a>
+                                <li><a href="#">Membership & registrations</a>
+
                                 </li>
-                                <li class="navbar_item"><a class="navbar_link" href="#">Event & awards <i
-                                                class="icofont-rounded-down"></i></a></li>
-                                <li class="navbar_item"><a class="navbar_link" href="#">opinion & research <i
-                                                class="icofont-rounded-down"></i></a></li>
+                                <li><a href="#">IT careers </a></li>
+                                <li><a href="#">Qualifications & certifications </a></li>
+                                <li><a href="#">Event & awards</a>
+                                </li>
+                                <li><a href="#">opinion & research</a>
+                                </li>
+
+                                <li><a href="https://www.bcs.org/about-us">About us</a></li>
+                                <li><a href="http://impact.bcs.org">Making IT good for society</a></li>
+                                <li><a href="#">About Placements</a></li>
+                                <li><a href="/team">Our Team</a></li>
+                                <?php if (authenticated()) : ?>
+                                    <?php if (!$_SESSION['user']['loggedIn']) : ?>
+                                        <li class="nav-item btn btn-sm">
+                                            <a class="nav-link login-button" href="/login">Login to MyBCS</a>
+                                        </li>
+                                    <?php else : ?>
+                                        <li class="nav-item btn btn-sm">
+                                            <a class="nav-link login-button" href="/signout">Sign out</a>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>
@@ -115,17 +123,9 @@
             <!-- Logo -->
             <div  class="col-12 col-sm-3 col-md-4 m lg-f">
                 <div class="logo">
-                    <a href="index.html"><img class="logo-mb" src="https://abrfashion.com/demo/logo.png"
+                    <a href="/"><img class="logo-mb" src="bcs-logo.svg"
                                               alt="#"></a>
                 </div>
-            </div>
-
-            <!-- Search Icon -->
-            <div class="col-12 col-sm-3 c dvc">
-
-                <img class="search-mb"
-                     src="https://abrfashion.com/demo/search.png" alt="">
-
             </div>
         </div>
     </div>
