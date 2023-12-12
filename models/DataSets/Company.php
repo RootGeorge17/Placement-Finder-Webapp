@@ -3,12 +3,14 @@
 
 class Company
 {
-    protected $id, $companyName;
+    protected $id, $companyName, $companyDescription, $companyIndustry;
 
     public function __construct($dbRow)
     {
         $this->id = $dbRow['id'];
         $this->companyName = $dbRow['companyName'];
+        $this->companyDescription = $dbRow['companyDescription'];
+        $this->companyIndustry = $dbRow['companyIndustry'];
     }
 
     public function getId()
@@ -20,5 +22,16 @@ class Company
     {
         return $this->companyName;
     }
+
+    public function getCompanyDescription(): mixed
+    {
+        return $this->companyDescription;
+    }
+
+    public function getCompanyIndustry(): mixed
+    {
+        return $this->companyIndustry;
+    }
+
 
 }

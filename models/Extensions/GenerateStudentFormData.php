@@ -77,6 +77,15 @@ class GenerateStudentFormData
         return $universities;
     }
 
+    public function getLocations()
+    {
+        $json = file_get_contents(base_path('models/JsonData/uk-cities.json'));
+
+        $locations = json_decode($json, true);
+
+        return $locations;
+    }
+
     // maps the user skills objects to the proficiencies
     public function getStudentSkillsAndProficiencies($userSkills, $allProficiencies): array
     {
@@ -92,7 +101,7 @@ class GenerateStudentFormData
 
             // If the proficiency is found, add it to the result
             if (!empty($foundProficiency)) {
-                $userSkillsAndProficiencies[] =  [
+                $userSkillsAndProficiencies[] = [
                     'skill' => $userSkill,
                     'proficiency' => reset($foundProficiency), // Use reset to get the first element from the filtered array
                 ];
@@ -101,72 +110,4 @@ class GenerateStudentFormData
         return $userSkillsAndProficiencies;
     }
 
-    /**
-     * Generates the options for a select element
-     *
-     * 09-12-2023 - muj
-     * @param string $selectedValue string
-     * @param array $optionsArray array of objects or arrays
-     * @param string $getterFunction to get the value from the object
-     * @param int $option 0 for object, 1 for array
-     * @return void
-     */
-    public function generateSelectOptions(string $selectedValue, array $optionsArray, string $getterFunction, int $option): void
-    {
-        echo "<option value='$selectedValue'>$selectedValue</option>";
-
-        foreach ($optionsArray as $optionItem) {
-            if ($option == 0) {
-                $type = $optionItem->$getterFunction();
-            } elseif ($option == 1) {
-                $type = $optionItem[$getterFunction];
-            }
-
-            if ($type == $selectedValue) {
-                continue;
-            }
-
-            echo "<option value='" . $type . "'>" . $type . "</option>";
-        }
-    }
-
-    /**
-     * Generates the options for a select element
-     *
-     * 09-12-2023 - muj
-     * @param skill $selectedSkill string
-     * @param array $allSkills array of objects or arrays
-     * @param skill $userSkills array of objects or arrays
-     * @return void
-     */
-    public function generateSkillSelectOptions(skill $selectedSkill, array $allSkills, skill $userSkills): void
-    {
-        echo "<option value='" . $userSkills->getSkillName() . "'>" . $userSkills->getSkillName() . "</option>";
-        foreach ($allSkills as $skill) {
-            if ($skill->getSkillName() == $selectedSkill->getSkillName()) {
-                continue;
-            }
-            echo "<option value='" . $skill->getSkillName() . "'>" . $skill->getSkillName() . "</option>";
-        }
-    }
-
-    /**
-     * Generates the options for a select element
-     *
-     * 09-12-2023 - muj
-     * @param array $selectedProficiency array object
-     * @param array $allProficiencies array of objects or arrays
-     * @param array $userProficiency array object
-     * @return void
-     */
-    public function generateProficiencySelectOptions(array $selectedProficiency, array $allProficiencies, array $userProficiency): void
-    {
-        echo "<option value='" . $userProficiency['proficiency']->getProficiency() . "'>" . $userProficiency['proficiency']->getProficiency() . "</option>";
-        foreach ($allProficiencies as $proficiency) {
-            if ($proficiency->getProficiency() == $selectedProficiency['proficiency']->getProficiency()) {
-                continue;
-            }
-            echo "<option value='" . $proficiency->getProficiency() . "'>" . $proficiency->getProficiency() . "</option>";
-        }
-    }
 }

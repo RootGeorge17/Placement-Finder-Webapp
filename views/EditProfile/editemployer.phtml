@@ -1,1 +1,76 @@
-<?php
+<?php require_once(base_path('views/partials/head.phtml')) ?>
+<?php require_once(base_path('views/partials/nav.phtml')) ?>
+<?php require_once(base_path('views/partials/header.phtml')) ?>
+
+<div class="container mb-5">
+    <form name="edit-employer" action="/editprofile" method="post">
+        <!--first name and last name-->
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="firstName">First Name</label>
+                <input type="text" class="form-control" name="firstName" id="firstName" value="<?= $user->getFirstName() ?>">
+            </div>
+            <div class="col-md-6 ">
+                <label class="mb-2" for="lastName">Last Name</label>
+                <input type="text" class="form-control" name="lastName" id="lastName" value="<?= $user->getLastName() ?>">
+            </div>
+        </div>
+
+        <!--email and phonenumber-->
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="email">Email</label>
+                <input type="text" class="form-control" name="email" id="email" value="<?= $user->getEmail() ?>">
+            </div>
+            <div class="col-md-6 ">
+                <label class="mb-2" for="phonenumber">Phone Number</label>
+                <input type="text" class="form-control" name="phonenumber" id="phonenumber" value="<?= $user->getPhoneNumber() ?>">
+            </div>
+        </div>
+
+        <!--company name and description-->
+        <div class="row mb-2">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="companyname">Company Name</label>
+                <input type="text" class="form-control" name="companyname" id="companyname" value="<?= $userCompanyData->getCompanyName()?>">
+            </div>
+
+                <div class="col-md-6 mb-2">
+                    <label class="mb-2" for="companyindustry">Company Industry</label>
+                    <select class="form-control" name="companyindustry" id="companyindustry">
+                        <option value="<?= $companyIndustry->getId()?>"><?= $companyIndustry->getIndustry() ?></option>
+                        <?php foreach ($allIndustries as $industry) : ?>
+                            <?php if ($industry->getId() == $companyIndustry->getId()) :
+                                continue;  // check if the industry is already in selection ?>
+                            <?php endif; ?>
+                            <option value="<?= $industry->getId() ?>"><?= $industry->getIndustry() ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+        </div>
+
+        <div class="row mb-2">
+
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="companydescription">Company Description</label>
+                <textarea type="text" class="form-control" name="companydescription" id="companydescription" rows="6"><?= $userCompanyData->getCompanyDescription()?>
+                </textarea>
+            </div>
+
+            <!--change password button-->
+            <div class="col-md-6 col-sm-6 col-lg-4 d-flex flex-column justify-content-start align-items-center" style="margin-top: 2rem">
+                <button class="btn btn-success btn-lg btn-block dark-green-bg mb-2" id="changepassword" name="changepassword" value="changepassword" type="submit">Change Password<i class="bi bi-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!--submit button-->
+        <div class="row justify-content-center mb-2">
+            <div class="col-md-3 text-center ">
+                <button class="btn btn-success btn-lg btn-block dark-green-bg" id="submit" name="submit" value="first" type="submit">Save Changes    <i class="bi bi-arrow-right"></i></button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<?php require_once(base_path('views/partials/footer.phtml')) ?>

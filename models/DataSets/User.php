@@ -1,7 +1,7 @@
 <?php
     class User
     {
-        protected $id, $username, $password, $firstName, $lastName, $email, $phoneNumber, $userType, $studentData, $companyData;
+        protected $id, $password, $firstName, $lastName, $email, $phoneNumber, $userType, $studentData, $companyData;
 
 
         public function __construct($dbRow)
@@ -31,6 +31,11 @@
         public function getId()
         {
             return $this->id;
+        }
+
+        public function getPassword()
+        {
+            return $this->password;
         }
 
         public function getEmail(): mixed

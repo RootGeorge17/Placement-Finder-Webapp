@@ -38,4 +38,30 @@ class StudentsDataSet
         return new StudentData($row);
     }
 
+    public function fetchRowCountAll()
+    {
+        $sqlQuery = 'SELECT COUNT(*) FROM studentData';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(); // execute the PDO statement
+
+        return $statement->fetchColumn();
+    }
+
+    public function fetchByLimit(int $start, int $limit) : array
+    {
+        $sqlQuery = 'SELECT * FROM studentData LIMIT :start, :limit';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->bindParam(':start', $start, PDO::PARAM_INT);
+        $statement->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $statement->execute(); // execute the PDO statement
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new StudentData($row);
+        }
+        return $dataSet;
+    }
+
 }
