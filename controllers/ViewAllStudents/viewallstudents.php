@@ -21,7 +21,7 @@ $industriesDataSet = new IndustriesDataSet();
 $limit = 16; // default limit of deliveries per page
 $page = 1; // default page number
 if (isset($_GET['limit'])) {
-    if ($_GET['limit'] >= 1 && $_GET['limit'] <= 64) {
+    if ($_GET['limit'] >= 1 && $_GET['limit'] <= 32) {
         $limit = $_GET['limit'];
     } else {
         header("Location: /placements?page=1&limit=16");
