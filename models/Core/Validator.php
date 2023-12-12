@@ -17,4 +17,13 @@ class Validator
     {
         return filter_var($value, FILTER_VALIDATE_EMAIL);
     }
+
+    public static function phoneNumber($phoneNumber)
+    {
+        if(preg_match('/^[0-9]{11}+$/', $phoneNumber)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

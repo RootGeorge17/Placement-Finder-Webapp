@@ -18,6 +18,10 @@
                 <label class="mb-2" for="companyName">Company Name</label>
                 <input type="text" class="form-control" name="companyName" id="companyName">
             </div>
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="contactNumber">Contact Phone Number</label>
+                <input type="text" class="form-control" name="contactNumber" id="contactNumber">
+            </div>
         </div>
 
         <div class="row mb-3">
@@ -33,7 +37,7 @@
             <div class="col-md-6 mb-2">
                 <label class="mb-2" for="industry">Industry</label>
                 <select class="form-select" name="industry" id="industry">
-                    <option value="" selected disabled>Select Your Preferred Industry</option>
+                    <option value="" selected disabled>Select Company's Industry</option>
                     <?php foreach ($industries as $industry): ?>
                         <option value="<?= $industry->getIndustry() ?>">
                             <?= $industry->getIndustry() ?>
@@ -42,6 +46,14 @@
                 </select>
             </div>
         </div>
+
+        <?php if (!empty($errors)) : ?>
+            <ul class="error-list list-unstyled text-center mx-6 mb-3 mb-lg-4">
+                <?php foreach ($errors as $error) : ?>
+                    <strong><li class="text-danger mt-2 list"><?= $error ?></li></strong>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
 
         <h6 class="mb-3 text-center">How we use your data</h6>
 
@@ -57,7 +69,7 @@
 
         <div class="row mt-3">
             <div class="col-md-12 text-center" >
-                <button class="btn btn-success btn-lg btn-block" type="submit">Register and Continue    <i class="bi bi-arrow-right"></i></button>
+                <button class="btn btn-success btn-lg btn-block" id="submit" name="submit" type="submit" value="third">Register and Continue    <i class="bi bi-arrow-right"></i></button>
             </div>
         </div>
     </form>

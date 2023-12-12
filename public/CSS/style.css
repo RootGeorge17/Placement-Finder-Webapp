@@ -4,7 +4,7 @@ Author Name: Naimur Rahman
 Website: http://wpthemesgrid.com/
 Description: Mediplus - Doctor HTML Template.
 Version:	1.1
-========================================*/   
+========================================*/
 /*======================================
 [ CSS Table of contents ]
 * Global CSS
@@ -44,7 +44,7 @@ Version:	1.1
 * Doctor Calendar CSS
 * About Us CSS
 * Footer CSS
-========================================*/ 
+========================================*/
 /*=============================
 	Global CSS 
 ===============================*/
@@ -121,7 +121,7 @@ body{
 	box-shadow: -4px 0px 5px #00000036;
 }
 .get-pro:hover{
-	
+
 }
 #scrollUp {
 	bottom: 15px;
@@ -777,7 +777,7 @@ body{
 
 /*=========================
 	Start Newsletter CSS
-===========================*/  
+===========================*/
 .newsletter{
 	background:#EDF2FF;
 }
@@ -830,7 +830,7 @@ body{
 }
 /*=========================
 	End Newsletter CSS
-===========================*/  
+===========================*/
 
 /*===============================
 	Start Doctor Calendar CSS
@@ -950,7 +950,7 @@ body{
 	opacity:0.1;
 }
 .footer .single-footer{
-	
+
 }
 .footer .single-footer .social{
 	margin-top:25px;
@@ -981,7 +981,7 @@ body{
 	border-color:transparent;
 }
 .footer .single-footer .social li a i{
-	
+
 }
 .footer .single-footer.f-link li a i{
 	margin-right:10px;

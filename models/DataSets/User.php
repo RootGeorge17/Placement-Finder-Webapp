@@ -8,7 +8,6 @@
 
         {
             $this->id = $dbRow['id'];
-            $this->username = $dbRow['username'];
             $this->password = $dbRow['password'];
             $this->email = $dbRow['email'];
             $this->firstName = $dbRow['firstName'];
@@ -32,16 +31,6 @@
         public function getId()
         {
             return $this->id;
-        }
-
-        public function getUsername()
-        {
-            return $this->username;
-        }
-
-        public function getPassword()
-        {
-            return $this->password;
         }
 
         public function getEmail(): mixed

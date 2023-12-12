@@ -15,7 +15,7 @@
 
         <div class="row mb-3">
             <div class="col-md-6 mb-2">
-                <label class="mb-2" for="contactNumber">Contact Number</label>
+                <label class="mb-2" for="contactNumber">Contact Phone Number</label>
                 <input type="text" class="form-control" name="contactNumber" id="contactNumber">
             </div>
             <div class="col-md-6 ">
@@ -142,9 +142,21 @@
 
         <div class="row justify-content-center mb-2">
             <div class="col-md-3 mb-2 text-center">
-                <button class="btn btn-lg m-1 p-3">Upload Your CV <i class="ml-4 bi bi-file-earmark-arrow-up-fill"></i></button>
+                <label for="cvUpload" class="btn btn-lg m-1 p-3">
+                    Upload Your CV <i class="ml-2 bi bi-file-earmark-arrow-up-fill"></i>
+                </label>
+                <input type="file" id="cvUpload" style="display: none;">
             </div>
         </div>
+
+
+        <?php if (!empty($errors)) : ?>
+            <ul class="error-list list-unstyled text-center mx-6 mb-3 mb-lg-4">
+                <?php foreach ($errors as $error) : ?>
+                    <strong><li class="text-danger mt-2 list"><?= $error ?></li></strong>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
 
         <h6 class="mb-3 text-center">How we use your data</h6>
 

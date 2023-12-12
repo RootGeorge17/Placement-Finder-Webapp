@@ -1,12 +1,13 @@
 <?php
-// Starting a PHP session
-session_start();
-
 // Define a constant for the base path directory for the project
 const BASE_PATH = __DIR__ . '/../';
 
 // Require necessary files
 require BASE_PATH . 'models/Core/functions.php'; // Including functions file
+require BASE_PATH . "models/Extensions/Registration.php";
+
+// Starting a PHP session
+session_start();
 
 // Register an autoloader function
 spl_autoload_register(function ($class) {
