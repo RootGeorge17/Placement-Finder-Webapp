@@ -11,7 +11,7 @@
                 <!-- Previous Button -->
                 <?php if ($page > 1) { ?>
                     <li class="page-item">
-                        <a class="page-link" href="placements?page=<?php echo ($page - 1) . "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">Prev</a>
+                        <a class="page-link" href="students?page=<?php echo ($page - 1) . "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">Prev</a>
                     </li>
                 <?php } else { ?>
                     <li class="page-item disabled">
@@ -22,7 +22,7 @@
                 <!-- Page Number 1 -->
                 <?php if ($page > 3) { ?>
                     <li class="page-item">
-                        <a class="page-link" href="placements?page=1<?php echo "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">1</a>
+                        <a class="page-link" href="students?page=1<?php echo "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">1</a>
                     </li>
                     <li class="page-item disabled">
                         <span class="page-link">...</span>
@@ -33,7 +33,7 @@
                 <?php for ($i = max(1, $page - 2); $i <= min($page + 2, $total); $i++) { ?>
                     <li class="page-item <?php echo ($page == $i) ? 'active' : ''; ?>">
                         <a class="page-link"
-                           href="placements?page=<?php echo $i . "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>"><?php echo $i; ?>
+                           href="students?page=<?php echo $i . "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>"><?php echo $i; ?>
                         </a>
                     </li>
                 <?php } ?>
@@ -44,7 +44,7 @@
                     </li>
                     <li class="page-item">
                         <a class="page-link"
-                           href="placements?page=<?php echo $total . "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>"><?php echo $total; ?>
+                           href="students?page=<?php echo $total . "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>"><?php echo $total; ?>
                         </a>
                     </li>
                 <?php } ?>
@@ -53,7 +53,7 @@
                 <?php if ($page < $total) { ?>
                     <li class="page-item">
                         <a class="page-link"
-                           href="placements?page=<?php echo ($page + 1) . "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">
+                           href="students?page=<?php echo ($page + 1) . "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">
                             Next
                         </a>
                     </li>
@@ -73,11 +73,11 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="pageLimit">
                         <a class="dropdown-item"
-                           href="placements?page=<?php echo $page ?>&limit=2<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">2</a>
+                           href="students?page=<?php echo $page ?>&limit=2<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">2</a>
                         <a class="dropdown-item"
-                           href="placements?page=<?php echo $page ?>&limit=4<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">4</a>
+                           href="students?page=<?php echo $page ?>&limit=4<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">4</a>
                         <a class="dropdown-item"
-                           href="placements?page=<?php echo $page ?>&limit=64<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">64</a>
+                           href="students?page=<?php echo $page ?>&limit=64<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">64</a>
                     </div>
                 </li>
             </ul>
