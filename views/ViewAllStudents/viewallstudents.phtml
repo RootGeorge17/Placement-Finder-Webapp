@@ -67,17 +67,17 @@
 
                 <!-- Dropdown for number of deliveries per page -->
                 <li class="page-item dropdown">
-                    <button class="page-link dropdown-toggle" href="#" id="pageLimit" data-toggle="dropdown"
+                    <button class="page-link dropdown-toggle" href="#" id="pageLimit" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                         <?php echo $limit . " per page"; ?>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="pageLimit">
                         <a class="dropdown-item"
-                           href="students?page=<?php echo $page ?>&limit=2<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">2</a>
+                           href="students?page=<?php echo $page ?>&limit=16<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">16</a>
                         <a class="dropdown-item"
-                           href="students?page=<?php echo $page ?>&limit=4<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">4</a>
+                           href="students?page=<?php echo $page ?>&limit=24<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">24</a>
                         <a class="dropdown-item"
-                           href="students?page=<?php echo $page ?>&limit=64<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">64</a>
+                           href="students?page=<?php echo $page ?>&limit=32<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">32</a>
                     </div>
                 </li>
             </ul>
