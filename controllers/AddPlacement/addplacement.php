@@ -7,7 +7,7 @@ if (!authenticated()) {
     exit();
 }
 
-if ($_SESSION['user']['usertype'] == 1) { // check if employer
+if ($_SESSION['user']['usertype'] == 1) { // check if student
     header('location: /dashboard');
     exit();
 }

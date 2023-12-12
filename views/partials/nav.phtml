@@ -20,6 +20,7 @@
                                 <li><a href="/placements">All Placements</a></li>
                             <?php elseif ($_SESSION['user']['usertype'] == 2) : ?>
                                 <li><a href="/students">All Students</a></li>
+                                <li><a href="/addplacement">Add Placement</a></li>
                             <?php endif; ?>
                             <?php if (!$_SESSION['user']['loggedIn']) : ?>
                                 <li class="nav-item btn">
@@ -98,6 +99,7 @@
                                         <li><a href="/placements">All Placements</a></li>
                                     <?php elseif ($_SESSION['user']['usertype'] == 2) : ?>
                                         <li><a href="/students">All Students</a></li>
+                                        <li><a href="/addplacement">Add Placement</a></li>
                                     <?php endif; ?>
                                     <?php if (!$_SESSION['user']['loggedIn']) : ?>
                                         <li class="nav-item btn">
