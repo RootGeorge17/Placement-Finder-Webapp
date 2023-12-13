@@ -12,3 +12,5 @@ $router->get('/register', 'controllers/Authentication/register/register.php');
 $router->post('/register', 'controllers/Authentication/register/store.php');
 
 
+$router->get('/home', 'controllers/homepage.php');
+
