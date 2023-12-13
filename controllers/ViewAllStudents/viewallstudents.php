@@ -7,7 +7,7 @@ require base_path('models/DataSets/IndustriesDataSet.php');
 
 
 if (authenticated()) {
-    if ($_SESSION['user']['usertype'] != 2) {
+    if ($_SESSION['user']['usertype'] != 2) { // check if the user is a employer
         header("Location: /");
         exit();
     }

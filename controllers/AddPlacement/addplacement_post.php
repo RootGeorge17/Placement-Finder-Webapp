@@ -76,6 +76,8 @@ if ($_POST['submit'] == 'addPlacement'){
         $errors['EmptyProficiency3'] = "Please select a Proficiency!";
     }
 
+
+
     // need to check for skill and proficiency
     // then check for unique placement
     // then add placement

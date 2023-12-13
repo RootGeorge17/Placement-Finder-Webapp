@@ -44,8 +44,8 @@ class PlacementsDataSet
 
         $sqlQuery = 'SELECT pd.*, cmp.companyName AS companyName,
                      CASE
-                        WHEN cmp.companyName LIKE :searchField THEN char_length(cmp.companyName)
-                        WHEN cmp.companyDescription LIKE :searchField THEN char_length(cmp.companyDescription)
+                        WHEN cmp.companyName LIKE :searchField THEN 2
+                        WHEN cmp.companyDescription LIKE :searchField THEN 1
                         ELSE 0
                      END AS matchLength
                      FROM placementData pd

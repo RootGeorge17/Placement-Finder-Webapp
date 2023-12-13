@@ -75,6 +75,8 @@ class SkillsDataSet
         return new Skill($row);
     }
 
+   // public function fetchSkill
+
     public function fetchProficiencyById($id)
     {
         $sqlQuery = 'SELECT proficiency FROM skills WHERE id = :id';
