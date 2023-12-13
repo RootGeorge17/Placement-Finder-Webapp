@@ -4,7 +4,7 @@ require base_path("models/DataSets/CoursesDataSet.php");
 require base_path("models/DataSets/ProficienciesDataSet.php");
 require base_path("models/DataSets/IndustriesDataSet.php");
 
-class GenerateStudentFormData
+class GenerateRegistrationData
 {
     protected $coursesDataSet, $proficienciesDataSet, $skillsDataSet, $industriesDataSet;
 
@@ -14,6 +14,15 @@ class GenerateStudentFormData
         $this->skillsDataSet = new SkillsDataSet();
         $this->coursesDataSet = new CoursesDataSet();
         $this->industriesDataSet = new IndustriesDataSet();
+    }
+
+    public function getLocations()
+    {
+        $json = file_get_contents(base_path('models/JsonData/uk-cities.json'));
+
+        $locations = json_decode($json, true);
+
+        return $locations;
     }
 
     public function getCourses()

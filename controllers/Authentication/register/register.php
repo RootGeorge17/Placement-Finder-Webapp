@@ -6,6 +6,9 @@ if(authenticated())
     exit();
 }
 
+require base_path("models/Extensions/GenerateRegistrationData.php");
+$generateRegistrationData = new GenerateRegistrationData();
+
 $currentUrl = $_SERVER['REQUEST_URI'];
 $queryParams = parse_url($currentUrl, PHP_URL_QUERY);
 
@@ -22,13 +25,12 @@ switch ($step) {
         break;
     case '2':
         // Handle registration step 2 logic
-        require base_path("models/Extensions/GenerateRegistrationData.php");
-        $generateStudentFormData = new GenerateStudentFormData();
-        $universities = $generateStudentFormData->getUniversities(); // get array of universities
-        $courses = $generateStudentFormData->getCourses();
-        $skills = $generateStudentFormData->getSkills();
-        $proficiencies = $generateStudentFormData->getProficiencies();
-        $industries = $generateStudentFormData->getIndustries();
+        $universities = $generateRegistrationData->getUniversities();
+        $courses = $generateRegistrationData->getCourses();
+        $skills = $generateRegistrationData->getSkills();
+        $proficiencies = $generateRegistrationData->getProficiencies();
+        $industries = $generateRegistrationData->getIndustries();
+        $locations = $generateRegistrationData->getLocations();
 
         return view("Authentication/register2.phtml", [
             'universities' => $universities,
@@ -36,14 +38,13 @@ switch ($step) {
             'skills' => $skills,
             'proficiencies' => $proficiencies,
             'industries' => $industries,
+            'locations' => $locations,
             'pageTitle' => 'Registration',
         ]);
         break;
     case '3':
         // Handle registration step 2 logic
-        require base_path("models/Extensions/GenerateRegistrationData.php");
-        $generateStudentFormData = new GenerateStudentFormData();
-        $industries = $generateStudentFormData->getIndustries();
+        $industries = $generateRegistrationData->getIndustries();
 
         return view("Authentication/register3.phtml", [
             'pageTitle' => 'Registration',

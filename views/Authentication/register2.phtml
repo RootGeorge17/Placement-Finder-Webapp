@@ -20,7 +20,12 @@
             </div>
             <div class="col-md-6 ">
                 <label class="mb-2" for="location">Location</label>
-                <input type="text" class="form-control" name="location" id="location">
+                <select class="form-select" name="course" id="course">
+                    <option value="" selected disabled>Select Your Location</option>
+                    <?php foreach ($locations as $location) : ?>
+                        <option value="<?= $location['city'] ?>"><?= $location['city'] ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
         </div>
 
