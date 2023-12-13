@@ -58,9 +58,20 @@
                         <div class="col-md-6 mb-2">
                             <label class="mb-2" for="skill<?= $i + 1 ?>">Skill <?= $i + 1 ?></label>
                             <select class="form-select" name="skill<?= $i + 1 ?>" id="skill<?= $i + 1 ?>">
-                                <?php foreach ($allSkills as $skill) : ?>
-                                    <option value="<?= $skill->getId() ?>"><?= $skill->getSkillName() ?></option>
-                                <?php endforeach; ?>
+                                <?php
+                                $outputtedSkills = [];
+                                ?>
+
+                                <?php foreach ($allSkills as $skill) :
+                                    $skillName = $skill->getSkillName();
+                                    if (!in_array($skillName, $outputtedSkills)) {
+                                        $outputtedSkills[] = $skillName;
+                                        ?>
+                                        <option value="<?= $skillName ?>"><?= $skillName ?></option>
+                                        <?php
+                                    }
+                                endforeach;
+                                ?>
                             </select>
                         </div>
                         <div class="col-md-6">

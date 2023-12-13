@@ -1,6 +1,6 @@
 <?php
 
-$router->get('/', 'controllers/index.php');
+$router->get('/', 'controllers/homepage.php');
 $router->get('/dashboard', 'controllers/dashboard.php');
 $router->get('/team', 'controllers/team.php');
 
@@ -23,3 +23,4 @@ $router->post('/addplacement', 'controllers/AddPlacement/addplacement_post.php')
 $router->get('/placements', 'controllers/ViewAllPlacements/viewallplacements.php');
 
 $router->get('/students', 'controllers/ViewAllStudents/viewallstudents.php');
+
