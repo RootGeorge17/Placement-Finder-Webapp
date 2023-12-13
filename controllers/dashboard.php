@@ -36,7 +36,7 @@ if($_SESSION['user']['usertype'] == 1)
     $allSkills = $skillsDataSet->fetchAllSkills();
     $testStudent = $studentsDataSet->fetchStudentDataById($_SESSION['user']['id']); // dont mind the naming cba refactoring everything else
 
-    view("studentdashboard.phtml",[
+    view("Dashboard/studentdashboard.phtml",[
         'pageTitle' => 'Student Dashboard',
         'placementsDataSet' => $placementsDataSet,
         'studentsDataSet' => $studentsDataSet,
@@ -68,7 +68,7 @@ if($_SESSION['user']['usertype'] == 1)
     $allStudents = $studentsDataSet->fetchAllStudentData();
 
 
-    view("employerdashboard.phtml",[
+    view("Dashboard/employerdashboard.phtml",[
         'pageTitle' => 'Employer Dashboard',
         'studentsDataSet' => $studentsDataSet,
         'companiesDataSet' => $companiesDataSet,

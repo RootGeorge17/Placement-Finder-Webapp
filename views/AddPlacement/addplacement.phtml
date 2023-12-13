@@ -1,0 +1,105 @@
+<?php require_once(base_path('views/partials/head.phtml')) ?>
+<?php require_once(base_path('views/partials/nav.phtml')) ?>
+<?php require_once(base_path('views/partials/header.phtml')) ?>
+
+<div class="container mb-5">
+    <form name="add-placement" action="/addplacement" method="post">
+        <h1 class="mb-3 text-center">Add Placement</h1>
+
+        <div class="row mb-2 align-items-center">
+            <div class="col-md-6">
+                <label for="description">Description</label>
+                <textarea type="text" class="form-control" name="description" id="description" rows="18"></textarea>
+            </div>
+
+            <div class="col">
+                <div class="row mb-2">
+                <div class="col-md-6 mb-2">
+                        <label class="mb-2" for="industry">Industry</label>
+                        <select class="form-select" name="industry" id="industry">
+                            <?php foreach ($allIndustries as $industry) : ?>
+                                <option value="<?= $industry->getId() ?>"><?= $industry->getIndustry() ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-2">
+                        <label class="mb-2" for="location">Location</label>
+                        <select class="form-select" name="location" id="location">
+                            <?php foreach ($allLocation as $location) : ?>
+                                <option value="<?= $location['city'] ?>"><?= $location['city'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-6 mb-2">
+                        <label class="mb-2" for="startDate">Start Date</label>
+                        <input class="form-control" type="date" name="startDate" id="startDate">
+                    </div>
+
+                    <div class="col-md-6 mb-2">
+                        <label class="mb-2" for="endDate">End Date</label>
+                        <input class="form-control" type="date" name="endDate" id="endDate">
+                    </div>
+                </div>
+
+                <div class="row mb-2 justify-content-center">
+                    <div class="col-md-6 mb-2 text-center">
+                        <label class="mb-2" for="salary">Salary (in £££££ format)</label>
+                        <input class="form-control mx-auto" name="salary" id="salary">
+                    </div>
+                </div>
+
+                <!-- skill and proficiency -->
+                <?php for ($i = 0; $i < 3; $i++) : ?>
+                    <div class="row mb-2">
+                        <div class="col-md-6 mb-2">
+                            <label class="mb-2" for="skill<?= $i + 1 ?>">Skill <?= $i + 1 ?></label>
+                            <select class="form-select" name="skill<?= $i + 1 ?>" id="skill<?= $i + 1 ?>">
+                                <?php
+                                $outputtedSkills = [];
+                                ?>
+
+                                <?php foreach ($allSkills as $skill) :
+                                    $skillName = $skill->getSkillName();
+                                    if (!in_array($skillName, $outputtedSkills)) {
+                                        $outputtedSkills[] = $skillName;
+                                        ?>
+                                        <option value="<?= $skillName ?>"><?= $skillName ?></option>
+                                        <?php
+                                    }
+                                endforeach;
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="mb-2" for="proficiency<?= $i + 1 ?>">Proficiency</label>
+                            <select class="form-select" name="proficiency<?= $i + 1 ?>" id="proficiency<?= $i + 1 ?>">
+                                <?php foreach ($allProficiencies as $proficiency) : ?>
+                                    <option value="<?= $proficiency->getId() ?>"><?= $proficiency->getProficiency() ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                <?php endfor; ?>
+
+                <div class="row mb-2">
+                    <div class="row justify-content-center mb-2">
+                        <div class="col-md-6 col-lg-4 col-sm-4 text-center ">
+                            <button class="btn btn-success btn-lg btn-block dark-green-bg" id="submit" name="submit" value="addPlacement" type="submit">Add Placement<i class="bi bi-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </form>
+
+
+</div>
+
+<?php require_once(base_path('views/partials/footer.phtml')) ?>

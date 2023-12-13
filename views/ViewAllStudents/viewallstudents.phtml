@@ -1,0 +1,116 @@
+<?php require_once(base_path('views/partials/head.phtml')) ?>
+<?php require_once(base_path('views/partials/nav.phtml')) ?>
+<?php require_once(base_path('views/partials/header.phtml')) ?>
+
+    <div class="container mb-5">
+        <h1 class="mb-3 text-center">All Students</h1>
+
+        <!-- Pagination -->
+        <nav aria-label="Page Navigation" class="main-navigation mb-2">
+            <ul class="pagination">
+                <!-- Previous Button -->
+                <?php if ($page > 1) { ?>
+                    <li class="page-item">
+                        <a class="page-link" href="students?page=<?php echo ($page - 1) . "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">Prev</a>
+                    </li>
+                <?php } else { ?>
+                    <li class="page-item disabled">
+                        <span class="page-link">Prev</span>
+                    </li>
+                <?php } ?>
+
+                <!-- Page Number 1 -->
+                <?php if ($page > 3) { ?>
+                    <li class="page-item">
+                        <a class="page-link" href="students?page=1<?php echo "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">1</a>
+                    </li>
+                    <li class="page-item disabled">
+                        <span class="page-link">...</span>
+                    </li>
+                <?php } ?>
+
+                <!-- Page Numbers between 1 and total pages -->
+                <?php for ($i = max(1, $page - 2); $i <= min($page + 2, $total); $i++) { ?>
+                    <li class="page-item <?php echo ($page == $i) ? 'active' : ''; ?>">
+                        <a class="page-link"
+                           href="students?page=<?php echo $i . "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>"><?php echo $i; ?>
+                        </a>
+                    </li>
+                <?php } ?>
+
+                <?php if ($page < $total - 2) { ?>
+                    <li class="page-item disabled">
+                        <span class="page-link">...</span>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="students?page=<?php echo $total . "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>"><?php echo $total; ?>
+                        </a>
+                    </li>
+                <?php } ?>
+
+                <!-- Next Button -->
+                <?php if ($page < $total) { ?>
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="students?page=<?php echo ($page + 1) . "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">
+                            Next
+                        </a>
+                    </li>
+                <?php } else { ?>
+                    <li class="page-item disabled">
+                            <span class="page-link">
+                                Next
+                            </span>
+                    </li>
+                <?php } ?>
+
+                <!-- Dropdown for number of deliveries per page -->
+                <li class="page-item dropdown">
+                    <button class="page-item dropdown-toggle" href="#" id="pageLimit" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <?php echo $limit . " per page"; ?>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="pageLimit">
+                        <a class="dropdown-item"
+                           href="students?page=<?php echo $page ?>&limit=16<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">16</a>
+                        <a class="dropdown-item"
+                           href="students?page=<?php echo $page ?>&limit=24<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">24</a>
+                        <a class="dropdown-item"
+                           href="students?page=<?php echo $page ?>&limit=32<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">32</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="row mb-3">
+            <?php foreach ($allStudents as $student) : ?>
+            <?php $studentUser = $usersDataSet->fetchUserByStudentId($student->getId());
+                  $studentCourse = $coursesDataSet->fetchCourseById($student->getCourse());
+                    $prefIndustry = $industriesDataSet->fetchIndustryNameById($student->getPrefIndustry());
+                ?>
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <div class="placement-details">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p>
+                                    <strong>Student Name:</strong> <?= $studentUser->getFirstName() ?> <?= $studentUser->getLastName() ?><br>
+                                    <strong>Student Course:</strong> <?= $studentCourse->getCourseName() ?><br>
+                                    <strong>Student Institution:</strong> <?= $student->getInstitution() ?><br>
+                                    <strong>Student Preferred Industry:</strong> <?= $prefIndustry ?><br>
+                                    <strong>Student Location:</strong> <?= $student->getLocation() ?><br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-success">Contact</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+
+    </div>
+
+<?php require_once(base_path('views/partials/footer.phtml')) ?>

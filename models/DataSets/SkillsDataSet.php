@@ -39,6 +39,20 @@ class SkillsDataSet
         return new Skill($row);
     }
 
+    public function fetchSkillsbyIdArray($ids)
+    {
+        $sqlQuery = 'SELECT * FROM skills WHERE id IN ('.implode(',', $ids).')';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(); // execute the PDO statement
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new Skill($row);
+        }
+        return $dataSet;
+    }
+
     public function fetchSkillByName($name)
     {
         $sqlQuery = 'SELECT * FROM skills WHERE skillName = :name';
@@ -60,6 +74,8 @@ class SkillsDataSet
         $row = $statement->fetch();
         return new Skill($row);
     }
+
+   // public function fetchSkill
 
     public function fetchProficiencyById($id)
     {

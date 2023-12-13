@@ -50,17 +50,17 @@ class PlacementHelpers
             'poor' => []
         ];
 
-        foreach ($placementsData as $placement) {
+        foreach ($placementsData as $placement) { // loop through all placements
             $skillMatchCount = 0;
             $sameProficiencyCount = 0;
 
-            $placementSkills = [
+            $placementSkills = [ // array of skill ids of the placement
                 $placement->getSkill1(),
                 $placement->getSkill2(),
                 $placement->getSkill3()
             ];
 
-            foreach ($studentSkills as $studentSkill) {
+            foreach ($studentSkills as $studentSkill) { // loop through all student skills
                 if (in_array($studentSkill, $placementSkills)) {
                     $skillMatchCount++;
 

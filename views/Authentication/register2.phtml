@@ -1,13 +1,21 @@
 <?php require base_path('views/partials/head.phtml') ?>
 
 <div class="container mb-5">
-    <img src="https://sts.bcs.org/bcs-logo.svg" alt="Image not found!" class="img-fluid mx-auto mb-4" style="max-width: 25%;" />                                    <p class="d-flex text-center justify-content-center h5 fw-bold mx-4 mb-3 mb-lg-4">Log in using your email address and password</p>
     <form name="register2" action="/register?step=2" method="POST">
-        <h1 class="mb-3 text-center">Tell us more about YOU</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="https://sts.bcs.org/bcs-logo.svg" alt="Image not found!" class="img-fluid mx-auto mb-4"
+                     style="max-width: 25%;"/>
+            </div>
+            <div class="col-md-4">
+                <h1 class="mb-3 text-center">Tell us more about YOU</h1>
+                <u><p class="text-center mb-4 text-success"><a href="/login">Already have an account? Log in</a></p></u>
+            </div>
+        </div>
 
         <div class="row mb-3">
             <div class="col-md-6 mb-2">
-                <label class="mb-2" for="contactNumber">Contact Number</label>
+                <label class="mb-2" for="contactNumber">Contact Phone Number</label>
                 <input type="text" class="form-control" name="contactNumber" id="contactNumber">
             </div>
             <div class="col-md-6 ">
@@ -20,12 +28,24 @@
             <div class="col-md-6 mb-2">
                 <label class="mb-2" for="course">Course</label>
                 <select class="form-select" name="course" id="course">
-                    <option value="test">test</option>
+                    <option value="" selected disabled>Select Your Course</option>
+                    <?php foreach ($courses as $course): ?>
+                        <option value="<?= $course->getCourseName() ?>">
+                            <?= $course->getCourseName() ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
+
             <div class="col-md-6">
                 <label class="mb-2" for="institution">Institution</label>
                 <select class="form-select" name="institution" id="institution">
+                    <option value="" selected disabled>Select Your Institution</option>
+                    <?php foreach ($universities as $university): ?>
+                        <option value="<?= $university['name']; ?>">
+                            <?= $university['name']; ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
@@ -34,11 +54,23 @@
             <div class="col-md-3 mb-2">
                 <label class="mb-2" for="skill1">Skill 1</label>
                 <select class="form-select" name="skill1" id="skill1">
+                    <option value="" selected disabled>Select A Skill</option>
+                    <?php foreach ($skills as $skill): ?>
+                        <option value="<?= $skill->getSkillName() ?>">
+                            <?= $skill->getSkillName() ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div class="col-md-3">
                 <label class="mb-2" for="proficiency1">Proficiency</label>
                 <select class="form-select" name="proficiency1" id="proficiency1">
+                    <option value="" selected disabled>Select Proficiency</option>
+                    <?php foreach ($proficiencies as $proficiency): ?>
+                        <option value="<?= $proficiency->getProficiency() ?>">
+                            <?= $proficiency->getProficiency() ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
@@ -47,11 +79,23 @@
             <div class="col-md-3 mb-2">
                 <label class="mb-2" for="skill2">Skill 2</label>
                 <select class="form-select" name="skill2" id="skill2">
+                    <option value="" selected disabled>Select A Skill</option>
+                    <?php foreach ($skills as $skill): ?>
+                        <option value="<?= $skill->getSkillName() ?>">
+                            <?= $skill->getSkillName() ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div class="col-md-3">
                 <label class="mb-2" for="proficiency2">Proficiency</label>
                 <select class="form-select" name="proficiency2" id="proficiency2">
+                    <option value="" selected disabled>Select Proficiency</option>
+                    <?php foreach ($proficiencies as $proficiency): ?>
+                        <option value="<?= $proficiency->getProficiency() ?>">
+                            <?= $proficiency->getProficiency() ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
@@ -60,12 +104,24 @@
             <div class="col-md-3 mb-2">
                 <label class="mb-2" for="skill3">Skill 3</label>
                 <select class="form-select" name="skill3" id="skill3">
+                    <option value="" selected disabled>Select A Skill</option>
+                    <?php foreach ($skills as $skill): ?>
+                        <option value="<?= $skill->getSkillName() ?>">
+                            <?= $skill->getSkillName() ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
 
             <div class="col-md-3">
                 <label class="mb-2" for="proficiency3">Proficiency</label>
                 <select class="form-select" name="proficiency3" id="proficiency3">
+                    <option value="" selected disabled>Select Proficiency</option>
+                    <?php foreach ($proficiencies as $proficiency): ?>
+                        <option value="<?= $proficiency->getProficiency() ?>">
+                            <?= $proficiency->getProficiency() ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
@@ -74,32 +130,59 @@
             <div class="col-md-3 mb-2 text-center">
                 <label class="mb-2" for="prefIndustry">Preferred Industry</label>
                 <select class="form-select" name="prefIndustry" id="prefIndustry">
+                    <option value="" selected disabled>Select Your Preferred Industry</option>
+                    <?php foreach ($industries as $industry): ?>
+                        <option value="<?= $industry->getIndustry() ?>">
+                            <?= $industry->getIndustry() ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
 
+        <div class="row justify-content-center mb-2">
+            <div class="col-md-3 mb-2 text-center">
+                <label for="cvUpload" class="btn btn-lg m-1 p-3">
+                    Upload Your CV <i class="ml-2 bi bi-file-earmark-arrow-up-fill"></i>
+                </label>
+                <input type="file" id="cvUpload" style="display: none;">
+            </div>
+        </div>
 
+
+        <?php if (!empty($errors)) : ?>
+            <ul class="error-list list-unstyled text-center mx-6 mb-3 mb-lg-4">
+                <?php foreach ($errors as $error) : ?>
+                    <strong><li class="text-danger mt-2 list"><?= $error ?></li></strong>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
 
         <h6 class="mb-3 text-center">How we use your data</h6>
 
-        <p>We’ll store your basic personal information such as your name and email address so we can communicate with you about the services
+        <p>We’ll store your basic personal information such as your name and email address so we can communicate with
+            you about the services
             you’ve registered for. This includes welcome communications and information about accessing,
             using and getting the most from the services.
         </p>
 
         <p>
-            We will never sell your data. If you are applying for membership we will only pass your details to our 3rd party fulfilment
-            partner who will process your membership pack and digital assets. To find out more, please view our Data Privacy Notice
+            We will never sell your data. If you are applying for membership we will only pass your details to our 3rd
+            party fulfilment
+            partner who will process your membership pack and digital assets. To find out more, please view our Data
+            Privacy Notice
         </p>
 
-        <div class="row mb-5">
-            <div class="col-md-12 text-center" >
-                <button class="btn btn-success btn-lg btn-block" type="submit">Register and Continue <i class="bi bi-arrow-right"></i></button>
+        <div class="row mt-3">
+            <div class="col-md-12 text-center">
+                <button class="btn btn-success btn-lg btn-block" id="submit" name="submit" type="submit" value="second">
+                    Register and Continue <i class="bi bi-arrow-right"></i></button>
             </div>
         </div>
     </form>
 </div>
 
-<br>
+
+
 
 
