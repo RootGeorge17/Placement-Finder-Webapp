@@ -88,3 +88,20 @@ function authenticated(): bool
     }
 }
 
+function getUniversities()
+{
+    // Get the JSON data
+    $json = file_get_contents(base_path('models/JsonData/uk-universities.json'));
+    // Convert JSON string to Array
+    $universities = json_decode($json, true);
+
+    usort($universities, "cmp");
+
+    return $universities;
+}
+
+function cmp(array $a, array $b): int
+{
+    return strcmp($a["name"], $b["name"]);
+}
+

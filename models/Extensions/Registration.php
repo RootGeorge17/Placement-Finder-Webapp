@@ -1,5 +1,7 @@
 <?php
 
+require_once(base_path("models/Extensions/GenerateRegistrationData.php"));
+
 class Registration
 {
     protected $userDataSet;
@@ -15,24 +17,19 @@ class Registration
     }
 
     function generateStepTwoFormData() {
-        require base_path("models/Extensions/GenerateRegistrationData.php");
-        $generateRegistrationData = new GenerateRegistrationData();
-
         return [
-            'universities' => $generateRegistrationData->getUniversities(),
-            'locations' => $generateRegistrationData->getLocations(),
-            'courses' => $generateRegistrationData->getCourses(),
-            'skills' => $generateRegistrationData->getSkills(),
-            'proficiencies' => $generateRegistrationData->getProficiencies(),
-            'industries' => $generateRegistrationData->getIndustries()
+            'universities' => getUniversities(),
+            'locations' => GenerateRegistrationData::getLocations(),
+            'courses' => GenerateRegistrationData::getCourses(),
+            'skills' => GenerateRegistrationData::getSkills(),
+            'proficiencies' => GenerateRegistrationData::getProficiencies(),
+            'industries' => GenerateRegistrationData::getIndustries()
         ];
     }
 
     function generateStepThreeFormData() {
-        require base_path("models/Extensions/GenerateRegistrationData.php");
-        $generateRegistrationData = new GenerateRegistrationData();
         return [
-            'industries' => $generateRegistrationData->getIndustries(),
+            'industries' => GenerateRegistrationData::getIndustries(),
         ];
     }
 

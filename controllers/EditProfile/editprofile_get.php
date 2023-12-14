@@ -32,7 +32,7 @@ if ($_SESSION['user']['usertype'] == 1) {
         $userStudentData->getSkill3(),
     ];
 
-    $universities = $generateStudentFormData->getUniversities(); // get universities data
+    $universities = getUniversities(); // get universities data
 
     view("EditProfile/editstudent.phtml", [
         'pageTitle' => 'Edit Profile',

@@ -1,5 +1,5 @@
 <?php
-use models\Core\Validator;
+require_once(base_path("models/Core/Validator.php"));
 require_once(base_path("models/DataSets/UsersDataSet.php"));
 $usersDataSet = new UsersDataSet();
 $errors = [];
