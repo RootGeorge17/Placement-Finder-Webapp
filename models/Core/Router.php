@@ -1,7 +1,5 @@
 <?php
 
-namespace models\Core;
-
 class Router
 {
     protected $routes = [];

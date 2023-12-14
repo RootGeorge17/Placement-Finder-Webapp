@@ -6,9 +6,6 @@ if(authenticated())
     exit();
 }
 
-require base_path("models/Extensions/GenerateRegistrationData.php");
-$generateRegistrationData = new GenerateRegistrationData();
-
 $currentUrl = $_SERVER['REQUEST_URI'];
 $queryParams = parse_url($currentUrl, PHP_URL_QUERY);
 
@@ -25,12 +22,12 @@ switch ($step) {
         break;
     case '2':
         // Handle registration step 2 logic
-        $universities = $generateRegistrationData->getUniversities();
-        $courses = $generateRegistrationData->getCourses();
-        $skills = $generateRegistrationData->getSkills();
-        $proficiencies = $generateRegistrationData->getProficiencies();
-        $industries = $generateRegistrationData->getIndustries();
-        $locations = $generateRegistrationData->getLocations();
+        $universities = $_SESSION['registration']->generateStepTwoFormData()['universities'];
+        $courses = $_SESSION['registration']->generateStepTwoFormData()['courses'];
+        $skills = $_SESSION['registration']->generateStepTwoFormData()['skills'];
+        $proficiencies = $_SESSION['registration']->generateStepTwoFormData()['proficiencies'];
+        $industries = $_SESSION['registration']->generateStepTwoFormData()['industries'];
+        $locations = $_SESSION['registration']->generateStepTwoFormData()['locations'];
 
         return view("Authentication/register2.phtml", [
             'universities' => $universities,
@@ -44,7 +41,7 @@ switch ($step) {
         break;
     case '3':
         // Handle registration step 2 logic
-        $industries = $generateRegistrationData->getIndustries();
+        $industries = $_SESSION['registration']->generateStepTwoFormData()['industries'];
 
         return view("Authentication/register3.phtml", [
             'pageTitle' => 'Registration',
