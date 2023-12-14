@@ -1,14 +1,13 @@
 <?php
     class User
     {
-        protected $id, $username, $password, $firstName, $lastName, $email, $phoneNumber, $userType, $studentData, $companyData;
+        protected $id, $password, $firstName, $lastName, $email, $phoneNumber, $userType, $studentData, $companyData;
 
 
         public function __construct($dbRow)
 
         {
             $this->id = $dbRow['id'];
-            $this->username = $dbRow['username'];
             $this->password = $dbRow['password'];
             $this->email = $dbRow['email'];
             $this->firstName = $dbRow['firstName'];
@@ -32,11 +31,6 @@
         public function getId()
         {
             return $this->id;
-        }
-
-        public function getUsername()
-        {
-            return $this->username;
         }
 
         public function getPassword()

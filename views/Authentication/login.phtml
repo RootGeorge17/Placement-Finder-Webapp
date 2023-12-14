@@ -1,13 +1,5 @@
 <?php require_once(base_path('views/partials/head.phtml')) ?>
 
-<style>
-    .has-error {
-        background-color: #ffcccc;
-        border: 3px solid;
-        border-color: rgba(226,0,0,.25);
-    }
-</style>
-
 <div id="main-content">
     <section class="vh-100">
         <div class="container h-100">
@@ -17,7 +9,10 @@
                         <div class="card-body p-md-5">
                             <div class="row justify-content-center">
                                 <div class="col-md-10 col-lg-6 col-xl-15 order-2 order-lg-1">
-                                    <img src="https://sts.bcs.org/bcs-logo.svg" alt="Image not found!" class="img-fluid mx-auto mb-4" style="max-width: 25%;" />                                    <p class="d-flex text-center justify-content-center h5 fw-bold mx-4 mb-3 mb-lg-4">Log in using your email address and password</p>
+                                    <div class="text-center">
+                                        <img src="https://sts.bcs.org/bcs-logo.svg" alt="Image not found!" class="img-fluid mb-4" style="max-width: 15%;" />
+                                        <p class="h5 fw-bold mx-4 mb-3 mb-lg-4">Log in using your email address and password</p>
+                                    </div>
 
                                     <form class="mx-1 mx-md-4" action="/login" method="POST">
                                         <div class="d-flex flex-row align-items-center mb-4">

@@ -2,17 +2,24 @@
 
 <div class="container mb-5">
     <form name="register1" action="/register" method="post">
-        <h1 class="mb-3 text-center">Create your BCS Placement Finder account</h1>
-        <p class="text-center">Already have an account? <a href="">Log in</a></p>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="https://sts.bcs.org/bcs-logo.svg" alt="Image not found!" class="img-fluid mx-auto mb-4" style="max-width: 25%;" />
+            </div>
+            <div class="col-md-4">
+                <h1 class="mb-3 text-center">Create your BCS account</h1>
+                <u><p class="text-center mb-4 text-success"><a href="/login">Already have an account? Log in</a></p></u>
+            </div>
+        </div>
 
         <div class="row mb-3">
             <div class="col-md-6 mb-2">
                 <label class="mb-2" for="firstName">First Name</label>
-                <input type="text" class="form-control" name="firstName" id="firstName" required>
+                <input type="text" class="form-control <?= !empty($errors['InvalidName']) ? 'has-error' : '' ?>" name="firstName" id="firstName" required>
             </div>
             <div class="col-md-6 ">
                 <label class="mb-2" for="lastName">Last Name</label>
-                <input type="text" class="form-control" name="lastName" id="lastName" required>
+                <input type="text" class="form-control <?= !empty($errors['InvalidLastName']) ? 'has-error' : '' ?>" name="lastName" id="lastName" required>
             </div>
         </div>
 
@@ -20,26 +27,35 @@
             <div class="col-md-6 mb-2">
                 <label class="mb-2" for="accountType">Account Type</label>
                 <select class="form-select" name="accountType" id="accountType">
+                    <option value="" selected disabled>Select Your User Type</option>
                     <option value="student">Student</option>
                     <option value="employer">Employer</option>
                 </select>
             </div>
             <div class="col-md-6">
                 <label class="mb-2" for="email">Email</label>
-                <input type="text" class="form-control" name="email" id="email" required>
+                <input type="text" class="form-control <?= !empty($errors['InvalidEmail']) ? 'has-error' : '' ?>" name="email" id="email" required>
             </div>
         </div>
 
         <div class="row mb-5">
             <div class="col-md-6 mb-2">
                 <label class="mb-2" for="password">Password</label>
-                <input type="text" class="form-control" name="password" id="password" required>
+                <input type="text" class="form-control <?= !empty($errors['InvalidPassword']) ? 'has-error' : '' ?>" name="password" id="password" required>
             </div>
             <div class="col-md-6">
                 <label class="mb-2" for="confirmPassword">Confirm Password</label>
-                <input type="text" class="form-control" name="confirmPassword" id="confirmPassword" required>
+                <input type="text" class="form-control <?= !empty($errors['PasswordMatch']) ? 'has-error' : '' ?>" name="confirmPassword" id="confirmPassword" required>
             </div>
         </div>
+
+        <?php if (!empty($errors)) : ?>
+            <ul class="error-list list-unstyled text-center mx-6 mb-3 mb-lg-4">
+                <?php foreach ($errors as $error) : ?>
+                    <strong><li class="text-danger mt-2 list"><?= $error ?></li></strong>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
 
         <h6 class="mb-3 text-center">How we use your data</h6>
         <p>We’ll store your basic personal information such as your name and email address so we can communicate with you about the services
@@ -51,7 +67,7 @@
             partner who will process your membership pack and digital assets. To find out more, please view our Data Privacy Notice
         </p>
 
-        <div class="row mb-5">
+        <div class="row mt-3">
             <div class="col-md-12 text-center" >
                 <button class="btn btn-success btn-lg btn-block dark-green-bg" id="submit" name="submit" value="first" type="submit">Register and Continue    <i class="bi bi-arrow-right"></i></button>
             </div>

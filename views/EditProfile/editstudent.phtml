@@ -1,0 +1,124 @@
+<?php require_once(base_path('views/partials/head.phtml')) ?>
+<?php require_once(base_path('views/partials/nav.phtml')) ?>
+<?php require_once(base_path('views/partials/header.phtml')) ?>
+
+<div class="container mb-5">
+    <form name="edit-student" action="/editprofile" method="post">
+        <h1 class="mb-3 text-center">Edit your profile</h1>
+
+        <!--first name and last name-->
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="firstName">First Name</label>
+                <input type="text" class="form-control" name="firstName" id="firstName" value="<?= $user->getFirstName() ?>">
+            </div>
+            <div class="col-md-6 ">
+                <label class="mb-2" for="lastName">Last Name</label>
+                <input type="text" class="form-control" name="lastName" id="lastName" value="<?= $user->getLastName() ?>">
+            </div>
+        </div>
+
+        <!--email and location-->
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="email">Email</label>
+                <input type="text" class="form-control" name="email" id="email" value="<?= $user->getEmail() ?>">
+            </div>
+            <div class="col-md-6 ">
+                <label class="mb-2" for="location">Location</label>
+                <select  class="form-select" name="location" id="location">
+                    <option value="<?= $userStudentData->getLocation() ?>"><?= $userStudentData->getLocation() ?></option> <!-- get the location name from the user's student data object -->
+                    <?php foreach ($allLocations as $location) : ?>
+                        <?php if (strtolower($location['city']) ==  strtolower($userStudentData->getLocation())) :
+                            continue; // check if the location is already in selection ?>
+                        <?php endif; ?>
+                        <option value="<?= $location['city'] ?>"><?= $location['city'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+            </div>
+        </div>
+
+        <!--contact number and password button-->
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="contactNumber">Contact Number</label>
+                <input type="text" class="form-control" name="contactNumber" id="contactNumber" value="<?= $user->getPhoneNumber() ?>">
+            </div>
+
+            <!--password button-->
+            <div class="col-md-3 col-sm-6 col-lg-6 align-self-end">
+                <button class="btn btn-success btn-lg btn-block dark-green-bg mb-2" id="changepassword" name="changepassword" value="changepassword" type="submit">Change Password<i class="bi bi-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!--course and institution-->
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="course">Course</label>
+                <select class="form-select" name="course" id="course">
+                    <option value="<?= $userCourse->getId() ?>"><?= $userCourse->getCourseName() ?></option> <!-- get the course name from the user's preferred course object -->
+                    <?php foreach ($courses as $course) : ?>
+                        <?php if ($course->getId() == $userStudentData->getCourse()) :
+                            continue;  // check if the course is already in selection ?>
+                        <?php endif; ?>
+                        <option value="<?= $course->getId() ?>"><?= $course->getCourseName() ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="mb-2" for="institution">Institution</label>
+                <select class="form-select" name="institution" id="institution">
+                    <option value="<?= $userStudentData->getInstitution() ?>"><?= $userStudentData->getInstitution() ?></option> <!-- get the institution name from the user's student data object -->
+                    <?php foreach ($universities as $university) : ?>
+                        <?php if ($university['name'] == $userStudentData->getInstitution()) :
+                            continue; // check if the university is already in selection ?>
+                        <?php endif; ?>
+                        <option value="<?= $university['name'] ?>"><?= $university['name'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+
+        <!-- skill and proficiency -->
+        <?php for ($i = 0; $i < 3; $i++) : ?>
+            <div class="row mb-2">
+                <div class="col-md-6 mb-2">
+                    <label class="mb-2" for="skill<?= $i + 1 ?>">Skill <?= $i + 1 ?></label>
+                    <select class="form-select" name="skill<?= $i + 1 ?>" id="skill<?= $i + 1 ?>">
+                        <option value="<?= $userSkills[$i]->getId() ?>"><?= $userSkills[$i]->getSkillName() ?></option> <!-- get the skill name from the user's skill object -->
+                        <?php foreach ($allSkills as $skill) : ?>
+                            <?php if ($skill->getId() == $userSkills[$i]->getId()) :
+                                continue; // check if the skill is already in selection ?>
+                            <?php endif; ?>
+                            <option value="<?= $skill->getId() ?>"><?= $skill->getSkillName() ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="mb-2" for="proficiency<?= $i + 1 ?>">Proficiency</label>
+                    <select class="form-select" name="proficiency<?= $i + 1 ?>" id="proficiency<?= $i + 1 ?>">
+                        <option value="<?= $userSkillsAndProficiencies[$i]['proficiency']->getId() ?>"><?= $userSkillsAndProficiencies[$i]['proficiency']->getProficiency() ?></option> <!-- get the proficiency name from the user's skill and proficiency object -->
+                        <?php foreach ($allProficiencies as $proficiency) : ?>
+                            <?php if ($proficiency->getId() == $userSkillsAndProficiencies[$i]['proficiency']->getId()) :
+                                continue; // check if the proficiency is already in selection ?>
+                            <?php endif; ?>
+                            <option value="<?= $proficiency->getId() ?>"><?= $proficiency->getProficiency() ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+        <?php endfor; ?>
+
+        <!--submit button-->
+        <div class="row justify-content-center mb-2">
+            <div class="col-md-3 text-center ">
+                <button class="btn btn-success btn-lg btn-block dark-green-bg" id="submit" name="submit" value="first" type="submit">Save Changes    <i class="bi bi-arrow-right"></i></button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<?php require_once(base_path('views/partials/footer.phtml')) ?>

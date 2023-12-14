@@ -48,6 +48,23 @@ class UsersDataSet
         return false;
     }
 
+    public function emailMatch($email): bool
+    {
+        $sqlQuery = 'SELECT email from user where email = :email';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        $statement->execute([
+            ':email' => $email,
+        ]);
+
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ($user) {
+            return true; // Email match
+        }
+        return false;
+    }
+
     public function getUserDetails($email)
     {
         $sqlQuery = 'SELECT * from user where email = :email';
@@ -100,5 +117,49 @@ class UsersDataSet
 
         $row = $statement->fetch();
         return new StudentData($row);
+    }
+
+    public function createCompanyUser($firstName, $lastName, $email, $password, $contactNumber, $companyName, $companyDescription, $companyIndustry)
+    {
+        // Find the industry ID based on the provided industry name
+        $sqlFindIndustry = 'SELECT id FROM industry WHERE industry = :companyIndustry';
+        $statementFindIndustry = $this->dbHandle->prepare($sqlFindIndustry);
+        $statementFindIndustry->execute([':companyIndustry' => $companyIndustry]);
+        $industryRow = $statementFindIndustry->fetch(PDO::FETCH_ASSOC);
+
+        if ($industryRow) {
+            $industryId = $industryRow['id'];
+
+            // Insert the company with details and industry ID
+            $sqlCompany = 'INSERT INTO company (companyName, companyDescription, companyIndustry) 
+                    VALUES (:companyName, :companyDescription, :industryId)';
+            $statementCompany = $this->dbHandle->prepare($sqlCompany);
+            $statementCompany->execute([
+                ':companyName' => $companyName,
+                ':companyDescription' => $companyDescription,
+                ':industryId' => $industryId
+            ]);
+
+            $lastCompanyId = $this->dbHandle->lastInsertId();
+
+            // Insert the user associated with the created company
+            $sqlUser = 'INSERT INTO user (email, password, userType, companyData, phoneNumber, firstName, lastName) 
+                VALUES (:email, :password, :userType, :companyData, :phoneNumber, :firstName, :lastName)';
+            $statementUser = $this->dbHandle->prepare($sqlUser);
+            $statementUser->execute([
+                ':email' => $email,
+                ':password' => password_hash($password, PASSWORD_BCRYPT),
+                ':userType' => 2,
+                ':companyData' => $lastCompanyId,
+                ':phoneNumber' => $contactNumber,
+                ':firstName' => $firstName,
+                ':lastName' => $lastName
+            ]);
+        }
+    }
+
+    public function createStudentUser($firstName, $lastName, $email, $password, $contactNumber, $location, $course, $institution, $industry, $skill1, $skill2, $skill3, $proficiency1, $proficiency2, $proficiency3, $cv)
+    {
+
     }
 }
