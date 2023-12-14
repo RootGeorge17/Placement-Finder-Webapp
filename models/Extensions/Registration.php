@@ -1,5 +1,7 @@
 <?php
 
+require_once(base_path("models/Extensions/GenerateRegistrationData.php"));
+
 class Registration
 {
     protected $userDataSet;
@@ -15,31 +17,38 @@ class Registration
     }
 
     function generateStepTwoFormData() {
-        require base_path("models/Extensions/GenerateRegistrationData.php");
-        $generateStudentFormData = new GenerateStudentFormData();
         return [
-            'universities' => $generateStudentFormData->getUniversities(),
-            'courses' => $generateStudentFormData->getCourses(),
+            'universities' => getUniversities(),
+            'locations' => GenerateRegistrationData::getLocations(),
+            'courses' => GenerateRegistrationData::getCourses(),
+            'skills' => GenerateRegistrationData::getSkills(),
+            'proficiencies' => GenerateRegistrationData::getProficiencies(),
+            'industries' => GenerateRegistrationData::getIndustries()
         ];
     }
 
     function generateStepThreeFormData() {
-        require base_path("models/Extensions/GenerateRegistrationData.php");
-        $generateStudentFormData = new GenerateStudentFormData();
         return [
-            'industries' => $generateStudentFormData->getIndustries(),
+            'industries' => GenerateRegistrationData::getIndustries(),
         ];
     }
 
     public function registerStudent()
     {
-
+        $this->userDataSet = new UsersDataSet();
+        $this->userDataSet->createStudentUser(
+            $this->getFirstName(), $this->getLastName(), $this->getEmail(), $this->getPassword(),
+            $this->getContactNumber(), $this->getLocation(), $this->getCourse(), $this->getInstitution(), $this->getIndustry(),
+            $this->getSkill1(), $this->getSkill2(), $this->getSkill3(),
+            $this->getProficiency1(), $this->getProficiency2(), $this->proficiency3, $this->getCv());
     }
 
     public function registerCompany()
     {
         $this->userDataSet = new UsersDataSet();
-        $this->userDataSet->createCompanyUser($this->getFirstName(), $this->getLastName(), $this->getEmail(), $this->getPassword(), $this->getContactNumber(), $this->getCompanyName(), $this->getCompanyDescription(), $this->getCompanyIndustry());
+        $this->userDataSet->createCompanyUser(
+            $this->getFirstName(), $this->getLastName(), $this->getEmail(), $this->getPassword(),
+            $this->getContactNumber(), $this->getCompanyName(), $this->getCompanyDescription(), $this->getCompanyIndustry());
     }
 
     // Getters

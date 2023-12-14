@@ -9,15 +9,9 @@ require BASE_PATH . "models/Extensions/Registration.php";
 // Starting a PHP session
 session_start();
 
-// Register an autoloader function
-spl_autoload_register(function ($class) {
-    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
-
-    require base_path("{$class}.php");
-});
-
 // Requiring and initializing an instance of Router to route user
-$router = new \models\Core\Router();
+require_once(base_path("/models/Core/Router.php"));
+$router = new Router();
 $routes = require_once(base_path("routes.php"));
 
 // Parsing the requested URI and determining the request method

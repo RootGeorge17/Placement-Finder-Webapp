@@ -1,5 +1,5 @@
 <?php
-use models\Core\Validator;
+require_once(base_path("models/Core/Validator.php"));
 require_once(base_path("models/DataSets/UsersDataSet.php"));
 $usersDataSet = new UsersDataSet();
 $errors = [];
@@ -67,8 +67,8 @@ if ($_POST['submit'] == "first") {
 
 if ($_POST['submit'] == "second") {
     $contactNumber = $_POST['contactNumber'];
-    $location = $_POST['location'];
-    $course = $_POST['course'];
+    $location = $_POST['location'] ?? '';
+    $course = $_POST['course'] ?? '';
     $institution = $_POST['institution'] ?? '';
     $skill1 = $_POST['skill1'] ?? '';
     $skill2 = $_POST['skill2'] ?? '';
@@ -84,6 +84,46 @@ if ($_POST['submit'] == "second") {
         $errors['InvalidContactNumber'] = "Phone number must contain 11 numbers";
     }
 
+    if (!Validator::string($location, 4, 75)) {
+        $errors['InvalidLocation'] = "Location must be between 4 and 75 characters maximum!";
+    }
+
+    if(empty($course))
+    {
+        $errors['EmptyCourse'] = "Please select a Course!";
+    }
+
+    if(empty($institution))
+    {
+        $errors['EmptyInstitution'] = "Please select a Institution!";
+    }
+
+    if(empty($skill1))
+    {
+        $errors['EmptySkill1'] = "Please select 3 skills!";
+    } elseif(empty($proficiency1)) {
+        $errors['EmptyProficiency1'] = "Please select a proficiency!";
+    }
+
+    if(empty($skill2))
+    {
+        $errors['EmptySkill2'] = "Please select 3 skills!";
+    } elseif(empty($proficiency2)) {
+        $errors['EmptyIndustry2'] = "Please select a proficiency!";
+    }
+
+    if(empty($skill3))
+    {
+        $errors['EmptySkill3'] = "Please select 3 skills!";
+    } elseif(empty($proficiency3)) {
+        $errors['EmptyIndustry3'] = "Please select a proficiency!";
+    }
+
+    if(empty($prefIndustry))
+    {
+        $errors['EmptyPrefIndustry'] = "Please select a preferred industry!";
+    }
+
     if(isset($_FILES['cvFile'])) {
         $fileName = $cv['name'];
         $fileTmpName = $cv['tmp_name'];
@@ -96,13 +136,12 @@ if ($_POST['submit'] == "second") {
             $errors['CV'] = "Only PDF files are allowed!";
         }
 
-        $uploadDirectory = 'uploads/';
+        $uploadDirectory = '/uploads/';
         $newFileName = uniqid('cv_') . '.' . $fileExtension;
         $destination = $uploadDirectory . $newFileName;
 
         if (move_uploaded_file($fileTmpName, $destination)) {
-            // File uploaded successfully - now store the file location in your database
-            // Perform database insertion with $destination as the file location
+            // Store the file location in the database
 
         } else {
             $errors['CV'] = "There was an error uploading your CV! Try again";
@@ -121,6 +160,8 @@ if ($_POST['submit'] == "second") {
         $_SESSION['registration']->setProficiency2($proficiency2);
         $_SESSION['registration']->setProficiency3($proficiency3);
         $_SESSION['registration']->setIndustry($prefIndustry);
+        $_SESSION['registration']->setStep(2);
+        $_SESSION['registration']->registerStudent();
         $userDetails = $usersDataSet->getUserDetails($_SESSION['registration']->getEmail());
 
         registerLogin(
@@ -135,7 +176,12 @@ if ($_POST['submit'] == "second") {
         return view('Authentication/register2.phtml', [
             'errors' => $errors,
             'pageTitle' => 'Registration',
-            'industries' => generateStepTwoFormData()['contactNUmber'],
+            'universities' => $_SESSION['registration']->generateStepTwoFormData()['universities'],
+            'locations' => $_SESSION['registration']->generateStepTwoFormData()['locations'],
+            'courses' => $_SESSION['registration']->generateStepTwoFormData()['courses'],
+            'skills' => $_SESSION['registration']->generateStepTwoFormData()['skills'],
+            'proficiencies' => $_SESSION['registration']->generateStepTwoFormData()['proficiencies'],
+            'industries' => $_SESSION['registration']->generateStepTwoFormData()['industries'],
         ]);
     }
 }
@@ -183,6 +229,7 @@ if($_POST['submit'] == "third")
         $_SESSION['registration']->setCompanyDescription($description);
         $_SESSION['registration']->setCompanyIndustry($industry);
         $_SESSION['registration']->setContactNumber($contactNumber);
+        $_SESSION['registration']->setStep(3);
         $_SESSION['registration']->registerCompany();
         $userDetails = $usersDataSet->getUserDetails($_SESSION['registration']->getEmail());
 

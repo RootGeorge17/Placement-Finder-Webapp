@@ -1,55 +1,63 @@
 <?php
-require base_path("models/DataSets/SkillsDataSet.php");
-require base_path("models/DataSets/CoursesDataSet.php");
-require base_path("models/DataSets/ProficienciesDataSet.php");
-require base_path("models/DataSets/IndustriesDataSet.php");
 
-class GenerateStudentFormData
+class GenerateRegistrationData
 {
-    protected $coursesDataSet, $proficienciesDataSet, $skillsDataSet, $industriesDataSet;
+    protected static $coursesDataSet, $proficienciesDataSet, $skillsDataSet, $industriesDataSet;
 
-    public function __construct()
+    public static function initializeDataSets()
     {
-        $this->proficienciesDataSet = new ProficienciesDataSet();
-        $this->skillsDataSet = new SkillsDataSet();
-        $this->coursesDataSet = new CoursesDataSet();
-        $this->industriesDataSet = new IndustriesDataSet();
+        require base_path("models/DataSets/SkillsDataSet.php");
+        require base_path("models/DataSets/CoursesDataSet.php");
+        require base_path("models/DataSets/ProficienciesDataSet.php");
+        require base_path("models/DataSets/IndustriesDataSet.php");
+        self::$proficienciesDataSet = new ProficienciesDataSet();
+        self::$skillsDataSet = new SkillsDataSet();
+        self::$coursesDataSet = new CoursesDataSet();
+        self::$industriesDataSet = new IndustriesDataSet();
     }
 
-    public function getCourses()
+    public static function getLocations()
     {
-        return $this->coursesDataSet->fetchAllCourses();
+        $json = file_get_contents(base_path('models/JsonData/uk-cities.json'));
+
+        $locations = json_decode($json, true);
+
+        return $locations;
     }
 
-    public function getSkills()
+    public static function getCourses()
     {
-        return $this->skillsDataSet->fetchAllSkills();
-    }
-
-    public function getProficiencies()
-    {
-        return $this->proficienciesDataSet->fetchAllProficiencies();
-    }
-
-    public function getIndustries()
-    {
-        return $this->industriesDataSet->fetchAllIndustries();
-    }
-
-    public function getUniversities()
-    {
-        // Get the JSON data
-        $json = file_get_contents(base_path('models/JsonData/uk-universities.json'));
-        // Convert JSON string to Array
-        $universities = json_decode($json, true);
-
-        function cmp(array $a, array $b): int
-        {
-            return strcmp($a["name"], $b["name"]);
+        if (!self::$coursesDataSet) {
+            self::initializeDataSets();
         }
 
-        usort($universities, "cmp");
+        return self::$coursesDataSet->fetchAllCourses();
+    }
 
-        return $universities;
+    public static function getSkills()
+    {
+        if (!self::$skillsDataSet) {
+            self::initializeDataSets();
+        }
+
+        return self::$skillsDataSet->fetchAllSkills();
+    }
+
+    public static function getProficiencies()
+    {
+        if (!self::$proficienciesDataSet) {
+            self::initializeDataSets();
+        }
+
+        return self::$proficienciesDataSet->fetchAllProficiencies();
+    }
+
+    public static function getIndustries()
+    {
+        if (!self::$industriesDataSet) {
+            self::initializeDataSets();
+        }
+
+        return self::$industriesDataSet->fetchAllIndustries();
     }
 }

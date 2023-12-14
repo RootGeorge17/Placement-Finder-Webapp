@@ -22,13 +22,12 @@ switch ($step) {
         break;
     case '2':
         // Handle registration step 2 logic
-        require base_path("models/Extensions/GenerateRegistrationData.php");
-        $generateStudentFormData = new GenerateStudentFormData();
-        $universities = $generateStudentFormData->getUniversities(); // get array of universities
-        $courses = $generateStudentFormData->getCourses();
-        $skills = $generateStudentFormData->getSkills();
-        $proficiencies = $generateStudentFormData->getProficiencies();
-        $industries = $generateStudentFormData->getIndustries();
+        $universities = $_SESSION['registration']->generateStepTwoFormData()['universities'];
+        $courses = $_SESSION['registration']->generateStepTwoFormData()['courses'];
+        $skills = $_SESSION['registration']->generateStepTwoFormData()['skills'];
+        $proficiencies = $_SESSION['registration']->generateStepTwoFormData()['proficiencies'];
+        $industries = $_SESSION['registration']->generateStepTwoFormData()['industries'];
+        $locations = $_SESSION['registration']->generateStepTwoFormData()['locations'];
 
         return view("Authentication/register2.phtml", [
             'universities' => $universities,
@@ -36,14 +35,13 @@ switch ($step) {
             'skills' => $skills,
             'proficiencies' => $proficiencies,
             'industries' => $industries,
+            'locations' => $locations,
             'pageTitle' => 'Registration',
         ]);
         break;
     case '3':
         // Handle registration step 2 logic
-        require base_path("models/Extensions/GenerateRegistrationData.php");
-        $generateStudentFormData = new GenerateStudentFormData();
-        $industries = $generateStudentFormData->getIndustries();
+        $industries = $_SESSION['registration']->generateStepTwoFormData()['industries'];
 
         return view("Authentication/register3.phtml", [
             'pageTitle' => 'Registration',

@@ -157,4 +157,9 @@ class UsersDataSet
             ]);
         }
     }
+
+    public function createStudentUser($firstName, $lastName, $email, $password, $contactNumber, $location, $course, $institution, $industry, $skill1, $skill2, $skill3, $proficiency1, $proficiency2, $proficiency3, $cv)
+    {
+
+    }
 }

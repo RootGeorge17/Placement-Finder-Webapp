@@ -1,7 +1,5 @@
 <?php
 
-namespace models\Core;
-
 class Validator
 {
     // Validates a string based on its length
