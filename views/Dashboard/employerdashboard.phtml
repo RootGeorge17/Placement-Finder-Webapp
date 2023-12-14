@@ -98,7 +98,7 @@ $matches = $placementHelpers->getStudentMatchesForCompany($user->getCompanyId(),
                                                     Location:</strong> <?= $studentData['studentData']->getLocation() ?>
                                                 <br>
                                                 <a href="#" class="btn btn-success float-end mb-2">Contact</a>
-                                                <span class="badge bg-success rounded-pill text-light mb-3">(Compatibility: <?= $studentData['grade'] ?>)</span>
+                                                <span class="badge rounded-pill text-dark mb-3" style="background-color:#bccf00; border-color: #bccf00">(Compatibility: <?= $studentData['grade'] ?>)</span>
                                             </p>
                                         </div>
                                     <?php endforeach; ?>
