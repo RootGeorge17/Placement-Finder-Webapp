@@ -57,6 +57,7 @@ function registerLogin($id, $email, $usertype)
 
     // Remove any non-serializable data from the session
     unset($_SESSION['registration']); // Change 'registration' to the key that holds the PDO object, if present
+    unset($_SESSION['addPlacementFormData']);
 
     $_SESSION['user'] = [
         'id' => $id,

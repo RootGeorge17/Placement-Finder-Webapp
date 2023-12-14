@@ -85,6 +85,14 @@
                     </div>
                 <?php endfor; ?>
 
+                <?php if (!empty($errors)) : ?>
+                    <ul class="error-list list-unstyled text-center mx-6 mb-3 mb-lg-4">
+                        <?php foreach ($errors as $error) : ?>
+                            <strong><li class="text-danger mt-2 list"><?= $error ?></li></strong>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+
                 <div class="row mb-2">
                     <div class="row justify-content-center mb-2">
                         <div class="col-md-6 col-lg-4 col-sm-4 text-center ">

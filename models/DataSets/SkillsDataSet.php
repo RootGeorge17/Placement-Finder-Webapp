@@ -41,10 +41,18 @@ class SkillsDataSet
 
     public function fetchSkillsbyIdArray($ids)
     {
-        $sqlQuery = 'SELECT * FROM skills WHERE id IN ('.implode(',', $ids).')';
+        // Create placeholders for the IN clause
+        $placeholders = rtrim(str_repeat('?,', count($ids)), ',');
 
-        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
-        $statement->execute(); // execute the PDO statement
+        $sqlQuery = 'SELECT * FROM skills WHERE id IN (' . $placeholders . ')';
+        $statement = $this->dbHandle->prepare($sqlQuery);
+
+        // Bind values to placeholders
+        foreach ($ids as $key => $value) {
+            $statement->bindValue(($key + 1), $value);
+        }
+
+        $statement->execute();
 
         $dataSet = [];
         while ($row = $statement->fetch()) {
@@ -62,6 +70,22 @@ class SkillsDataSet
 
         $row = $statement->fetch();
         return new Skill($row);
+    }
+
+    public function fetchSkillByNameAndProficiencyId($name, $proficiencyId)
+    {
+        $sqlQuery = 'SELECT * FROM skills WHERE skillName = :name AND proficiency = :proficiencyId';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(['name' => $name, 'proficiencyId' => $proficiencyId]); // execute the PDO statement
+
+        $row = $statement->fetch();
+        if ($row) {
+            return new Skill($row);
+        } else {
+            // Handle the case where the row is empty, e.g., return null or throw an exception
+            return null; // or throw new Exception('Skill not found');
+        }
     }
 
     public function fetchSkillByProficiency($proficiency)

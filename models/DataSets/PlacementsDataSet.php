@@ -123,4 +123,56 @@ class PlacementsDataSet
         return $dataSet;
     }
 
+    public function addPlacement($companyId, $description, $industry, $salary, $location,
+                                 $startDate, $endDate, $skill1, $skill2, $skill3): false|string
+    {
+        // Check if a similar placement already exists
+        $existingPlacementQuery = 'SELECT id FROM placementData 
+                               WHERE companyId = :companyId 
+                               AND description = :description 
+                               AND industry = :industry 
+                               AND startDate = :startDate 
+                               AND endDate = :endDate';
+
+        $existingStatement = $this->dbHandle->prepare($existingPlacementQuery);
+        $existingStatement->execute([
+            ':companyId' => $companyId,
+            ':description' => $description,
+            ':industry' => $industry,
+            ':startDate' => $startDate,
+            ':endDate' => $endDate
+        ]);
+
+        $existingPlacement = $existingStatement->fetch(PDO::FETCH_ASSOC);
+
+        if ($existingPlacement) {
+            // Placement already exists, return false
+            return false;
+        } else {
+            // Placement doesn't exist, proceed with the insertion
+            $sqlQuery = 'INSERT INTO placementData (
+                           companyId, description, industry, 
+                           salary, location, startDate, endDate, skill1, skill2, skill3) 
+                         VALUES (:companyId, :description, :industry, :salary, :location,
+                             :startDate, :endDate, :skill1, :skill2, :skill3)';
+
+            $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+            $statement->execute([
+                ':companyId' => $companyId,
+                ':description' => $description,
+                ':industry' => $industry,
+                ':salary' => $salary,
+                ':location' => $location,
+                ':startDate' => $startDate,
+                ':endDate' => $endDate,
+                ':skill1' => $skill1,
+                ':skill2' => $skill2,
+                ':skill3' => $skill3
+            ]); // execute the PDO statement
+
+            return $this->dbHandle->lastInsertId();
+        }
+    }
+
+
 }

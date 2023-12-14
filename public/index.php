@@ -5,6 +5,7 @@ const BASE_PATH = __DIR__ . '/../';
 // Require necessary files
 require BASE_PATH . 'models/Core/functions.php'; // Including functions file
 require BASE_PATH . "models/Extensions/Registration.php";
+require BASE_PATH . "models/Extensions/AddPlacementData.php";
 
 // Starting a PHP session
 session_start();

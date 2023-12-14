@@ -1,9 +1,8 @@
 <?php
+require_once(base_path('models/Core/Validator.php'));
 
-var_dump($_POST);
 
-use models\Core\Validator;
-
+$errors = [];
 if (!authenticated()) {
     header('location: /login');
     exit();
@@ -21,9 +20,9 @@ if ($_POST['submit'] == 'addPlacement'){
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
     $salary = $_POST['salary'];
-    $skill1 = $_POST['skill1'];
-    $skill2 = $_POST['skill2'];
-    $skill3 = $_POST['skill3'];
+    $skill1Name = $_POST['skill1'];
+    $skill2Name = $_POST['skill2'];
+    $skill3Name = $_POST['skill3'];
     $proficiency1 = $_POST['proficiency1'];
     $proficiency2 = $_POST['proficiency2'];
     $proficiency3 = $_POST['proficiency3'];
@@ -40,11 +39,11 @@ if ($_POST['submit'] == 'addPlacement'){
         $errors['EmptyLocation'] = "Please select a Location!";
     }
 
-    if (empty($startDate)) {
+    if (!Validator::date($startDate)) {
         $errors['EmptyStartDate'] = "Please select a Start Date!";
     }
 
-    if (empty($endDate)) {
+    if (!Validator::date($endDate)) {
         $errors['EmptyEndDate'] = "Please select a End Date!";
     }
 
@@ -52,34 +51,60 @@ if ($_POST['submit'] == 'addPlacement'){
         $errors['EmptySalary'] = "Please enter a Salary!";
     }
 
-    if (empty($skill1)) {
+    if (empty($skill1Name)) {
         $errors['EmptySkill1'] = "Please select a Skill!";
-    }
-
-    if (empty($skill2)) {
-        $errors['EmptySkill2'] = "Please select a Skill!";
-    }
-
-    if (empty($skill3)) {
-        $errors['EmptySkill3'] = "Please select a Skill!";
     }
 
     if (empty($proficiency1)) {
         $errors['EmptyProficiency1'] = "Please select a Proficiency!";
     }
 
+    if (empty($skill2Name)) {
+        $errors['EmptySkill2'] = "Please select a Skill!";
+    }
+
     if (empty($proficiency2)) {
         $errors['EmptyProficiency2'] = "Please select a Proficiency!";
+    }
+
+    if (empty($skill3Name)) {
+        $errors['EmptySkill3'] = "Please select a Skill!";
     }
 
     if (empty($proficiency3)) {
         $errors['EmptyProficiency3'] = "Please select a Proficiency!";
     }
 
+    if ($skill1Name == $skill2Name || $skill1Name == $skill3Name || $skill2Name == $skill3Name) {
+        $errors['DuplicateSkills'] = "Please select 3 different skills!";
+    }
 
+    if(empty($errors))
+    {
+        $_SESSION['addPlacementFormData']->setCompanyIdUsingUserId($_SESSION['user']['id']);
+        $_SESSION['addPlacementFormData']->setDescription($description);
+        $_SESSION['addPlacementFormData']->setIndustryId($industry);
+        $_SESSION['addPlacementFormData']->setLocation($location);
+        $_SESSION['addPlacementFormData']->setStartDate($startDate);
+        $_SESSION['addPlacementFormData']->setEndDate($endDate);
+        $_SESSION['addPlacementFormData']->setSalary($salary);
+        $_SESSION['addPlacementFormData']->setSkill1($skill1Name, $proficiency1);
+        $_SESSION['addPlacementFormData']->setSkill2($skill2Name, $proficiency2);
+        $_SESSION['addPlacementFormData']->setSkill3($skill3Name, $proficiency3);
+        $_SESSION['addPlacementFormData']->addPlacement();
 
-    // need to check for skill and proficiency
-    // then check for unique placement
-    // then add placement
-
+        header('Location: /dashboard');
+        exit();
+    }
+    else
+    {
+        return view('AddPlacement/addplacement.phtml', [
+            'errors' => $errors,
+            'pageTitle' => 'Add Placement',
+            'allIndustries' => $_SESSION['addPlacementFormData']->generatePlacementFormData()['industries'],
+            'allSkills' => $_SESSION['addPlacementFormData']->generatePlacementFormData()['skills'],
+            'allProficiencies' => $_SESSION['addPlacementFormData']->generatePlacementFormData()['proficiencies'],
+            'allLocation' => $_SESSION['addPlacementFormData']->generatePlacementFormData()['locations'],
+        ]);
+    }
 }
