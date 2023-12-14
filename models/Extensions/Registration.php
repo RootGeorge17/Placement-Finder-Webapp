@@ -54,15 +54,13 @@ class Registration
     public function registerCareersUser()
     {
         $this->userDataSet = new UsersDataSet();
-        $this->userDataSet->createCompanyUser(
-            $this->getFirstName(), $this->getLastName(), $this->getEmail(), $this->getPassword(), $this->getContactNumber());
+        $this->userDataSet->createCareersUser($this->getFirstName(), $this->getLastName(), $this->getEmail(), $this->getPassword(), $this->getContactNumber());
     }
 
     public function registerLibraryUser()
     {
         $this->userDataSet = new UsersDataSet();
-        $this->userDataSet->createCompanyUser(
-            $this->getFirstName(), $this->getLastName(), $this->getEmail(), $this->getPassword(), $this->getContactNumber());
+        $this->userDataSet->createLibraryUser($this->getFirstName(), $this->getLastName(), $this->getEmail(), $this->getPassword(), $this->getContactNumber());
     }
 
 

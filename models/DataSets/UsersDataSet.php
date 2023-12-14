@@ -162,4 +162,34 @@ class UsersDataSet
     {
 
     }
+
+    public function createCareersUser($firstName, $lastName, $email, $password, $contactNumber)
+    {
+        $sqlUser = 'INSERT INTO user (email, password, userType, phoneNumber, firstName, lastName) 
+                VALUES (:email, :password, :userType, :phoneNumber, :firstName, :lastName)';
+        $statementUser = $this->dbHandle->prepare($sqlUser);
+        $statementUser->execute([
+            ':email' => $email,
+            ':password' => password_hash($password, PASSWORD_BCRYPT),
+            ':userType' => 3,
+            ':phoneNumber' => $contactNumber,
+            ':firstName' => $firstName,
+            ':lastName' => $lastName
+        ]);
+    }
+
+    public function createLibraryUser($firstName, $lastName, $email, $password, $contactNumber)
+    {
+        $sqlUser = 'INSERT INTO user (email, password, userType, phoneNumber, firstName, lastName) 
+                VALUES (:email, :password, :userType, :phoneNumber, :firstName, :lastName)';
+        $statementUser = $this->dbHandle->prepare($sqlUser);
+        $statementUser->execute([
+            ':email' => $email,
+            ':password' => password_hash($password, PASSWORD_BCRYPT),
+            ':userType' => 4,
+            ':phoneNumber' => $contactNumber,
+            ':firstName' => $firstName,
+            ':lastName' => $lastName
+        ]);
+    }
 }

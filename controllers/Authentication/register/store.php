@@ -57,7 +57,7 @@ if ($_POST['submit'] == "first") {
         $_SESSION['registration']->setContactNumber($contactNumber);
         $_SESSION['registration']->setStep(1);
 
-        if ($accountType == "careers") {
+        if ($accountType == "CareersWorker") {
             // register
             $_SESSION['registration']->registerCareersUser();
             $userDetails = $usersDataSet->getUserDetails($_SESSION['registration']->getEmail());
@@ -71,7 +71,7 @@ if ($_POST['submit'] == "first") {
             exit();
         }
 
-        if ($accountType == "library") {
+        if ($accountType == "LibraryUser") {
             // register
             $_SESSION['registration']->registerLibraryUser();
             $userDetails = $usersDataSet->getUserDetails($_SESSION['registration']->getEmail());
