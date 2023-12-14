@@ -23,7 +23,7 @@ if ($_POST['submit'] == "first") {
 
     if (!Validator::email($email)) {
         $errors['InvalidEmail'] = "You have provided an invalid email";
-    } elseif($usersDataSet->emailMatch($email)) {
+    } elseif ($usersDataSet->emailMatch($email)) {
         $errors['InvalidEmail'] = "Email belongs to an already created account!";
     }
 
@@ -31,8 +31,7 @@ if ($_POST['submit'] == "first") {
         $errors['InvalidPassword'] = "Password must be between 2 and 75 characters maximum!";
     }
 
-    if(empty($accountType))
-    {
+    if (empty($accountType)) {
         $errors['EmptyUserType'] = "Please select an Account Type!";
     }
 
@@ -40,8 +39,7 @@ if ($_POST['submit'] == "first") {
         $errors['PasswordMatch'] = "Passwords do not match!";
     }
 
-    if(!Validator::phoneNumber($contactNumber))
-    {
+    if (!Validator::phoneNumber($contactNumber)) {
         $errors['InvalidContactNumber'] = "Phone number must contain 11 numbers";
     } else {
         // check if unique
@@ -113,49 +111,44 @@ if ($_POST['submit'] == "second") {
     $proficiency2 = $_POST['proficiency2'] ?? '';
     $proficiency3 = $_POST['proficiency3'] ?? '';
     $prefIndustry = $_POST['prefIndustry'] ?? '';
-    $cv = $_FILES['cvFile'] ?? '';
+    $cv = $_FILES['cvUpload'] ?? '';
 
-    if (!Validator::string($location, 4, 75)) {
-        $errors['InvalidLocation'] = "Location must be between 4 and 75 characters maximum!";
+
+    if (empty($location)) {
+        $errors['EmptyCourse'] = "Please select a Location!";
     }
 
-    if(empty($course))
-    {
+    if (empty($course)) {
         $errors['EmptyCourse'] = "Please select a Course!";
     }
 
-    if(empty($institution))
-    {
+    if (empty($institution)) {
         $errors['EmptyInstitution'] = "Please select a Institution!";
     }
 
-    if(empty($skill1))
-    {
+    if (empty($skill1)) {
         $errors['EmptySkill1'] = "Please select 3 skills!";
-    } elseif(empty($proficiency1)) {
+    } elseif (empty($proficiency1)) {
         $errors['EmptyProficiency1'] = "Please select a proficiency!";
     }
 
-    if(empty($skill2))
-    {
+    if (empty($skill2)) {
         $errors['EmptySkill2'] = "Please select 3 skills!";
-    } elseif(empty($proficiency2)) {
+    } elseif (empty($proficiency2)) {
         $errors['EmptyIndustry2'] = "Please select a proficiency!";
     }
 
-    if(empty($skill3))
-    {
+    if (empty($skill3)) {
         $errors['EmptySkill3'] = "Please select 3 skills!";
-    } elseif(empty($proficiency3)) {
+    } elseif (empty($proficiency3)) {
         $errors['EmptyIndustry3'] = "Please select a proficiency!";
     }
 
-    if(empty($prefIndustry))
-    {
+    if (empty($prefIndustry)) {
         $errors['EmptyPrefIndustry'] = "Please select a preferred industry!";
     }
 
-    if(isset($_FILES['cvFile'])) {
+    if (isset($_FILES['cvUpload']) && !empty($cv['name'])) {
         $fileName = $cv['name'];
         $fileTmpName = $cv['tmp_name'];
         $fileSize = $cv['size'];
@@ -163,17 +156,24 @@ if ($_POST['submit'] == "second") {
         $fileType = $cv['type'];
 
         $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-        if ($fileExtension !== "pdf") {
+
+        if ($fileError !== UPLOAD_ERR_OK) {
+            $errors['CV'] = "Error uploading file. Please try again.";
+        } elseif ($fileExtension !== "pdf") {
             $errors['CV'] = "Only PDF files are allowed!";
-        }
+        } else {
+            $uploadDirectory = '/uploads/';
+            $newFileName = uniqid('cv_') . '.' . $fileExtension;
+            $destination = $_SERVER['DOCUMENT_ROOT'] . $uploadDirectory . $newFileName;
 
-        $uploadDirectory = '/uploads/';
-        $newFileName = uniqid('cv_') . '.' . $fileExtension;
-        $destination = $uploadDirectory . $newFileName;
-
-        if (!move_uploaded_file($fileTmpName, $destination)) {
-            $errors['CV'] = "There was an error uploading your CV! Try again";
+            if (move_uploaded_file($fileTmpName, $destination)) {
+                $_SESSION['registration']->setCv($newFileName);
+            } else {
+                $errors['CV'] = "There was an error uploading your CV! Try again";
+            }
         }
+    } else {
+        $errors['CV'] = "Please upload a CV file.";
     }
 
     if (empty($errors)) {
@@ -187,7 +187,6 @@ if ($_POST['submit'] == "second") {
         $_SESSION['registration']->setProficiency2($proficiency2);
         $_SESSION['registration']->setProficiency3($proficiency3);
         $_SESSION['registration']->setIndustry($prefIndustry);
-        $_SESSION['registration']->setCv($cv);
         $_SESSION['registration']->setStep(2);
         $_SESSION['registration']->registerStudent();
         $userDetails = $usersDataSet->getUserDetails($_SESSION['registration']->getEmail());
@@ -214,8 +213,7 @@ if ($_POST['submit'] == "second") {
     }
 }
 
-if($_POST['submit'] == "third")
-{
+if ($_POST['submit'] == "third") {
     $companyName = $_POST['companyName'];
     $description = $_POST['description'];
     $industry = $_POST['industry'] ?? '';
@@ -230,13 +228,11 @@ if($_POST['submit'] == "third")
         $errors['InvalidCompanyDescription'] = "Company description must be between 10 and 150 characters maximum!";
     }
 
-    if(empty($industry))
-    {
+    if (empty($industry)) {
         $errors['EmptyIndustry'] = "Please select a Industry!";
     }
 
-    if(empty($errors))
-    {
+    if (empty($errors)) {
         $_SESSION['registration']->setCompanyName($companyName);
         $_SESSION['registration']->setCompanyDescription($description);
         $_SESSION['registration']->setCompanyIndustry($industry);
