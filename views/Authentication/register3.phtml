@@ -4,7 +4,8 @@
     <form name="register3" action="/register" method="POST">
         <div class="row">
             <div class="col-md-4">
-                <img src="https://sts.bcs.org/bcs-logo.svg" alt="Image not found!" class="img-fluid mx-auto mb-4" style="max-width: 25%;" />
+                <img src="https://sts.bcs.org/bcs-logo.svg" alt="Image not found!" class="img-fluid mx-auto mb-4"
+                     style="max-width: 25%;"/>
             </div>
             <div class="col-md-4">
                 <h1 class="mb-3 text-center">Tell us more about the Company</h1>
@@ -18,19 +19,10 @@
                 <label class="mb-2" for="companyName">Company Name</label>
                 <input type="text" class="form-control" name="companyName" id="companyName">
             </div>
-            <div class="col-md-6 mb-2">
-                <label class="mb-2" for="contactNumber">Contact Phone Number</label>
-                <input type="text" class="form-control" name="contactNumber" id="contactNumber">
-            </div>
-        </div>
-
-        <div class="row mb-3">
-
             <div class="col-md-12 mb-2">
                 <label for="description">Company Description</label>
                 <textarea class="form-control" name="description" id="description" rows="3"></textarea>
             </div>
-
         </div>
 
         <div class="row mb-3">
@@ -50,26 +42,32 @@
         <?php if (!empty($errors)) : ?>
             <ul class="error-list list-unstyled text-center mx-6 mb-3 mb-lg-4">
                 <?php foreach ($errors as $error) : ?>
-                    <strong><li class="text-danger mt-2 list"><?= $error ?></li></strong>
+                    <strong>
+                        <li class="text-danger mt-2 list"><?= $error ?></li>
+                    </strong>
                 <?php endforeach; ?>
             </ul>
         <?php endif; ?>
 
         <h6 class="mb-3 text-center">How we use your data</h6>
 
-        <p>We’ll store your basic personal information such as your name and email address so we can communicate with you about the services
+        <p>We’ll store your basic personal information such as your name and email address so we can communicate with
+            you about the services
             you’ve registered for. This includes welcome communications and information about accessing,
             using and getting the most from the services.
         </p>
 
         <p>
-            We will never sell your data. If you are applying for membership we will only pass your details to our 3rd party fulfilment
-            partner who will process your membership pack and digital assets. To find out more, please view our Data Privacy Notice
+            We will never sell your data. If you are applying for membership we will only pass your details to our 3rd
+            party fulfilment
+            partner who will process your membership pack and digital assets. To find out more, please view our Data
+            Privacy Notice
         </p>
 
         <div class="row mt-3">
-            <div class="col-md-12 text-center" >
-                <button class="btn btn-success btn-lg btn-block" id="submit" name="submit" type="submit" value="third">Register and Continue    <i class="bi bi-arrow-right"></i></button>
+            <div class="col-md-12 text-center">
+                <button class="btn btn-success btn-lg btn-block" id="submit" name="submit" type="submit" value="third">
+                    Register and Continue <i class="bi bi-arrow-right"></i></button>
             </div>
         </div>
     </form>

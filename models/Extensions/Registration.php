@@ -39,8 +39,7 @@ class Registration
         $this->userDataSet->createStudentUser(
             $this->getFirstName(), $this->getLastName(), $this->getEmail(), $this->getPassword(),
             $this->getContactNumber(), $this->getLocation(), $this->getCourse(), $this->getInstitution(), $this->getIndustry(),
-            $this->getSkill1(), $this->getSkill2(), $this->getSkill3(),
-            $this->getProficiency1(), $this->getProficiency2(), $this->proficiency3, $this->getCv());
+            $this->getSkill1(), $this->getSkill2(), $this->getSkill3(), $this->getCv());
     }
 
     public function registerCompany()
@@ -50,6 +49,19 @@ class Registration
             $this->getFirstName(), $this->getLastName(), $this->getEmail(), $this->getPassword(),
             $this->getContactNumber(), $this->getCompanyName(), $this->getCompanyDescription(), $this->getCompanyIndustry());
     }
+
+    public function registerCareersUser()
+    {
+        $this->userDataSet = new UsersDataSet();
+        $this->userDataSet->createCareersUser($this->getFirstName(), $this->getLastName(), $this->getEmail(), $this->getPassword(), $this->getContactNumber());
+    }
+
+    public function registerLibraryUser()
+    {
+        $this->userDataSet = new UsersDataSet();
+        $this->userDataSet->createLibraryUser($this->getFirstName(), $this->getLastName(), $this->getEmail(), $this->getPassword(), $this->getContactNumber());
+    }
+
 
     // Getters
     public function getFirstName()

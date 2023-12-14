@@ -128,12 +128,12 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="btn btn-success">Apply!</a>
+                <a href="#" class="btn btn-success text-dark">Apply!</a>
             </div>
             <div class="card-footer">
                 <small>Skills</small>
                 <?php foreach ($placementSkills as $skill) : ?>
-                    <span class="badge bg-success rounded-pill text-light"><?= $skill->getSkillName() ?>(<?= $placementHelpers->getProficiencyFromSkill($skill, $allProficiencies) ?>)</span>
+                    <span class="badge rounded-pill text-dark" style="background-color:#bccf00; border-color: #bccf00"><?= $skill->getSkillName() ?>(<?= $placementHelpers->getProficiencyFromSkill($skill, $allProficiencies) ?>)</span>
                 <?php endforeach; ?>
             </div>
         </div>
