@@ -51,6 +51,21 @@ class Registration
             $this->getContactNumber(), $this->getCompanyName(), $this->getCompanyDescription(), $this->getCompanyIndustry());
     }
 
+    public function registerCareersUser()
+    {
+        $this->userDataSet = new UsersDataSet();
+        $this->userDataSet->createCompanyUser(
+            $this->getFirstName(), $this->getLastName(), $this->getEmail(), $this->getPassword(), $this->getContactNumber());
+    }
+
+    public function registerLibraryUser()
+    {
+        $this->userDataSet = new UsersDataSet();
+        $this->userDataSet->createCompanyUser(
+            $this->getFirstName(), $this->getLastName(), $this->getEmail(), $this->getPassword(), $this->getContactNumber());
+    }
+
+
     // Getters
     public function getFirstName()
     {
