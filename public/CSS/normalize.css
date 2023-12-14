@@ -450,31 +450,8 @@ Preloader Area CSS
 	border-radius: 0;
 	border-radius:4px;
 }
-.btn:hover{
-	color:#fff;
-}
-.btn:before{
-	content: "";
-	position: absolute;
-	z-index: -1;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background: #2C2D3F;
-	-webkit-transform: scaleX(0);
-	transform: scaleX(0);
-	-webkit-transform-origin: 50%;
-	transform-origin: 50%;
-	-webkit-transition:all 0.4s ease;
-	-moz-transition:all 0.4s ease;
-	transition:all 0.4s ease;
-	border-radius:4px;
-}
-.btn:hover:before{
-	-webkit-transform: scaleX(1);
-	transform: scaleX(1);
-}
+
+
 .section{
 	padding:100px 0;
 }

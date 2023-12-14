@@ -11,27 +11,30 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!--    <link rel="stylesheet" href="https://abrfashion.com/demo/icofont.css">-->
 
 
     <style>
+
         .homepage-section1
         {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('image/woman-office-chart.webp');
             background-size: cover;
-            background-position: top;
+            background-position: 50% 25%;
         }
 
         .homepage-mt-section1
         {
-            margin-top: 17rem !important;
+            margin-top: calc(20rem + 10%) !important;
         }
 
-        .homepage-mt-section2
-        {
-            margin-top: 4rem !important;
+        .homepage-btn-block {
+            display: block;
+            width: 100%;
         }
 
         .homepage-bg-section1
@@ -91,6 +94,8 @@
         {
             text-decoration: underline;
         }
+
+
 
         .homepage-section2
         {
@@ -472,50 +477,6 @@ Preloader Area CSS
             }
         }
 
-        .btn {
-            color: #fff;
-            padding: 8px 9px;
-            font-size: 14px;
-            text-transform: capitalize;
-            font-weight: 500;
-            background: #c5c10e;
-            position: relative;
-            box-shadow: none;
-            display: inline-block;
-            -webkit-transition: all 0.4s ease;
-            -moz-transition: all 0.4s ease;
-            transition: all 0.4s ease;
-            -webkit-transform: perspective(1px) translateZ(0);
-            transform: perspective(1px) translateZ(0);
-            border: none;
-            border-radius: 0;
-            border-radius:4px;
-        }
-        .btn:hover{
-            color:#fff;
-        }
-        .btn:before{
-            content: "";
-            position: absolute;
-            z-index: -1;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #2C2D3F;
-            -webkit-transform: scaleX(0);
-            transform: scaleX(0);
-            -webkit-transform-origin: 50%;
-            transform-origin: 50%;
-            -webkit-transition:all 0.4s ease;
-            -moz-transition:all 0.4s ease;
-            transition:all 0.4s ease;
-            border-radius:4px;
-        }
-        .btn:hover:before{
-            -webkit-transform: scaleX(1);
-            transform: scaleX(1);
-        }
         .section{
             padding:100px 0;
         }
