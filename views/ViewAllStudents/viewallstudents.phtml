@@ -2,21 +2,6 @@
 <?php require_once(base_path('views/partials/nav.phtml')) ?>
 <?php require_once(base_path('views/partials/header.phtml')) ?>
 
-<style>
-    .page-item {
-        background-color: green;
-        border-color: green;
-    }
-
-    /* If you want to change the hover or active state */
-    .page-item:hover,
-    .page-item:active,
-    .page-item:focus {
-        background-color: darkgreen;
-        border-color: darkgreen;
-    }
-</style>
-
     <div class="container mb-5">
         <h1 class="mb-3 text-center">All Students</h1>
 
@@ -82,7 +67,7 @@
 
                 <!-- Dropdown for number of deliveries per page -->
                 <li class="page-item dropdown">
-                    <button class="page-item dropdown-toggle" href="#" id="pageLimit" data-bs-toggle="dropdown"
+                    <button class="page-link dropdown-toggle" href="#" id="pageLimit" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                         <?php echo $limit . " per page"; ?>
                     </button>

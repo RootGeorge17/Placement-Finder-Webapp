@@ -8,89 +8,152 @@ $matches = $placementHelpers->getStudentMatchesForCompany($user->getCompanyId(),
 
 ?>
 
-<div class="container">
+    <div class="container">
 
-    <h1>Student Matches</h1>
-    <p>Based on the placements you have posted, the following students have been identified as potential matches.</p>
+        <h1>Student Matches</h1>
+        <p>Based on the placements you have posted, the following students have been identified as potential
+            matches.</p>
 
-    <!-- ... (previous HTML code) ... -->
+        <!-- ... (previous HTML code) ... -->
 
-    <div class="container mt-5">
-        <?php foreach ($matches as $placementId => $placementMatches) :  ?>
-            <div class="row">
-                <div class="card col-md-12 mb-3">
+        <div class="container mt-5">
+            <?php foreach ($matches as $placementId => $placementMatches) : ?>
+                <div class="row">
+                    <div class="card col-md-12 mb-3">
 
-                    <div class="placement-details">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <p><strong>Company:</strong> <?= $companiesDataSet->fetchCompanyName($user->getCompanyId()) ?></p>
-                            </div>
-                            <div class="col-sm-4">
-                                <p><strong>Description:</strong> <?= $placementMatches['placement']->getDescription() ?></p>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <p>
-                                    <strong>Industry:</strong> <?= $industriesDataSet->fetchIndustryNameById($placementMatches['placement']->getIndustry()) ?>
-                                </p>
-                            </div>
-                            <div class="col-sm-4">
-                                <p><strong>Salary:</strong>
-                                    £<?= number_format($placementMatches['placement']->getSalary(), 0, '.', ',') ?></p>
-                            </div>
-                            <div class="col-sm-4">
-                                <p><strong>Location:</strong> <?= $placementMatches['placement']->getLocation() ?></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <p><strong>Start Date:</strong> <?= $placementMatches['placement']->getStartDate() ?></p>
-                            </div>
-                            <div class="col-sm-4">
-                                <p><strong>End Date:</strong> <?= $placementMatches['placement']->getEndDate() ?></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Display placement details here using $placementMatches['placement']->getX() -->
-
-                    <!-- Display matched students for this placement with their grades -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4>Matched Students:</h4>
+                        <div class="placement-details">
                             <div class="row">
-                                <?php foreach ($placementMatches['students'] as $studentId => $studentData) : ?>
-                                    <div class="card col-md-6">
-                                        <?php
-                                        $user = $usersDataSet->fetchUserByStudentId($studentId);
-                                        $studentCourse = $coursesDataSet->fetchCourseById($studentData['studentData']->getCourse());
-                                        $prefIndustry = $industriesDataSet->fetchIndustryNameById($studentData['studentData']->getPrefIndustry());
-                                        ?>
-                                        <p>
-                                            <strong>Student Name:</strong> <?= $user->getFirstName() ?> <?= $user->getLastName() ?><br>
-                                            <strong>Student Course:</strong> <?= $studentCourse->getCourseName() ?><br>
-                                            <strong>Student Institution:</strong> <?= $studentData['studentData']->getInstitution() ?><br>
-                                            <strong>Student Preferred Industry:</strong> <?= $prefIndustry ?><br>
-                                            <strong>Student Location:</strong> <?= $studentData['studentData']->getLocation() ?><br>
-                                            <a href="#" class="btn btn-success float-end mb-2">Contact</a>
-                                            <span class="badge bg-success rounded-pill text-light mb-3">(Compatibility: <?= $studentData['grade'] ?>)</span>
-                                        </p>
-                                    </div>
-                                <?php endforeach; ?>
+                                <div class="col-sm-4">
+                                    <p>
+                                        <strong>Company:</strong> <?= $companiesDataSet->fetchCompanyName($user->getCompanyId()) ?>
+                                    </p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <p>
+                                        <strong>Description:</strong> <?= $placementMatches['placement']->getDescription() ?>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p>
+                                        <strong>Industry:</strong> <?= $industriesDataSet->fetchIndustryNameById($placementMatches['placement']->getIndustry()) ?>
+                                    </p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <p><strong>Salary:</strong>
+                                        £<?= number_format($placementMatches['placement']->getSalary(), 0, '.', ',') ?>
+                                    </p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <p><strong>Location:</strong> <?= $placementMatches['placement']->getLocation() ?>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p><strong>Start
+                                            Date:</strong> <?= $placementMatches['placement']->getStartDate() ?></p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <p><strong>End Date:</strong> <?= $placementMatches['placement']->getEndDate() ?>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <a class="btn btn-danger" style="background-color: #dc3545"
+                                       data-toggle="modal" data-target="#deleteModal_<?= $placementId ?>">
+                                        <strong>DELETE</strong>
+                                    </a>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Display matched students for this placement with their grades -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Matched Students:</h4>
+                                <div class="row">
+                                    <?php foreach ($placementMatches['students'] as $studentId => $studentData) : ?>
+                                        <div class="card col-md-6">
+                                            <?php
+                                            $user = $usersDataSet->fetchUserByStudentId($studentId);
+                                            $studentCourse = $coursesDataSet->fetchCourseById($studentData['studentData']->getCourse());
+                                            $prefIndustry = $industriesDataSet->fetchIndustryNameById($studentData['studentData']->getPrefIndustry());
+                                            ?>
+                                            <p>
+                                                <strong>Student
+                                                    Name:</strong> <?= $user->getFirstName() ?> <?= $user->getLastName() ?>
+                                                <br>
+                                                <strong>Student Course:</strong> <?= $studentCourse->getCourseName() ?>
+                                                <br>
+                                                <strong>Student
+                                                    Institution:</strong> <?= $studentData['studentData']->getInstitution() ?>
+                                                <br>
+                                                <strong>Student Preferred Industry:</strong> <?= $prefIndustry ?><br>
+                                                <strong>Student
+                                                    Location:</strong> <?= $studentData['studentData']->getLocation() ?>
+                                                <br>
+                                                <a href="#" class="btn btn-success float-end mb-2">Contact</a>
+                                                <span class="badge bg-success rounded-pill text-light mb-3">(Compatibility: <?= $studentData['grade'] ?>)</span>
+                                            </p>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Delete Placement Modal -->
+                        <form action="/placements" method="post">
+                            <div class="modal fade" id="deleteModal_<?= $placementId ?>"
+                                 tabindex="-1"
+                                 role="dialog"
+                                 aria-labelledby="deleteModal_<?= $placementId ?>"
+                                 aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <!-- Modal Title -->
+                                            <h5 class="modal-title"
+                                                id="deleteModal_<?= $placementId ?>">Confirm
+                                                Delete
+                                                Delivery</h5>
+                                            <!-- Close Button -->
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">x</span>
+                                            </button>
+                                        </div>
+                                        <!-- Modal Body -->
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete this delivery?</p>
+                                        </div>
+                                        <!-- Modal Footer -->
+                                        <div class="modal-footer">
+                                            <input type="hidden" name="delivery_point_id" value="<?= $placementId ?>">
+                                            <!-- Cancel Button -->
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                Cancel
+                                            </button>
+                                            <!-- Submit Button -->
+                                            <button type="submit" name="delete" class="btn btn-danger" value="Delete">
+                                                Confirm Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
+
+            <?php endforeach; ?>
+        </div>
+
+
     </div>
-
-
-
-
-
-</div>
 
 
 <?php require_once(base_path('views/partials/footer.phtml')) ?>

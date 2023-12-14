@@ -24,4 +24,16 @@ class Validator
             return false;
         }
     }
+
+    public static function date($dateString) {
+        $dateFormat = 'Y-m-d';
+        $date = DateTime::createFromFormat($dateFormat, $dateString);
+
+        if ($date && $date->format($dateFormat) === $dateString) {
+            $currentDate = new DateTime();
+
+            return $date >= $currentDate;
+        }
+        return false;
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-$router->get('/', 'controllers/index.php');
+$router->get('/', 'controllers/homepage.php');
 $router->get('/dashboard', 'controllers/dashboard.php');
 $router->get('/team', 'controllers/team.php');
 
@@ -18,7 +18,9 @@ $router->post('/editprofile', 'controllers/EditProfile/editprofile_post.php');
 $router->post('/editprofile/changepassword', 'controllers/EditProfile/editprofile_post.php');
 
 $router->get('/addplacement', 'controllers/AddPlacement/addplacement.php');
+$router->post('/addplacement', 'controllers/AddPlacement/addplacement_post.php');
 
 $router->get('/placements', 'controllers/ViewAllPlacements/viewallplacements.php');
 
 $router->get('/students', 'controllers/ViewAllStudents/viewallstudents.php');
+

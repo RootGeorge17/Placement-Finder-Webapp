@@ -1,24 +1,27 @@
 <?php
 
-require base_path('models/Extensions/AddPlacementFormData.php');
-
 if (!authenticated()) {
     header('location: /login');
     exit();
 }
 
-if ($_SESSION['user']['usertype'] == 1) { // check if employer
+if ($_SESSION['user']['usertype'] == 1) { // check if student
     header('location: /dashboard');
     exit();
 }
 
-$addPlacementFormData = new AddPlacementFormData();
+$_SESSION['addPlacementFormData'] = new AddPlacementData();
+
+$allIndustries = $_SESSION['addPlacementFormData']->generatePlacementFormData()['industries'];
+$allSkills = $_SESSION['addPlacementFormData']->generatePlacementFormData()['skills'];
+$allProficiencies = $_SESSION['addPlacementFormData']->generatePlacementFormData()['proficiencies'];
+$allLocation = $_SESSION['addPlacementFormData']->generatePlacementFormData()['locations'];
 
 
-view("AddPlacement/AddPlacement.phtml", [
+return view("AddPlacement/AddPlacement.phtml", [
     'pageTitle' => 'Add Placement',
-    'allIndustries' => $addPlacementFormData->getIndustries(),
-    'allSkills' => $addPlacementFormData->getSkills(),
-    'allProficiencies' => $addPlacementFormData->getProficiencies(),
-    'allLocation' => $addPlacementFormData->getLocations(),
+    'allIndustries' => $allIndustries,
+    'allSkills' => $allSkills,
+    'allProficiencies' => $allProficiencies,
+    'allLocation' => $allLocation,
 ]);

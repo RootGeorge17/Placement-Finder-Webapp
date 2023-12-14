@@ -58,9 +58,20 @@
                         <div class="col-md-6 mb-2">
                             <label class="mb-2" for="skill<?= $i + 1 ?>">Skill <?= $i + 1 ?></label>
                             <select class="form-select" name="skill<?= $i + 1 ?>" id="skill<?= $i + 1 ?>">
-                                <?php foreach ($allSkills as $skill) : ?>
-                                    <option value="<?= $skill->getId() ?>"><?= $skill->getSkillName() ?></option>
-                                <?php endforeach; ?>
+                                <?php
+                                $outputtedSkills = [];
+                                ?>
+
+                                <?php foreach ($allSkills as $skill) :
+                                    $skillName = $skill->getSkillName();
+                                    if (!in_array($skillName, $outputtedSkills)) {
+                                        $outputtedSkills[] = $skillName;
+                                        ?>
+                                        <option value="<?= $skillName ?>"><?= $skillName ?></option>
+                                        <?php
+                                    }
+                                endforeach;
+                                ?>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -74,10 +85,18 @@
                     </div>
                 <?php endfor; ?>
 
+                <?php if (!empty($errors)) : ?>
+                    <ul class="error-list list-unstyled text-center mx-6 mb-3 mb-lg-4">
+                        <?php foreach ($errors as $error) : ?>
+                            <strong><li class="text-danger mt-2 list"><?= $error ?></li></strong>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+
                 <div class="row mb-2">
                     <div class="row justify-content-center mb-2">
                         <div class="col-md-6 col-lg-4 col-sm-4 text-center ">
-                            <button class="btn btn-success btn-lg btn-block dark-green-bg" id="submit" name="submit" value="first" type="submit">Add Placement<i class="bi bi-arrow-right"></i></button>
+                            <button class="btn btn-success btn-lg btn-block dark-green-bg" id="submit" name="submit" value="addPlacement" type="submit">Add Placement<i class="bi bi-arrow-right"></i></button>
                         </div>
                     </div>
                 </div>
