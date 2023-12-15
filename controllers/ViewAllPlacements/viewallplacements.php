@@ -12,12 +12,16 @@ $placementHelpers = new PlacementHelpers();
 $proficienciesDataSet = new ProficienciesDataSet();
 $skillsDataSet = new SkillsDataSet();
 
-if (authenticated()){
-    if ($_SESSION['user']['usertype'] != 1 || $_SESSION['user']['usertype'] != 3 || $_SESSION['user']['usertype'] != 4)
-    {
-        header("Location: /");
-        exit();
-    }
+if(!authenticated())
+{
+    header('location: /login');
+    exit();
+}
+
+if ($_SESSION['user']['usertype'] == 3)
+{
+    header("Location: /");
+    exit();
 }
 
 $limit = 16; // default limit of deliveries per page
