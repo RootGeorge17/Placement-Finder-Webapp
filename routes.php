@@ -2,6 +2,7 @@
 
 $router->get('/', 'controllers/homepage.php');
 $router->get('/dashboard', 'controllers/dashboard.php');
+$router->post('/dashboard', 'controllers/DeletePlacement/deleteplacement.php');
 
 $router->get('/team', 'controllers/team.php');
 
@@ -21,7 +22,6 @@ $router->post('/editprofile/changepassword', 'controllers/EditProfile/editprofil
 
 $router->get('/addplacement', 'controllers/AddPlacement/addplacement.php');
 $router->post('/addplacement', 'controllers/AddPlacement/addplacement_post.php');
-$router->delete('/addplacement', 'controllers/DeletePlacement/deleteplacement.php');
 
 $router->get('/placements', 'controllers/ViewAllPlacements/viewallplacements.php');
 
