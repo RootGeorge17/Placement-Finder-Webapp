@@ -1,7 +1,5 @@
 <?php
 
-var_dump($_POST);
-
 if(!authenticated()){
     header('Location: /login');
     exit();
