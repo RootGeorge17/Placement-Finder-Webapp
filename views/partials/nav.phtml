@@ -203,12 +203,17 @@
                                 <?php if (authenticated()) : ?>
                                     <?php if ($_SESSION['user']['usertype'] == 1 || $_SESSION['user']['usertype'] == 2) : ?>
                                         <li><a href="/dashboard">Dashboard</a></li>
-                                    <?php elseif ($_SESSION['user']['usertype'] == 1 || $_SESSION['user']['usertype'] == 3 || $_SESSION['user']['usertype'] == 4) : ?>
+                                    <?php endif; ?>
+
+                                    <?php if (($_SESSION['user']['usertype'] == 1) || ($_SESSION['user']['usertype'] == 3) || ($_SESSION['user']['usertype'] == 4)) : ?>
                                         <li><a href="/placements">All Placements</a></li>
-                                    <?php elseif ($_SESSION['user']['usertype'] == 2) : ?>
+                                    <?php endif; ?>
+
+                                    <?php if ($_SESSION['user']['usertype'] == 2) : ?>
                                         <li><a href="/students">All Students</a></li>
                                         <li><a href="/addplacement">Add Placement</a></li>
                                     <?php endif; ?>
+
                                     <?php if (authenticated()) : ?>
                                         <li><a href="/editprofile">Edit Profile</a></li>
 
