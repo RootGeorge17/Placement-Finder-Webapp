@@ -18,7 +18,7 @@ $allProficiencies = $_SESSION['addPlacementFormData']->generatePlacementFormData
 $allLocation = $_SESSION['addPlacementFormData']->generatePlacementFormData()['locations'];
 
 
-return view("AddPlacement/AddPlacement.phtml", [
+return view("AddPlacement/addplacement.phtml", [
     'pageTitle' => 'Add Placement',
     'allIndustries' => $allIndustries,
     'allSkills' => $allSkills,
