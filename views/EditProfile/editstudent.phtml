@@ -47,11 +47,14 @@
             </div>
 
             <!--password button-->
-            <div class="col-md-3 col-sm-6 col-lg-6 align-self-end">
-                <button class="btn btn-success btn-lg btn-block dark-green-bg mb-2" id="changepassword" name="changepassword" value="changepassword" type="submit">Change Password<i class="bi bi-arrow-right"></i></button>
-                <!-- delete account button -->
-                <button class="btn btn-danger btn-lg btn-block mb-2" id="deleteaccount" name="deleteaccount" value="deleteaccount" type="submit" style="background-color: #dc3545">Delete Account<i class="bi bi-arrow-right"></i></button>
-            </div>
+            <form action="/editprofile" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <div class="col-md-3 col-sm-6 col-lg-6 align-self-end">
+                    <button class="btn btn-success btn-lg btn-block dark-green-bg mb-2" id="changepassword" name="changepassword" value="changepassword" type="submit">Change Password<i class="bi bi-arrow-right"></i></button>
+                    <!-- delete account button -->
+                    <button class="btn btn-danger btn-lg btn-block mb-2" id="deleteaccount" name="deleteaccount" value="student" type="submit" style="background-color: #dc3545">Delete Account<i class="bi bi-arrow-right"></i></button>
+                </div>
+            </form>
         </div>
 
         <!--course and institution-->

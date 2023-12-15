@@ -34,12 +34,15 @@
             <!--contact number and password button-->
             <div class="row mb-3">
                 <!-- delete account button -->
-                <div class="col-md-3 col-sm-6 col-lg-6 order-lg-2">
-                    <button class="btn btn-danger btn-lg btn-block justify-content-end" id="deleteaccount" name="deleteaccount" value="deleteaccount" type="submit" style="background-color: #dc3545">
-                        Delete Account
-                        <i class="bi bi-arrow-right"></i>
-                    </button>
-                </div>
+                <form action="/editprofile" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <div class="col-md-3 col-sm-6 col-lg-6 order-lg-2">
+                        <button class="btn btn-danger btn-lg btn-block justify-content-end" id="deleteaccount" name="deleteaccount" value="extra" type="submit" style="background-color: #dc3545">
+                            Delete Account
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
 
                 <!-- password button -->
                 <div class="col-md-3 col-sm-6 col-lg-6 order-lg-1">

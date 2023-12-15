@@ -2,7 +2,6 @@
 
 $router->get('/', 'controllers/homepage.php');
 $router->get('/dashboard', 'controllers/dashboard.php');
-$router->post('/dashboard', 'controllers/DeletePlacement/deleteplacement.php');
 
 $router->get('/team', 'controllers/team.php');
 
@@ -17,10 +16,12 @@ $router->post('/register', 'controllers/Authentication/register/store.php');
 // Edit Profile
 $router->get('/editprofile', 'controllers/EditProfile/editprofile_get.php');
 $router->post('/editprofile', 'controllers/EditProfile/editprofile_post.php');
+$router->delete('/editprofile', 'controllers/DeleteProfile/deleteprofile.php');
 $router->post('/editprofile/changepassword', 'controllers/EditProfile/editprofile_post.php');
 
 $router->get('/addplacement', 'controllers/AddPlacement/addplacement.php');
 $router->post('/addplacement', 'controllers/AddPlacement/addplacement_post.php');
+$router->delete('/addplacement', 'controllers/DeletePlacement/deleteplacement.php');
 
 $router->get('/placements', 'controllers/ViewAllPlacements/viewallplacements.php');
 

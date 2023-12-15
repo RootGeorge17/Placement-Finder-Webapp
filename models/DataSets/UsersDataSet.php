@@ -273,4 +273,14 @@ class UsersDataSet
             ':lastName' => $lastName
         ]);
     }
+
+    public function deleteUser($id)
+    {
+        $sql = "DELETE FROM user WHERE id = :id";
+
+        $statementUser = $this->dbHandle->prepare($sql);
+        $statementUser->execute([
+            'id' => $id
+        ]);
+    }
 }
