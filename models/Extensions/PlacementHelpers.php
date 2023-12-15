@@ -211,6 +211,16 @@ class PlacementHelpers
                 }
             }
 
+            usort($placementMatches['students'], function ($a, $b) {
+                $grades = ['Excellent' => 3, 'Good' => 2, 'Poor' => 1, 'No Match' => 0]; // Define grades order
+
+                $gradeA = $a['grade'];
+                $gradeB = $b['grade'];
+
+                // Compare grades based on their position in the defined order
+                return $grades[$gradeB] - $grades[$gradeA];
+            });
+
             if (!empty($placementMatches['students'])) {
                 $matches[$placementId] = $placementMatches;
             }

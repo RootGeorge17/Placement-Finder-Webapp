@@ -2,6 +2,8 @@
 
 $router->get('/', 'controllers/homepage.php');
 $router->get('/dashboard', 'controllers/dashboard.php');
+$router->post('/dashboard', 'controllers/DeletePlacement/deleteplacement.php');
+
 $router->get('/team', 'controllers/team.php');
 
 // Authentication
