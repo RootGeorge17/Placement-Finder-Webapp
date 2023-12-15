@@ -41,8 +41,8 @@ if ($_POST['submit'] == "first") {
 
     if (!Validator::phoneNumber($contactNumber)) {
         $errors['InvalidContactNumber'] = "Phone number must contain 11 numbers";
-    } else {
-        // check if unique
+    } elseif ($usersDataSet->phoneMatch($contactNumber)) {
+        $errors['InvalidEmail'] = "Phone number belongs to an already created account!";
     }
 
     if (empty($errors)) {

@@ -65,6 +65,23 @@ class UsersDataSet
         return false;
     }
 
+    public function phoneMatch($phoneNumber): bool
+    {
+        $sqlQuery = 'SELECT phoneNumber from user where phoneNumber = :phoneNumber';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        $statement->execute([
+            ':phoneNumber' => $phoneNumber,
+        ]);
+
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ($user) {
+            return true; // Email match
+        }
+        return false;
+    }
+
     public function getUserDetails($email)
     {
         $sqlQuery = 'SELECT * from user where email = :email';
