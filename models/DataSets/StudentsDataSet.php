@@ -1,7 +1,7 @@
 <?php
 
-require_once(base_path('models\Core\Database.php'));
-require_once(base_path('models\DataSets\StudentData.php'));
+require_once(base_path('models/Core/Database.php'));
+require_once(base_path('models/DataSets/StudentData.php'));
 
 class StudentsDataSet
 {
