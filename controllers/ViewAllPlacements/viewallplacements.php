@@ -50,10 +50,34 @@ $rowCount = $placementsDataSet->fetchRowCountAll();
 
 $total = ceil($rowCount / $limit); // total number of pages
 
+$sort = 'all';
+
+if (isset($_GET['sort'])){
+    if ($_GET['sort'] == 'all'){
+        $sort = 'all';
+    } elseif ($_GET['sort'] == 'nameasc'){
+        $sort = 'nameasc';
+    } elseif ($_GET['sort'] == 'namedesc'){
+        $sort = 'namedesc';
+    } elseif ($_GET['sort'] == 'salaryasc'){
+        $sort = 'salaryasc';
+    } elseif ($_GET['sort'] == 'salarydesc') {
+        $sort = 'salarydesc';
+    } elseif ($_GET['sort'] == 'locationasc'){
+        $sort = 'locationasc';
+    } elseif ($_GET['sort'] == 'locationdesc') {
+        $sort = 'locationdesc';
+    }
+    else {
+        header("Location: /placements?page=1&limit=16&sort=all");
+    }
+}
+
+$allPlacements = $placementsDataSet->fetchAllByLimitAndSort($start, $limit, $sort);
 
 view('/ViewAllPlacements/viewallplacements.phtml', [
         'pageTitle' => 'All Placements',
-        'allPlacements' => $placementsDataSet->fetchByLimit($start, $limit),
+        'allPlacements' => $allPlacements,
         'companiesDataSet' => $companiesDataSet,
         'industriesDataSet' => $industriesDataSet,
         'skillsDataSet' => $skillsDataSet,
@@ -61,6 +85,7 @@ view('/ViewAllPlacements/viewallplacements.phtml', [
         'placementHelpers' => $placementHelpers,
         'total' => $total,
         'page' => $page,
-        'limit' => $limit
+        'limit' => $limit,
+        'sort' => $sort,
         ]
 );

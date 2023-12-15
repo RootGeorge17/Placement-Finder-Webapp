@@ -83,7 +83,7 @@ class StudentsDataSet
                 $sqlQuery .= ' ORDER BY studentData.location DESC';
                 break;
             default:
-                // No specific filter, do not add ORDER BY clause
+                $sqlQuery .= ' ORDER BY studentData.id ASC';
                 break;
         }
 

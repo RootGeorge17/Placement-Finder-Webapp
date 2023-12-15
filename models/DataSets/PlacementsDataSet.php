@@ -174,6 +174,50 @@ class PlacementsDataSet
         }
     }
 
+    public function fetchAllByLimitAndSort(int $start, int $limit, string $sort): array
+    {
+        $sqlQuery = 'SELECT pd.*, cmp.companyName AS companyName
+                     FROM placementData pd
+                     INNER JOIN company cmp ON pd.companyId = cmp.id';
+
+        switch ($sort) {
+            case 'nameasc':
+                $sqlQuery .= ' ORDER BY companyName ASC';
+                break;
+            case 'namedesc':
+                $sqlQuery .= ' ORDER BY companyName DESC';
+                break;
+            case 'salaryasc':
+                $sqlQuery .= ' ORDER BY pd.salary ASC';
+                break;
+            case 'salarydesc':
+                $sqlQuery .= ' ORDER BY pd.salary DESC';
+                break;
+            case 'locationasc':
+                $sqlQuery .= ' ORDER BY pd.location ASC';
+                break;
+            case 'locationdesc':
+                $sqlQuery .= ' ORDER BY pd.location DESC';
+                break;
+            default:
+                $sqlQuery .= ' ORDER BY pd.id ASC';
+                break;
+        }
+
+        $sqlQuery .= ' LIMIT :start, :limit';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->bindParam(':start', $start, PDO::PARAM_INT);
+        $statement->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $statement->execute(); // execute the PDO statement
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new PlacementData($row);
+        }
+        return $dataSet;
+    }
+
     public function deletePlacement(int $companyId, int $placementId): bool
     {
         $sqlQuery = 'DELETE FROM placementData WHERE id = :placementId AND companyId = :companyId';
