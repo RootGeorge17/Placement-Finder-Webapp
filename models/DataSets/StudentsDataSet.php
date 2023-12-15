@@ -35,6 +35,9 @@ class StudentsDataSet
         $statement->execute(['id' => $id]); // execute the PDO statement
 
         $row = $statement->fetch();
+        if (!$row) {
+            return null;
+        }
         return new StudentData($row);
     }
 
@@ -116,6 +119,86 @@ class StudentsDataSet
             $dataSet[] = new StudentData($row);
         }
         return $dataSet;
+    }
+
+    public function updateStudentUser(string $email, string $location, string $cv,
+                                      int $course, string $institution, int $prefIndustry,
+                                      string $skill1Name, int $skill1Proficiency,
+                                      string $skill2Name, int $skill2Proficiency,
+                                      string $skill3Name, int $skill3Proficiency) : bool
+    {
+        $studentDataID = null;
+
+        // Fetch user ID based on email
+        $userIdQuery = 'SELECT studentData FROM user WHERE email = :email';
+        // Execute $userIdQuery using your database connection to get the user ID
+        $userIdQueryStatement = $this->dbHandle->prepare($userIdQuery);
+        $userIdQueryStatement->execute(['email' => $email]);
+        if ($row = $userIdQueryStatement->fetch()) {
+            $studentDataID = $row['studentData'];
+        } else {
+            return false;
+        }
+
+        // Fetch skill IDs based on skill names and proficiencies
+        $skill1IdQuery = 'SELECT id FROM skills WHERE skillName = :skill1Name AND proficiency = :skill1Proficiency';
+        // Execute $skill1IdQuery
+        $skill1IdQueryStatement = $this->dbHandle->prepare($skill1IdQuery);
+        $skill1IdQueryStatement->execute(['skill1Name' => $skill1Name, 'skill1Proficiency' => $skill1Proficiency]);
+        if ($row = $skill1IdQueryStatement->fetch()) {
+            $skill1Id = $row['id'];
+        } else {
+            return false;
+        }
+
+        $skill2IdQuery = 'SELECT id FROM skills WHERE skillName = :skill2Name AND proficiency = :skill2Proficiency';
+        // Execute $skill2IdQuery
+        $skill2IdQueryStatement = $this->dbHandle->prepare($skill2IdQuery);
+        $skill2IdQueryStatement->execute(['skill2Name' => $skill2Name, 'skill2Proficiency' => $skill2Proficiency]);
+        if ($row = $skill2IdQueryStatement->fetch()) {
+            $skill2Id = $row['id'];
+        } else {
+            return false;
+        }
+
+        $skill3IdQuery = 'SELECT id FROM skills WHERE skillName = :skill3Name AND proficiency = :skill3Proficiency';
+        // Execute $skill3IdQuery
+        $skill3IdQueryStatement = $this->dbHandle->prepare($skill3IdQuery);
+        $skill3IdQueryStatement->execute(['skill3Name' => $skill3Name, 'skill3Proficiency' => $skill3Proficiency]);
+        if ($row = $skill3IdQueryStatement->fetch()) {
+            $skill3Id = $row['id'];
+        } else {
+            return false;
+        }
+
+        // Construct the UPDATE query using the fetched IDs
+        $sqlQuery = 'UPDATE studentData
+                    SET 
+                        skill1 = :skill1Id,
+                        skill2 = :skill2Id,
+                        skill3 = :skill3Id,
+                        location = :location,
+                        cv = :cv,
+                        course = :course,
+                        institution = :institution,
+                        prefIndustry = :prefIndustry
+                    WHERE id = :studentDataId';
+
+        // Execute the UPDATE query
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        $statement->execute([
+            'skill1Id' => $skill1Id,
+            'skill2Id' => $skill2Id,
+            'skill3Id' => $skill3Id,
+            'location' => $location,
+            'cv' => $cv,
+            'course' => $course,
+            'institution' => $institution,
+            'prefIndustry' => $prefIndustry,
+            'studentDataId' => $studentDataID
+        ]);
+
+        return true;
     }
 
 
