@@ -13,7 +13,7 @@ if ($_POST['submit'] == "first") {
     $confirmPassword = $_POST['confirmPassword'];
     $contactNumber = $_POST['contactNumber'];
 
-    if (!Validator::string($firstName, 2, 75) && !Validator::string($lastName, 2, 75)) {
+    if (!Validator::string($firstName, 2, 75)) {
         $errors['InvalidName'] = "First name must be between 2 and 75 characters maximum!";
     }
 
