@@ -218,6 +218,77 @@ class PlacementsDataSet
         return $dataSet;
     }
 
+    public function fetchAllByLimitAndSortAndFilter($start, $limit, $sort, $location, $industry)
+    {
+        $sqlQuery = 'SELECT pd.*, cmp.companyName AS companyName
+                 FROM placementData pd
+                 INNER JOIN company cmp ON pd.companyId = cmp.id';
+
+        if ($location !== 'all' || $industry !== 'all') {
+            $sqlQuery .= ' WHERE';
+
+            if ($location !== 'all') {
+                $sqlQuery .= ' pd.location = :location';
+            }
+
+            if ($location !== 'all' && $industry !== 'all') {
+                $sqlQuery .= ' AND';
+            }
+
+            if ($industry !== 'all') {
+                $sqlQuery .= ' pd.industry = :industry';
+            }
+        }
+
+        switch ($sort) {
+            case 'nameasc':
+                $sqlQuery .= ' ORDER BY cmp.companyName ASC';
+                break;
+            case 'namedesc':
+                $sqlQuery .= ' ORDER BY cmp.companyName DESC';
+                break;
+            case 'salaryasc':
+                $sqlQuery .= ' ORDER BY pd.salary ASC';
+                break;
+            case 'salarydesc':
+                $sqlQuery .= ' ORDER BY pd.salary DESC';
+                break;
+            case 'locationasc':
+                $sqlQuery .= ' ORDER BY pd.location ASC';
+                break;
+            case 'locationdesc':
+                $sqlQuery .= ' ORDER BY pd.location DESC';
+                break;
+            default:
+                // No default ordering
+                break;
+        }
+
+        $sqlQuery .= ' LIMIT :start, :limit';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+
+        if ($location !== 'all') {
+            $statement->bindParam(':location', $location, PDO::PARAM_STR);
+        }
+
+        if ($industry !== 'all') {
+            $statement->bindParam(':industry', $industry, PDO::PARAM_STR);
+        }
+
+        $statement->bindParam(':start', $start, PDO::PARAM_INT);
+        $statement->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $statement->execute(); // execute the PDO statement
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new PlacementData($row);
+        }
+        return $dataSet;
+    }
+
+
+
     public function deletePlacement(int $companyId, int $placementId): bool
     {
         $sqlQuery = 'DELETE FROM placementData WHERE id = :placementId AND companyId = :companyId';
