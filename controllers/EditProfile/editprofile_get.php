@@ -24,6 +24,7 @@ if (!authenticated()) {
 if ($_SESSION['user']['usertype'] == 1) {
     $userStudentData = $generateStudentFormData->getUserStudentData(); // get student data
     $userCourse = $generateStudentFormData->getPreferredCourse(); // get preferred course data
+    $userCV = $generateStudentFormData->getUserCV($_SESSION['user']['id']);
 
     // all the ids of the skills the user has
     $userSkillIds = [
@@ -49,6 +50,7 @@ if ($_SESSION['user']['usertype'] == 1) {
             $skillsDataSet->fetchSkillsbyIdArray($userSkillIds), // get the user's skills objects
             $proficienciesDataSet->fetchAllProficiencies()), // get all proficiencies
         'allLocations' => $generateStudentFormData->getLocations(), // get all locations
+        'cv' => $userCV,
     ]);
 
 } else if ($_SESSION['user']['usertype'] == 2) {

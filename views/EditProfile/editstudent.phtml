@@ -113,6 +113,22 @@
             </div>
         <?php endfor; ?>
 
+        <div class="row mb-2">
+            <div class="col-md-3 mb-2 text-center border">
+                <label for="cvUpload" class="btn btn-lg m-1 p-3">
+                    Upload a new CV <i class="ml-2 bi bi-file-earmark-arrow-up-fill"></i>
+                </label>
+                <input type="file" name="cvUpload" id="cvUpload" style="display: none;">
+            </div>
+        </div>
+        <?php if ($cv !== null && isset($cv['cv'])) : ?>
+            <object data="../uploads/<?= $cv['cv'] ?>" type="application/pdf" width="100%" height="500px">
+
+            </object>
+        <?php else : ?>
+            <p>You don't have a CV uploaded. Upload one instead!</p>
+        <?php endif; ?>
+
         <!--submit button-->
         <div class="row justify-content-center mb-2">
             <div class="col-md-3 text-center ">

@@ -118,5 +118,22 @@ class StudentsDataSet
         return $dataSet;
     }
 
+    public function fetchCV($id)
+    {
+        $sqlQuery = 'SELECT u.id, u.studentData, sd.cv 
+                     FROM user u 
+                     LEFT JOIN studentData sd ON u.studentData = sd.id
+                     WHERE u.id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        $statement->execute(['id' => $id]);
+
+        $row = $statement->fetch();
+        if ($row) {
+            return $row;
+        }
+        return null;
+    }
+
 
 }
