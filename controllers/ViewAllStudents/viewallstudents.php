@@ -42,15 +42,37 @@ $rowCount = $studentsDataSet->fetchRowCountAll();
 
 $total = ceil($rowCount / $limit); // total number of pages
 
+$sort = 'all';
+
+if (isset($_GET['sort'])){
+    if ($_GET['sort'] == 'all'){
+        $sort = 'all';
+    } elseif ($_GET['sort'] == 'nameasc'){
+        $sort = 'nameasc';
+    } elseif ($_GET['sort'] == 'namedesc'){
+        $sort = 'namedesc';
+    } elseif ($_GET['sort'] == 'locationasc'){
+        $sort = 'locationasc';
+    } elseif ($_GET['sort'] == 'locationdesc') {
+        $sort = 'locationdesc';
+    } else {
+        header("Location: /students?page=1&limit=16&sort=all");
+    }
+}
+
+
+$allStudents = $studentsDataSet->fetchAllByLimitAndFilter($start, $limit, $sort);
+
 
 view('/ViewAllStudents/viewallstudents.phtml', [
         'pageTitle' => 'All Students',
-        'allStudents' => $studentsDataSet->fetchByLimit($start, $limit),
+        'allStudents' => $allStudents,
         'usersDataSet' => $usersDataSet,
         'coursesDataSet' => $coursesDataSet,
         'industriesDataSet' => $industriesDataSet,
         'total' => $total,
         'page' => $page,
-        'limit' => $limit
+        'limit' => $limit,
+        'sort' => $sort,
     ]
 );

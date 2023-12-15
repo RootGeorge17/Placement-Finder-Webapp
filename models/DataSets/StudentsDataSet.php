@@ -64,4 +64,59 @@ class StudentsDataSet
         return $dataSet;
     }
 
+    public function fetchAllByLimitAndFilter($start, $limit, $sort){
+        $sqlQuery = 'SELECT studentData.*, user.firstName, user.lastName 
+                 FROM studentData 
+                 INNER JOIN user ON user.studentData = studentData.id';
+
+        switch ($sort) {
+            case 'nameasc':
+                $sqlQuery .= ' ORDER BY user.firstName ASC, user.lastName ASC';
+                break;
+            case 'namedesc':
+                $sqlQuery .= ' ORDER BY user.firstName DESC, user.lastName DESC';
+                break;
+            case 'locationasc':
+                $sqlQuery .= ' ORDER BY studentData.location ASC';
+                break;
+            case 'locationdesc':
+                $sqlQuery .= ' ORDER BY studentData.location DESC';
+                break;
+            default:
+                // No specific filter, do not add ORDER BY clause
+                break;
+        }
+
+//        switch ($sort) {
+//            case 'course':
+//                $sqlQuery .= ' JOIN coursesTable ON studentData.course_id = coursesTable.id';
+//                $sqlQuery .= ' ORDER BY coursesTable.courseName ASC';
+//                break;
+//            case 'institution':
+//                $sqlQuery .= ' ORDER BY studentData.institution ASC';
+//                break;
+//            case 'industry':
+//                $sqlQuery .= ' JOIN industriesTable ON studentData.prefIndustry_id = industriesTable.id';
+//                $sqlQuery .= ' ORDER BY industriesTable.industryName ASC';
+//                break;
+//            default:
+//                // No specific sorting, do not modify ORDER BY clause
+//                break;
+//        }
+
+        $sqlQuery .= ' LIMIT :start, :limit';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':start', $start, PDO::PARAM_INT);
+        $statement->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $statement->execute();
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new StudentData($row);
+        }
+        return $dataSet;
+    }
+
+
 }
