@@ -18,21 +18,28 @@
                         <li>|</li>
                         <li><a href="/" class="nav-items">Home</a></li>
                         <?php if (authenticated()) : ?>
-                            <li><a href="/dashboard">Dashboard</a></li>
-                            <?php if ($_SESSION['user']['usertype'] == 1) : ?>
+                            <?php if ($_SESSION['user']['usertype'] == 1 || $_SESSION['user']['usertype'] == 2) : ?>
+                                <li><a href="/dashboard">Dashboard</a></li>
+                            <?php elseif ($_SESSION['user']['usertype'] == 1 || $_SESSION['user']['usertype'] == 3 || $_SESSION['user']['usertype'] == 4) : ?>
                                 <li><a href="/placements">All Placements</a></li>
                             <?php elseif ($_SESSION['user']['usertype'] == 2) : ?>
                                 <li><a href="/students">All Students</a></li>
                                 <li><a href="/addplacement">Add Placement</a></li>
                             <?php endif; ?>
-                            <li><a href="/editprofile">Edit Profile</a></li>
+                            <?php if (!authenticated()) : ?>
+                                <li class="nav-item btn">
+                                    <a class="nav-link login-button" href="/login">Login to MyBCS</a>
+                                </li>
+                            <?php else : ?>
+                                <li><a href="/editprofile">Edit Profile</a></li>
 
+                                <li class="nav-item btn">
+                                    <a class="nav-link login-button" href="/signout">Sign out</a>
+                                </li>
+                            <?php endif; ?>
+                        <?php else : ?>
                             <li class="nav-item btn">
-                                <a class="nav-link btn-block bcs-login-btn" href="/signout">Sign out</a>
-                            </li>
-                        <?php elseif (!authenticated()) : ?>
-                            <li class="nav-item btn">
-                                <a class="nav-link btn-block bcs-login-btn" href="/login"><span class="bcs-login-text">Login to MyBCS</span></a>
+                                <a class="nav-link bcs-login-btn" href="/login">Login to MyBCS</a>
                             </li>
                         <?php endif; ?>
                     </ul>
