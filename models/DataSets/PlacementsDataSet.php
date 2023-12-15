@@ -174,5 +174,13 @@ class PlacementsDataSet
         }
     }
 
+    public function deletePlacement(int $companyId, int $placementId): bool
+    {
+        $sqlQuery = 'DELETE FROM placementData WHERE id = :placementId AND companyId = :companyId';
 
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $success = $statement->execute(['placementId' => $placementId, ':companyId' => $companyId]); // execute the PDO statement
+
+        return $success;
+    }
 }
