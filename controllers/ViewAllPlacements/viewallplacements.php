@@ -18,7 +18,7 @@ if(!authenticated())
     exit();
 }
 
-if ($_SESSION['user']['usertype'] == 3)
+if ($_SESSION['user']['usertype'] == 2)
 {
     header("Location: /");
     exit();
