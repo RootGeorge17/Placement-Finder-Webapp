@@ -13,7 +13,7 @@ $proficienciesDataSet = new ProficienciesDataSet();
 $skillsDataSet = new SkillsDataSet();
 
 if (authenticated()){
-    if ($_SESSION['user']['usertype'] != 1)
+    if ($_SESSION['user']['usertype'] != 1 || $_SESSION['user']['usertype'] != 3 || $_SESSION['user']['usertype'] != 4)
     {
         header("Location: /");
         exit();
