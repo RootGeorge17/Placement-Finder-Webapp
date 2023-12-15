@@ -73,4 +73,13 @@ class GeneratePlacementData
         return self::$usersDataSet->fetchAllUsers();
     }
 
+    public static function getUsersDataSet()
+    {
+        if (!isset(self::$usersDataSet)) {
+            self::initializeDataSets();
+        }
+
+        return self::$usersDataSet;
+    }
+
 }

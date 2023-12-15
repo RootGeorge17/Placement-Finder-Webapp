@@ -81,7 +81,12 @@ if ($_POST['submit'] == 'addPlacement'){
 
     if(empty($errors))
     {
+        var_dump($_SESSION['user']['id']);
+
         $_SESSION['addPlacementFormData']->setCompanyIdUsingUserId($_SESSION['user']['id']);
+
+        var_dump($_SESSION['addPlacementFormData']->getCompanyId());
+
         $_SESSION['addPlacementFormData']->setDescription($description);
         $_SESSION['addPlacementFormData']->setIndustryId($industry);
         $_SESSION['addPlacementFormData']->setLocation($location);

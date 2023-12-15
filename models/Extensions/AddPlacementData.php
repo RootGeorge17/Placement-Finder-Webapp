@@ -131,8 +131,7 @@ class AddPlacementData
      */
     public function setCompanyIdUsingUserId($userId): void
     {
-        $usersDataSet = new UsersDataSet();
-        $user = $usersDataSet->fetchUserById($userId);
+        $user = GeneratePlacementData::getUsersDataSet()->fetchUserById($userId);
         $this->companyId = $user->getCompanyId();
     }
 
