@@ -2,16 +2,21 @@
 <?php require_once(base_path('views/partials/nav.phtml')) ?>
 <?php require_once(base_path('views/partials/header.phtml')) ?>
 
-<?php $placementMatches = $placementHelpers->getPlacementMatches($testStudent, $allPlacements, $allProficiencies, $allSkills);
-$studentSkills = [
-    $testStudent->getSkill1(),
-    $testStudent->getSkill2(),
-    $testStudent->getSkill3()
-];
-?>
-
     <div class="container">
-        <?php $skillNames = $placementHelpers->getSkillNames($testStudent, $allSkills, $allProficiencies); ?>
+        <?php
+        if ($testStudent == null) {
+            echo "<h1>Matches not found</h1>";
+            exit();
+        }
+
+        $skillNames = $placementHelpers->getSkillNames($testStudent, $allSkills, $allProficiencies);
+        $placementMatches = $placementHelpers->getPlacementMatches($testStudent, $allPlacements, $allProficiencies, $allSkills);
+        $studentSkills = [
+            $testStudent->getSkill1(),
+            $testStudent->getSkill2(),
+            $testStudent->getSkill3()
+        ];
+        ?>
 
         <h1>Placement Matches</h1>
         <p>Based on your Skills:

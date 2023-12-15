@@ -1,0 +1,63 @@
+<?php require_once(base_path('views/partials/head.phtml')) ?>
+<?php require_once(base_path('views/partials/nav.phtml')) ?>
+<?php require_once(base_path('views/partials/header.phtml')) ?>
+
+    <div class="container mb-5">
+        <form name="edit-student" action="/editprofile" method="post">
+            <h1 class="mb-3 text-center">Edit your profile</h1>
+
+            <!--first name and last name-->
+            <div class="row mb-3">
+                <div class="col-md-6 mb-2">
+                    <label class="mb-2" for="firstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="firstName" value="<?= $user->getFirstName() ?>">
+                </div>
+                <div class="col-md-6 ">
+                    <label class="mb-2" for="lastName">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="lastName" value="<?= $user->getLastName() ?>">
+                </div>
+            </div>
+
+            <!--email and location-->
+            <div class="row mb-3">
+                <div class="col-md-6 mb-2">
+                    <label class="mb-2" for="email">Email</label>
+                    <input type="text" class="form-control" name="email" id="email" value="<?= $user->getEmail() ?>">
+                </div>
+
+                <div class="col-md-6 mb-2">
+                    <label class="mb-2" for="contactNumber">Contact Number</label>
+                    <input type="text" class="form-control" name="contactNumber" id="contactNumber" value="<?= $user->getPhoneNumber() ?>">
+                </div>
+            </div>
+
+            <!--contact number and password button-->
+            <div class="row mb-3">
+                <!-- delete account button -->
+                <div class="col-md-3 col-sm-6 col-lg-6 order-lg-2">
+                    <button class="btn btn-danger btn-lg btn-block justify-content-end" id="deleteaccount" name="deleteaccount" value="deleteaccount" type="submit" style="background-color: #dc3545">
+                        Delete Account
+                        <i class="bi bi-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- password button -->
+                <div class="col-md-3 col-sm-6 col-lg-6 order-lg-1">
+                    <button class="btn btn-success btn-lg btn-block dark-green-bg" id="changepassword" name="changepassword" value="changepassword" type="submit">
+                        Change Password
+                        <i class="bi bi-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!--submit button-->
+            <div class="row justify-content-center mb-2">
+                <div class="col-md-3 text-center ">
+                    <button class="btn btn-success btn-lg btn-block dark-green-bg" id="submit" name="submit" value="first" type="submit">Save Changes    <i class="bi bi-arrow-right"></i></button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+<?php require_once(base_path('views/partials/footer.phtml')) ?>

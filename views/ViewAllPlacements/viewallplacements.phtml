@@ -80,11 +80,19 @@
                            href="placements?page=<?php echo $page ?>&limit=32<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">32</a>
                     </div>
                 </li>
-            </ul>
-
-            <ul>
-                <li>
-
+                <li class="page-item dropdown">
+                    <button class="page-link dropdown-toggle" href="#" id="sort" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <?php echo "Sort by ". strtoupper($sort); ?>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="sort">
+                        <a class="dropdown-item" href="placements?page=<?php echo $page ?>&limit=16<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>&sort=nameasc">Name ASC<i class="bi bi-sort-alpha-down"></i></a>
+                        <a class="dropdown-item" href="placements?page=<?php echo $page ?>&limit=16<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>&sort=namedesc">Name DESC<i class="bi bi-sort-alpha-down-alt"></i></a>
+                        <a class="dropdown-item" href="placements?page=<?php echo $page ?>&limit=16<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>&sort=locationasc">Location ASC<i class="bi bi-sort-alpha-down"></i></a>
+                        <a class="dropdown-item" href="placements?page=<?php echo $page ?>&limit=16<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>&sort=locationdesc">Location DESC<i class="bi bi-sort-alpha-down-alt"></i></a>
+                        <a class="dropdown-item" href="placements?page=<?php echo $page ?>&limit=16<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>&sort=salaryasc">Salary ASC<i class="bi bi-sort-alpha-down"></i></a>
+                        <a class="dropdown-item" href="placements?page=<?php echo $page ?>&limit=16<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>&sort=salarydesc">Salary DESC<i class="bi bi-sort-alpha-down-alt"></i></a>
+                    </div>
                 </li>
             </ul>
         </nav>

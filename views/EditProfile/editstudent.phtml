@@ -88,15 +88,25 @@
             <div class="row mb-2">
                 <div class="col-md-6 mb-2">
                     <label class="mb-2" for="skill<?= $i + 1 ?>">Skill <?= $i + 1 ?></label>
+                        <?php
+                    $outputtedSkills = [];
+                    ?>
                     <select class="form-select" name="skill<?= $i + 1 ?>" id="skill<?= $i + 1 ?>">
                         <option value="<?= $userSkills[$i]->getId() ?>"><?= $userSkills[$i]->getSkillName() ?></option> <!-- get the skill name from the user's skill object -->
-                        <?php foreach ($allSkills as $skill) : ?>
-                            <?php if ($skill->getId() == $userSkills[$i]->getId()) :
-                                continue; // check if the skill is already in selection ?>
-                            <?php endif; ?>
-                            <option value="<?= $skill->getId() ?>"><?= $skill->getSkillName() ?></option>
-                        <?php endforeach; ?>
-                    </select>
+                        <?php foreach ($allSkills as $skill) :
+                            if ($skill->getSkillName() == $userSkills[$i]->getSkillName()) :
+                                continue; // check if the skill is already in selection
+                            endif;
+                                $skillName = $skill->getSkillName();
+                                if (!in_array($skillName, $outputtedSkills)) {
+                                    $outputtedSkills[] = $skillName;
+                                    ?>
+                                    <option value="<?= $skillName ?>"><?= $skillName ?></option> <!-- get the skill name from the user's skill object -->
+                                    <?php
+                                }
+                            endforeach;
+                            ?>
+                        </select>
                 </div>
                 <div class="col-md-6">
                     <label class="mb-2" for="proficiency<?= $i + 1 ?>">Proficiency</label>
