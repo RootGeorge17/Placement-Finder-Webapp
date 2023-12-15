@@ -22,6 +22,8 @@ $matches = $placementHelpers->getStudentMatchesForCompany($user->getCompanyId(),
             </ul>
         <?php endif; ?>
 
+        <?php $companyName = $companiesDataSet->fetchCompanyName($user->getCompanyId()) ?>
+
         <div class="container mt-5">
             <?php foreach ($matches as $placementId => $placementMatches) : ?>
                 <div class="row">
@@ -31,7 +33,7 @@ $matches = $placementHelpers->getStudentMatchesForCompany($user->getCompanyId(),
                             <div class="row">
                                 <div class="col-sm-4">
                                     <p>
-                                        <strong>Company:</strong> <?= $companiesDataSet->fetchCompanyName($user->getCompanyId()) ?>
+                                        <strong>Company:</strong> <?= $companyName ?>
                                     </p>
                                 </div>
                                 <div class="col-sm-4">
