@@ -42,6 +42,7 @@ class GenerateStudentFormData
         return null;
     }
 
+
     // fetches from the database the course using the courseId from the studentData table
     public function getPreferredCourse(): ?Course
     {
@@ -82,6 +83,14 @@ class GenerateStudentFormData
             }
         }
         return $userSkillsAndProficiencies;
+    }
+
+    public function getUserCV($id)
+    {
+        if ($this->userStudentData != null) {
+            return $this->studentDataSet->fetchCV($id);
+        }
+        return null;
     }
 
 }
