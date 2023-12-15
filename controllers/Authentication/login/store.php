@@ -24,7 +24,7 @@ login(
     $userDetails['userType']
 );
 
-header('Location: /dashboard');
+header('Location: /');
 exit();
 
 
