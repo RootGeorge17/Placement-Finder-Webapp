@@ -172,14 +172,15 @@
                                 <li><a href="http://impact.bcs.org">Making IT good for society</a></li>
                                 <li><a href="/team">Our Team</a></li>
                                 <?php if (authenticated()) : ?>
+                                    <?php if ($_SESSION['user']['usertype'] == 1 || $_SESSION['user']['usertype'] == 2) : ?>
                                     <li><a href="/dashboard">Dashboard</a></li>
-                                    <?php if ($_SESSION['user']['usertype'] == 1) : ?>
+                                    <?php elseif ($_SESSION['user']['usertype'] == 1 || $_SESSION['user']['usertype'] == 3 || $_SESSION['user']['usertype'] == 4) : ?>
                                         <li><a href="/placements">All Placements</a></li>
                                     <?php elseif ($_SESSION['user']['usertype'] == 2) : ?>
                                         <li><a href="/students">All Students</a></li>
                                         <li><a href="/addplacement">Add Placement</a></li>
                                     <?php endif; ?>
-                                    <?php if (!$_SESSION['user']['loggedIn']) : ?>
+                                    <?php if (!authenticated()) : ?>
                                         <li class="nav-item btn">
                                             <a class="nav-link login-button" href="/login">Login to MyBCS</a>
                                         </li>
