@@ -1,6 +1,6 @@
 <?php
-require_once(base_path('models\Core\Database.php'));
-require_once(base_path('models\DataSets\User.php'));
+require_once(base_path('models/Core/Database.php'));
+require_once(base_path('models/DataSets/User.php'));
 
 class UsersDataSet
 {
