@@ -11,29 +11,28 @@
 
                     <!-- Top Contact -->
                     <ul class="top-contact">
-                        <li><a href="https://www.bcs.org/about-us" target="_blank" class="nav-items">About us</a></li>
-                        <li><a href="https://impact.bcs.org/" target="_blank" class="nav-items">Making IT good for
-                                society</a></li>
-                        <li><a href="/team" class="nav-items">Our Team</a></li>
+                        <li><a href="https://www.bcs.org/about-us" target="_blank" class="nav-items"><span class="navigation-item-text">About us<span></span></a></li>
+                        <li><a href="https://impact.bcs.org/" target="_blank" class="nav-items"><span class="navigation-item-text">Making IT good for
+                                    society</span></a></li>
+                        <li><a href="/team" class="nav-items"><span class="navigation-item-text">Our Team</span></a></li>
                         <li>|</li>
-                        <li><a href="/" class="nav-items">Home</a></li>
+                        <li><a href="/" class="nav-items"><span class="navigation-item-text">Home</span></a></li>
                         <?php if (authenticated()) : ?>
                             <?php if ($_SESSION['user']['usertype'] == 1 || $_SESSION['user']['usertype'] == 2) : ?>
-                                <li><a href="/dashboard">Dashboard</a></li>
-                            <?php endif; ?>
-
-
-                            <?php if ($_SESSION['user']['usertype'] == 1 || $_SESSION['user']['usertype'] == 3 || $_SESSION['user']['usertype'] == 4) : ?>
-                                <li><a href="/placements">All Placements</a></li>
+                                <li><a href="/dashboard"><span class="navigation-item-text">Dashboard</span></a></li>
+                            <?php elseif ($_SESSION['user']['usertype'] == 1 || $_SESSION['user']['usertype'] == 3 || $_SESSION['user']['usertype'] == 4) : ?>
+                                <li><a href="/placements"><span class="navigation-item-text">All Placements</span></a></li>
                             <?php elseif ($_SESSION['user']['usertype'] == 2) : ?>
-                                <li><a href="/students">All Students</a></li>
-                                <li><a href="/addplacement">Add Placement</a></li>
+                                <li><a href="/students"><span class="navigation-item-text">All Students</span></a></li>
+                                <li><a href="/addplacement"><span class="navigation-item-text">Add Placement</span></a></li>
                             <?php endif; ?>
-                            <li><a href="/editprofile">Edit Profile</a></li>
+                            <?php if (authenticated()) : ?>
+                                <li><a href="/editprofile"><span class="navigation-item-text">Edit Profile</span></a></li>
 
-                            <li class="nav-item btn">
-                                <a class="nav-link btn-block bcs-login-btn" href="/signout">Sign out</a>
-                            </li>
+                                <li class="nav-item btn">
+                                    <a class="nav-link btn-block bcs-login-btn" href="/signout">Sign out</a>
+                                </li>
+                            <?php endif; ?>
                         <?php else : ?>
                             <li class="nav-item btn">
                                 <a class="nav-link btn-block bcs-login-btn" href="/login"><span class="bcs-login-text">Login to MyBCS</span></a>

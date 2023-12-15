@@ -33,7 +33,11 @@
 
 .navigation-dropdown-text
 {
-	font-size: 1rem;
+	font-size: 1vw;
+}
+.navigation-item-text
+{
+	font-size: 0.95vw;
 }
 
 .navigation-dropdown-btn:hover {
