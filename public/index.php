@@ -1,4 +1,8 @@
 <?php
+// Enable error reporting and display errors for debugging purposes
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // Define a constant for the base path directory for the project
 const BASE_PATH = __DIR__ . '/../';
 

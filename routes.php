@@ -8,7 +8,7 @@ $router->get('/team', 'controllers/team.php');
 
 // Authentication
 $router->get('/login', 'controllers/Authentication/login/login.php');
-$router->post('/login', 'controllers/Authentication/Login/store.php');
+$router->post('/login', 'controllers/Authentication/login/store.php');
 $router->get('/signout', 'controllers/Authentication/login/signout.php');
 
 $router->get('/register', 'controllers/Authentication/register/register.php');
