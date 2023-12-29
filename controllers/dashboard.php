@@ -12,6 +12,7 @@ require_once(base_path("models/DataSets/SkillsDataSet.php"));
 require_once(base_path("models/DataSets/CompaniesDataSet.php"));
 require_once(base_path("models/Extensions/PlacementHelpers.php"));
 require_once base_path("models/DataSets/IndustriesDataSet.php");
+require_once base_path("models/DataSets/UsersDataSet.php");
 
 if (!isset($_SESSION['user'])) {
     header("Location: /");
@@ -28,13 +29,17 @@ if($_SESSION['user']['usertype'] == 1)
     $placementHelpers = new PlacementHelpers();
     $proficienciesDataSet = new ProficienciesDataSet();
     $industriesDataSet = new IndustriesDataSet();
+    $usersDataSet = new UsersDataSet();
 
+    $userId = $_SESSION['user']['id'];
+
+    $user = $usersDataSet->fetchUserById($userId);
 
     $allProficiencies = $proficienciesDataSet->fetchAllProficiencies();
     $allPlacements = $placementsDataSet->fetchAllPlacements();
     $allCompanies = $companiesDataSet->fetchAllCompanies();
     $allSkills = $skillsDataSet->fetchAllSkills();
-    $testStudent = $studentsDataSet->fetchStudentDataById($_SESSION['user']['id']); // dont mind the naming cba refactoring everything else
+    $testStudent = $studentsDataSet->fetchStudentDataById($user->getStudentData()); // dont mind the naming cba refactoring everything else
 
     view("Dashboard/studentdashboard.phtml",[
         'pageTitle' => 'Student Dashboard',
@@ -53,8 +58,6 @@ if($_SESSION['user']['usertype'] == 1)
 
 } elseif($_SESSION['user']['usertype'] == 2)
 {
-
-    require_once base_path("models/DataSets/UsersDataSet.php");
     require_once base_path("models/DataSets/CoursesDataSet.php");
 
     $placementsDataSet = new PlacementsDataSet();

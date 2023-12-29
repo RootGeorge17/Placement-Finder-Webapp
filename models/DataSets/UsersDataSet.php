@@ -77,7 +77,7 @@ class UsersDataSet
         $user = $statement->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-            return true; // Email match
+            return true; // PhoneNumber match
         }
         return false;
     }

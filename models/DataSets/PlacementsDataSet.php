@@ -123,6 +123,20 @@ class PlacementsDataSet
         return $dataSet;
     }
 
+    public function fetchPlacementById(int $id): ?PlacementData
+    {
+        $sqlQuery = 'SELECT * FROM placementData WHERE id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(['id' => $id]); // execute the PDO statement
+
+        if ($row = $statement->fetch()) {
+            return new PlacementData($row);
+        } else {
+            return null;
+        }
+    }
+
     public function addPlacement($companyId, $description, $industry, $salary, $location,
                                  $startDate, $endDate, $skill1, $skill2, $skill3): false|string
     {

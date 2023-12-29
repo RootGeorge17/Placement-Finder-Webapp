@@ -27,4 +27,19 @@ class ProficienciesDataSet
         return $dataSet;
     }
 
+    public function fetchProficiencyById($id): ?Proficiency
+    {
+        $sqlQuery = 'SELECT * FROM proficiency WHERE id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute(); // execute the PDO statement
+
+        if ($row = $statement->fetch()) {
+            return new Proficiency($row);
+        } else {
+            return null;
+        }
+    }
+
 }

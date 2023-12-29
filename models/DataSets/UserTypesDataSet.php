@@ -1,7 +1,7 @@
 <?php
 
-require_once(base_path('Core/Database.php'));
-require_once(base_path('DataSets/UserType.php'));
+require_once(base_path('models/Core/Database.php'));
+require_once(base_path('models/DataSets/UserType.php'));
 
 
 class UserTypesDataSet
@@ -26,6 +26,19 @@ class UserTypesDataSet
             $dataSet[] = new UserType($row);
         }
         return $dataSet;
+    }
 
+    public function fetchUserTypeById($id)
+    {
+        $sqlQuery = 'SELECT * FROM userTypes WHERE id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(['id' => $id]); // execute the PDO statement
+
+        if($row = $statement->fetch()) {
+            return new UserType($row);
+        } else {
+            return null;
+        }
     }
 }

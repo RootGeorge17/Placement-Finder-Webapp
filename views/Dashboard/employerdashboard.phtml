@@ -8,6 +8,25 @@ $matches = $placementHelpers->getStudentMatchesForCompany($user->getCompanyId(),
 
 ?>
 
+    <script>
+        // button toggle code, let me know if i should move this to a separate file
+        $(document).ready(function() {
+            $('.show-more-button').on('click', function() {
+                const placementId = $(this).data('placement');
+                $(`.placement-${placementId}`).slideDown(); // Show all cards for the specific placement
+                $(this).hide(); // Hide the show more button
+                $(`.collapse-button[data-placement=${placementId}]`).show(); // Show the collapse button
+            });
+
+            $('.collapse-button').on('click', function() {
+                const placementId = $(this).data('placement');
+                $(`.placement-${placementId}`).slideToggle(); // Toggle visibility of cards for the specific placement
+                $(this).hide(); // Hide the collapse button
+                $(`.show-more-button[data-placement=${placementId}]`).show(); // Show the show more button
+            });
+        });
+    </script>
+
     <div class="container">
 
         <h1>Student Matches</h1>
@@ -91,33 +110,56 @@ $matches = $placementHelpers->getStudentMatchesForCompany($user->getCompanyId(),
                             <div class="col-md-12">
                                 <h4>Matched Students:</h4>
                                 <div class="row">
-                                    <?php foreach ($placementMatches['students'] as $studentId => $studentData) : ?>
-                                            <?php
+                                    <?php
+                                    $cardCounter = 0;
+                                    foreach ($placementMatches['students'] as $studentId => $studentData) :
                                             $user = $usersDataSet->fetchUserByStudentId($studentId);
                                             if ($user == null)
-                                                continue;
-                                            $studentCourse = $coursesDataSet->fetchCourseById($studentData['studentData']->getCourse());
-                                            $prefIndustry = $industriesDataSet->fetchIndustryNameById($studentData['studentData']->getPrefIndustry());
+                                                continue; // skip this student if they don't exist
+                                            $studentCourse = $coursesDataSet->fetchCourseById($studentData['studentData']->getCourse()); // course of the student
+                                            $prefIndustry = $industriesDataSet->fetchIndustryNameById($studentData['studentData']->getPrefIndustry()); // preferred industry of the student
+                                            $cardCounter++;
+
+                                            $moreThanFourStudents = $cardCounter > 4 ? "placement-{$placementId}" : ""; // if there are more than 4 students, add the placement id to the class name
+
                                             ?>
-                                        <div class="card col-md-6">
+                                        <div class="card col-md-6 mb-2 <?= $moreThanFourStudents ?>" style="<?= $cardCounter > 4 ? "display:none;" : "display:block;" ?>">
                                             <p>
-                                                <strong>Student
-                                                    Name:</strong> <?= $user->getFirstName() ?> <?= $user->getLastName() ?>
+                                                <strong>Student Name:</strong> <?= $user->getFirstName() ?> <?= $user->getLastName() ?>
                                                 <br>
                                                 <strong>Student Course:</strong> <?= $studentCourse->getCourseName() ?>
                                                 <br>
-                                                <strong>Student
-                                                    Institution:</strong> <?= $studentData['studentData']->getInstitution() ?>
+                                                <strong>Student Institution:</strong> <?= $studentData['studentData']->getInstitution() ?>
                                                 <br>
                                                 <strong>Student Preferred Industry:</strong> <?= $prefIndustry ?><br>
-                                                <strong>Student
-                                                    Location:</strong> <?= $studentData['studentData']->getLocation() ?>
+                                                <strong>Student Location:</strong> <?= $studentData['studentData']->getLocation() ?>
                                                 <br>
                                                 <a href="#" class="btn btn-success float-end mb-2">Contact</a>
                                                 <span class="badge rounded-pill text-dark mb-3" style="background-color:#bccf00; border-color: #bccf00">(Compatibility: <?= $studentData['grade'] ?>)</span>
                                             </p>
                                         </div>
                                     <?php endforeach; ?>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <?php $displayStyle = $cardCounter > 4 ? "display:block;" : "display:none;" // used to display the display tag, if less than 4 students then don't display button ?>
+                                    <?php if ($cardCounter > 4) : ?>
+                                        <div class="col-md-auto">
+                                            <button class="btn btn-success mb-2 show-more-button" data-placement="<?= $placementId ?>" style="<? $displayStyle ?>">
+                                                Show More
+                                            </button>
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <button class="btn btn-success mb-2 collapse-button" data-placement="<?= $placementId ?>" style="display:none;">
+                                                Collapse
+                                            </button>
+                                        </div>
+                                    <?php else: ?>
+                                    <div class="col-md-auto">
+                                        <button class="btn btn-success mb-2 show-more-button" data-placement="<?= $placementId ?>" style="<?= $displayStyle ?>">
+                                            Show More
+                                        </button>
+                                    </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

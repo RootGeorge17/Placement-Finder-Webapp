@@ -55,6 +55,15 @@
 .btn-success {
 	background-color: #bccf00;
 	border-color: #bccf00;
+	font-family: DinNextBold, sans-serif;
+	color: #2C2D3F;
+}
+
+.btn-danger {
+	background-color: #ff6161;
+	border-color: #ff6161;
+	font-family: DinNextBold, sans-serif;
+	color: #fafafa;
 }
 
 .homepage-section1

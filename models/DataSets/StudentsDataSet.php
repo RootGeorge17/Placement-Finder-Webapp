@@ -13,7 +13,7 @@ class StudentsDataSet
         $this->dbHandle = $this->dbInstance->getdbConnection();
     }
 
-    public function fetchAllStudentData()
+    public function fetchAllStudentData(): array
     {
         $sqlQuery = 'SELECT * FROM studentData';
 
