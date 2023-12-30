@@ -67,7 +67,7 @@ class GenerateStudentFormData
         $userSkillsAndProficiencies = [];
 
         foreach ($userSkills as $userSkill) { // loop through the user skills
-            $proficiencyId = $userSkill->getProficiency(); // get the proficiency id from the user skill
+            $proficiencyId = $userSkill->getProficiencyId(); // get the proficiency id from the user skill
 
             // Find the proficiency in the fetched list by ID
             $foundProficiency = array_filter($allProficiencies, function ($proficiency) use ($proficiencyId) {

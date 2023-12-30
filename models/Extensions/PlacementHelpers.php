@@ -19,6 +19,7 @@ class PlacementHelpers
      * @param Proficiency[] $allProficiencies all proficiencies
      * @param skill[] $allSkills all skills
      * @return array
+     * @deprecated
      */
     public function getPlacementMatches(StudentData $studentData, $placementsData, array $allProficiencies, array $allSkills): array
     {
@@ -36,7 +37,7 @@ class PlacementHelpers
             foreach ($allSkills as $skill){
                 if ($skill->getId() == $studentSkill){ // if the skill id matches the student skill id
                     foreach ($allProficiencies as $proficiency){ // go through all proficiencies
-                        if ($proficiency->getId() == $skill->getProficiency()){
+                        if ($proficiency->getId() == $skill->getProficiencyId()){
                             $studentSkillProficiencies[$studentSkill] = $proficiency->getProficiency();
                         }
                     }
@@ -70,7 +71,7 @@ class PlacementHelpers
                     foreach ($allSkills as $skill){
                         if ($skill->getId() == $studentSkill){
                             foreach ($allProficiencies as $proficiency){
-                                if ($proficiency->getId() == $skill->getProficiency()){
+                                if ($proficiency->getId() == $skill->getProficiencyId()){
                                     $placementSkillProficiency = $proficiency->getProficiency();
                                     break;
                                 }
@@ -96,6 +97,79 @@ class PlacementHelpers
         }
         return $matches;
     }
+
+    /**
+     * this function returns an array of placements that match the student's skills and proficiencies
+     *
+     * muj - 29/12/2023
+     * @param StudentData $studentData the student you want the matches for
+     * @param PlacementData[] $placementsData
+     * @param Proficiency[] $allProficiencies all proficiencies
+     * @param skill[] $allSkills all skills
+     * @return array
+     * @replace getPlacementMatches
+     */
+
+    public function getPlacementMatchesNew(StudentData $studentData, $placementsData, array $allProficiencies, array $allSkills): array
+    {
+        // Preprocess skills and proficiencies into associative arrays
+        $skillProficiencyMap = [];
+        foreach ($allSkills as $skill) {
+            $skillProficiencyMap[$skill->getId()] = $skill->getProficiencyId();
+        }
+
+        // Mapping student skills to their proficiencies
+        $studentSkillProficiencies = [];
+        foreach ([$studentData->getSkill1(), $studentData->getSkill2(), $studentData->getSkill3()] as $studentSkill) {
+            if (isset($skillProficiencyMap[$studentSkill])) {
+                $studentSkillProficiencies[$studentSkill] = $skillProficiencyMap[$studentSkill];
+            }
+        }
+
+        echo '<script>console.log('.json_encode($studentSkillProficiencies).')</script>';
+
+        $matches = [
+            'excellent' => [],
+            'good' => [],
+            'poor' => []
+        ];
+
+        foreach ($placementsData as $placement) {
+            $skillMatchCount = 0;
+            $sameProficiencyCount = 0;
+
+            $placementSkills = [
+                $placement->getSkill1(),
+                $placement->getSkill2(),
+                $placement->getSkill3()
+            ]; // array of skill ids of the placement
+
+            foreach ($studentSkillProficiencies as $studentSkill => $studentSkillProficiency) { // loop through all student skills and proficiencies
+                if (in_array($studentSkill, $placementSkills)) { // if the student skill is in the placement skills
+                    $skillMatchCount++; // increment the skill match count
+
+                    $placementSkillProficiency = $skillProficiencyMap[$studentSkill];
+
+                    if ($studentSkillProficiency == $placementSkillProficiency) {
+                        $sameProficiencyCount++;
+                    }
+                }
+            }
+
+            if ($skillMatchCount === 3 && $sameProficiencyCount === 3) {
+                $matches['excellent'][] = $placement; // skills match and proficiencies match
+            } elseif ($skillMatchCount === 2 && $sameProficiencyCount === 2) {
+                $matches['good'][] = $placement; // if a couple of skills match and proficiencies match
+            } elseif ($skillMatchCount === 3 && $sameProficiencyCount !== 3) {
+                $matches['good'][] = $placement; // if all skills match but proficiencies don't match
+            } elseif ($skillMatchCount >= 1 && $sameProficiencyCount >= 1) {
+                $matches['poor'][] = $placement; // if at least one skill matches and at least one proficiency matches
+            }
+        }
+
+        return $matches;
+    }
+
 
     /**
      * this function returns an array of skill names the student has
@@ -133,7 +207,7 @@ class PlacementHelpers
                 $skillNames[$studentSkillId] = [
                     'skillId' => $skill->getId(),
                     'skillName' => $skill->getSkillName(),
-                    'skillProficiency' => $proficiencyMap[$skill->getProficiency()]->getProficiency(),
+                    'skillProficiency' => $proficiencyMap[$skill->getProficiencyId()]->getProficiency(),
                 ];
             }
         }
@@ -157,7 +231,7 @@ class PlacementHelpers
             $proficiencyMap[$proficiency->getId()] = $proficiency->getProficiency();
         }
 
-        $skillProficiencyId = $skill->getProficiency();
+        $skillProficiencyId = $skill->getProficiencyId();
         if (isset($proficiencyMap[$skillProficiencyId])) {
             return $proficiencyMap[$skillProficiencyId];
         }

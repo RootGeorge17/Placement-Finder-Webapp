@@ -34,7 +34,7 @@ class SkillsDataSetTest extends TestCase
         $this->assertInstanceOf(Skill::class, $skill, 'SkillsDataSet::fetchSkillById() should return a Skill object');
         $this->assertEquals(1, $skill->getId(), 'SkillsDataSet::fetchSkillById() should return a Skill object with the correct id');
         $this->assertEquals('Programming', $skill->getSkillName(), 'SkillsDataSet::fetchSkillById() should return a Skill object with the correct skill name');
-        $this->assertEquals(3, $skill->getProficiency(), 'SkillsDataSet::fetchSkillById() should return a Skill object with the correct proficiency');
+        $this->assertEquals(3, $skill->getProficiencyId(), 'SkillsDataSet::fetchSkillById() should return a Skill object with the correct proficiency');
     }
 
     public function testFetchSkillName()
