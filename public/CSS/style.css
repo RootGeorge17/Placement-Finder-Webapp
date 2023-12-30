@@ -66,6 +66,10 @@
 	color: #fafafa;
 }
 
+.page-link {
+	font-family: DinNextBold, sans-serif;
+}
+
 .homepage-section1
 {
 	background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../image/woman-office-chart.webp');
