@@ -10,7 +10,7 @@
         }
 
         $skillNames = $placementHelpers->getSkillNames($testStudent, $allSkills, $allProficiencies);
-        $placementMatches = $placementHelpers->getPlacementMatchesNew($testStudent, $allPlacements, $allProficiencies, $allSkills);
+        $placementMatches = $placementHelpers->getPlacementMatchesNew($testStudent, $allPlacements, $allSkills);
         $studentSkills = [
             $testStudent->getSkill1(),
             $testStudent->getSkill2(),

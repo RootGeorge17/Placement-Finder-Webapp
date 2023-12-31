@@ -13,6 +13,10 @@ class StudentsDataSet
         $this->dbHandle = $this->dbInstance->getdbConnection();
     }
 
+    /*
+     * fetch all the student data from the database
+     * @return array
+     */
     public function fetchAllStudentData(): array
     {
         $sqlQuery = 'SELECT * FROM studentData';
@@ -27,12 +31,39 @@ class StudentsDataSet
         return $dataSet;
     }
 
-    public function fetchStudentDataById($id)
+    /**
+     * fetch the student data of a user using their user ID
+     * @param int $id
+     * @return StudentData|null
+     */
+    public function fetchStudentDataById(int $id): ?StudentData
     {
         $sqlQuery = 'SELECT * FROM studentData WHERE id = :id';
 
         $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
         $statement->execute(['id' => $id]); // execute the PDO statement
+
+        $row = $statement->fetch();
+        if (!$row) {
+            return null;
+        }
+        return new StudentData($row);
+    }
+
+    /**
+     * fetch the student data of a user using their user ID
+     * @param int $userId
+     * @return StudentData|null
+     */
+    public function fetchStudentDataByUserId(int $userId): ?StudentData
+    {
+        $sqlQuery = 'SELECT studentData.* 
+                     FROM user 
+                     INNER JOIN studentData ON user.studentData = studentData.id
+                     WHERE user.id = :userId';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(['userId' => $userId]); // execute the PDO statement
 
         $row = $statement->fetch();
         if (!$row) {
