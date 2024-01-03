@@ -10,7 +10,7 @@
         }
 
         $skillNames = $placementHelpers->getSkillNames($testStudent, $allSkills, $allProficiencies);
-        $placementMatches = $placementHelpers->getPlacementMatches($testStudent, $allPlacements, $allProficiencies, $allSkills);
+        $placementMatches = $placementHelpers->getPlacementMatchesNew($testStudent, $allPlacements, $allProficiencies, $allSkills);
         $studentSkills = [
             $testStudent->getSkill1(),
             $testStudent->getSkill2(),
@@ -19,15 +19,22 @@
         ?>
 
         <h1>Placement Matches</h1>
+        <?php if (sizeof($placementMatches, 1) == 3): // check if only the criteria are in array and no other data ('excellent', 'good', 'poor')?>
+            <div class="row mb-2">
+                <div class="mx-auto mb-2 text-center border">
+                    <h2 class="mb-2">No Placements Found 😥</h2>
+                </div>
+            </div>
+        <?php else: ?>
+
         <p>Based on your Skills:
-            <?php foreach ($skillNames as $skillId => $skillData) : ?>
+            <?php foreach ($skillNames as $placementSkillId => $skillData) : ?>
                 <span class="badge rounded-pill text-dark" style="background-color:#bccf00; border-color: #bccf00">
                     <?= $skillData['skillName'] ?> (<?= $skillData['skillProficiency'] ?>)
                 </span>
             <?php endforeach; ?>
             We have determined these Placements for you!
         </p>
-
 
         <div class="container">
             <div class="placement-matches">
@@ -36,9 +43,9 @@
                         <h3><?= ucfirst($matchType) ?> Matches</h3>
                         <div class="match-type">
                             <?php foreach ($placements as $placement): ?>
-                                <div class="card border-<?php
-                                echo ($matchType === 'excellent') ? 'success' :
-                                    (($matchType === 'good') ? 'warning' : 'danger');
+                                <div class="card border-
+                                <?= ($matchType === 'excellent') ? 'success' :
+                                    (($matchType === 'good') ? 'warning' : 'danger'); // this is for the border colour of the card
                                 ?> mb-3">
                                     <!-- Display placement details -->
                                     <div class="card-body">
@@ -86,17 +93,20 @@
                                             $testStudent->getSkill2(),
                                             $testStudent->getSkill3()
                                         ];
-
                                         $placementSkills = [
                                             $placement->getSkill1(),
                                             $placement->getSkill2(),
                                             $placement->getSkill3()
-                                        ];
-                                        ?>
-                                        <?php foreach ($placementSkills as $skillId): ?>
-                                            <?php foreach ($allSkills as $skill): ?>
-                                                <?php if ($skill->getId() === $skillId && in_array($skillId, $userSkills)): ?>
-                                                    <span class="badge rounded-pill text-dark" style="background-color:#bccf00; border-color: #bccf00"><?= $skill->getSkillName() ?> (<?= $placementHelpers->getProficiencyFromSkill($skill, $allProficiencies) ?>)</span>
+                                        ]; ?>
+
+                                        <?php foreach ($placementSkills as $placementSkillId): // loop through placement skill ids ?>
+                                            <?php foreach ($allSkills as $skill): // loop through all skills
+                                                // if skill id and placement skill id match, and the placement skill id in the user skills then display ?>
+                                                <?php if ($skill->getId() === $placementSkillId && in_array($placementSkillId, $userSkills)): ?>
+                                                    <span class="badge rounded-pill text-dark"
+                                                          style="background-color:#bccf00; border-color: #bccf00">
+                                                        <?= $skill->getSkillName() ?> (<?= $placementHelpers->getProficiencyFromSkill($skill, $allProficiencies) ?>)
+                                                    </span>
                                                 <?php endif; ?>
                                             <?php endforeach; ?>
                                         <?php endforeach; ?>
@@ -109,6 +119,7 @@
             </div>
         </div>
 
+        <?php endif; ?>
     </div>
 
 

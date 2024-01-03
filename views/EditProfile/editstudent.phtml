@@ -6,6 +6,15 @@
     <form name="edit-student" action="/editprofile" method="post">
         <h1 class="mb-3 text-center">Edit your profile</h1>
 
+        <?php if (sizeof($userSkills) < 3):?>
+        <div class="row mb-2">
+            <div class="mx-auto mb-2 text-center border">
+                <h6 class="mb-2">Something has gone terribly wrong!! Please contact our support!</h6>
+                <p class="mb-2">ERROR: 3 skills needed, found less than 3. Possible duplicate skills</p>
+            </div>
+        </div>
+        <?php else: ?>
+
         <!--first name and last name-->
         <div class="row mb-3">
             <div class="col-md-6 mb-2">
@@ -95,7 +104,7 @@
                     $outputtedSkills = [];
                     ?>
                     <select class="form-select" name="skill<?= $i + 1 ?>" id="skill<?= $i + 1 ?>">
-                        <option value="<?= $userSkills[$i]->getId() ?>"><?= $userSkills[$i]->getSkillName() ?></option> <!-- get the skill name from the user's skill object -->
+                        <option value="<?= $userSkills[$i]->getSkillName() ?>"><?= $userSkills[$i]->getSkillName() ?></option> <!-- get the skill name from the user's skill object -->
                         <?php foreach ($allSkills as $skill) :
                             if ($skill->getSkillName() == $userSkills[$i]->getSkillName()) :
                                 continue; // check if the skill is already in selection
@@ -149,6 +158,7 @@
             </div>
         </div>
 
+        <?php endif; ?>
     </form>
 </div>
 

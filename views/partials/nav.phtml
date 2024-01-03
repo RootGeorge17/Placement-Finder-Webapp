@@ -20,9 +20,11 @@
                         <?php if (authenticated()) : ?>
                             <?php if ($_SESSION['user']['usertype'] == 1 || $_SESSION['user']['usertype'] == 2) : ?>
                                 <li><a href="/dashboard"><span class="navigation-item-text">Dashboard</span></a></li>
-                            <?php elseif ($_SESSION['user']['usertype'] == 1 || $_SESSION['user']['usertype'] == 3 || $_SESSION['user']['usertype'] == 4) : ?>
+                            <?php endif; ?>
+                            <?php if (($_SESSION['user']['usertype'] == 1) || ($_SESSION['user']['usertype'] == 3) || ($_SESSION['user']['usertype'] == 4)) : ?>
                                 <li><a href="/placements"><span class="navigation-item-text">All Placements</span></a></li>
-                            <?php elseif ($_SESSION['user']['usertype'] == 2) : ?>
+                            <?php endif; ?>
+                                    <?php if ($_SESSION['user']['usertype'] == 2) : ?>
                                 <li><a href="/students"><span class="navigation-item-text">All Students</span></a></li>
                                 <li><a href="/addplacement"><span class="navigation-item-text">Add Placement</span></a></li>
                             <?php endif; ?>
@@ -201,12 +203,17 @@
                                 <?php if (authenticated()) : ?>
                                     <?php if ($_SESSION['user']['usertype'] == 1 || $_SESSION['user']['usertype'] == 2) : ?>
                                         <li><a href="/dashboard">Dashboard</a></li>
-                                    <?php elseif ($_SESSION['user']['usertype'] == 1 || $_SESSION['user']['usertype'] == 3 || $_SESSION['user']['usertype'] == 4) : ?>
+                                    <?php endif; ?>
+
+                                    <?php if (($_SESSION['user']['usertype'] == 1) || ($_SESSION['user']['usertype'] == 3) || ($_SESSION['user']['usertype'] == 4)) : ?>
                                         <li><a href="/placements">All Placements</a></li>
-                                    <?php elseif ($_SESSION['user']['usertype'] == 2) : ?>
+                                    <?php endif; ?>
+
+                                    <?php if ($_SESSION['user']['usertype'] == 2) : ?>
                                         <li><a href="/students">All Students</a></li>
                                         <li><a href="/addplacement">Add Placement</a></li>
                                     <?php endif; ?>
+
                                     <?php if (authenticated()) : ?>
                                         <li><a href="/editprofile">Edit Profile</a></li>
 
@@ -214,6 +221,7 @@
                                             <a class="nav-link btn-block bcs-login-btn" href="/signout">Sign out</a>
                                         </li>
                                     <?php endif; ?>
+
                                 <?php else : ?>
                                     <li class="nav-item btn">
                                         <a class="nav-link btn-block bcs-login-btn" href="/login"><span

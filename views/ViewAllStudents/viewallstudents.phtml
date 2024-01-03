@@ -92,6 +92,76 @@
                         <a class="dropdown-item" href="students?page=<?php echo $page ?>&limit=16<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>&sort=locationdesc">Location DESC<i class="bi bi-sort-alpha-down-alt"></i></a>
                     </div>
                 </li>
+
+                <li class="page-item">
+                    <button class="page-link filter-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#filter" aria-expanded="false" aria-controls="filter">
+                        Filter
+                    </button>
+
+                    <div class="collapse" id="filter">
+                        <div class="card card-body">
+                            <form action="/students" method="get">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- Location Dropdown -->
+                                        <div class="mb-3">
+                                            <label for="locationDropdown" class="form-label">Location</label>
+                                            <select class="form-select" id="locationDropdown" name="location">
+                                                <option value="all">All</option>
+                                                <?php foreach ($allLocations as $location) : ?>
+                                                    <option value="<?= $location['city'] ?>"><?= $location['city'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Other dropdowns for Industry Preference, Course, Institution... -->
+                                        <div class="mb-3">
+                                            <label for="industryDropdown" class="form-label">Industry</label>
+                                            <select class="form-select" id="industryDropdown" name="industry">
+                                                <option value="all">All</option>
+                                                <?php foreach ($allIndustries as $industry) : ?>
+                                                    <option value="<?= $industry->getId() ?>"><?= $industry->getIndustry() ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- Other dropdowns for Industry Preference, Course, Institution... -->
+                                        <div class="mb-3">
+                                            <label for="course" class="form-label">Course</label>
+                                            <select class="form-select" id="course" name="course">
+                                                <option value="all">All</option>
+                                                <?php foreach ($allCourses as $course) : ?>
+                                                    <option value="<?= $course->getId() ?>"><?= $course->getCourseName() ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <!-- Other dropdowns for Industry Preference, Course, Institution... -->
+                                        <div class="mb-3">
+                                            <label for="institution" class="form-label">Institutions</label>
+                                            <select class="form-select" id="institution" name="institution">
+                                                <option value="all">All</option>
+                                                <?php foreach ($allInstitutions as $institution) : ?>
+                                                    <option value="<?= $institution['name'] ?>"><?= $institution['name'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary" name="filter">Apply Filter</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+
             </ul>
         </nav>
 

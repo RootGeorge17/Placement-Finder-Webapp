@@ -29,7 +29,7 @@ class skill
         return $this->description;
     }
 
-    public function getProficiency()
+    public function getProficiencyId()
     {
         return $this->proficiency;
     }

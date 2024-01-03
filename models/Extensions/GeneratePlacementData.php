@@ -28,6 +28,19 @@ class GeneratePlacementData
         return $locations;
     }
 
+    public static function getInstitutions()
+    {
+        $json = file_get_contents(base_path('models/JsonData/uk-universities.json'));
+
+        $institutions = json_decode($json, true);
+
+        usort($institutions, function($a, $b) {
+            return $a['name'] <=> $b['name'];
+        });
+
+        return $institutions;
+    }
+
     public static function getCompanies()
     {
         if (!self::$companiesDataSet) {

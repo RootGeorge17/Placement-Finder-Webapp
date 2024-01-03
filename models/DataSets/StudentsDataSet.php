@@ -13,7 +13,7 @@ class StudentsDataSet
         $this->dbHandle = $this->dbInstance->getdbConnection();
     }
 
-    public function fetchAllStudentData()
+    public function fetchAllStudentData(): array
     {
         $sqlQuery = 'SELECT * FROM studentData';
 
@@ -67,7 +67,7 @@ class StudentsDataSet
         return $dataSet;
     }
 
-    public function fetchAllByLimitAndFilter($start, $limit, $sort){
+    public function fetchAllByLimitAndSort($start, $limit, $sort){
         $sqlQuery = 'SELECT studentData.*, user.firstName, user.lastName 
                  FROM studentData 
                  INNER JOIN user ON user.studentData = studentData.id';
@@ -112,6 +112,93 @@ class StudentsDataSet
         $statement = $this->dbHandle->prepare($sqlQuery);
         $statement->bindParam(':start', $start, PDO::PARAM_INT);
         $statement->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $statement->execute();
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new StudentData($row);
+        }
+        return $dataSet;
+    }
+
+    public function fetchByLimitAndSortAndFilter(int $start,int $limit,string $sort,
+                                              string $location,string $industry,
+                                              string $course,string $institution){
+        $sqlQuery = 'SELECT studentData.*, user.firstName, user.lastName 
+                 FROM studentData 
+                 INNER JOIN user ON user.studentData = studentData.id';
+
+        if ($location != 'all' || $industry != 'all' || $course != 'all' || $institution != 'all'){
+            $sqlQuery .= ' WHERE';
+        }
+
+        if ($location != 'all'){
+            $sqlQuery .= ' studentData.location = :location';
+        }
+
+        if ($location != 'all' && $industry != 'all'){
+            $sqlQuery .= ' AND';
+        }
+
+        if ($industry != 'all'){
+            $sqlQuery .= ' studentData.prefIndustry = :industry';
+        }
+
+        if (($location != 'all' || $industry != 'all') && $course != 'all'){
+            $sqlQuery .= ' AND';
+        }
+
+        if ($course != 'all'){
+            $sqlQuery .= ' studentData.course = :course';
+        }
+
+        if (($location != 'all' || $industry != 'all' || $course != 'all') && $institution != 'all'){
+            $sqlQuery .= ' AND';
+        }
+
+        if ($institution != 'all'){
+            $sqlQuery .= ' studentData.institution = :institution';
+        }
+
+        switch ($sort) {
+            case 'nameasc':
+                $sqlQuery .= ' ORDER BY user.firstName ASC, user.lastName ASC';
+                break;
+            case 'namedesc':
+                $sqlQuery .= ' ORDER BY user.firstName DESC, user.lastName DESC';
+                break;
+            case 'locationasc':
+                $sqlQuery .= ' ORDER BY studentData.location ASC';
+                break;
+            case 'locationdesc':
+                $sqlQuery .= ' ORDER BY studentData.location DESC';
+                break;
+            default:
+                break;
+        }
+
+        $sqlQuery .= ' LIMIT :start, :limit';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        $statement->bindParam(':start', $start, PDO::PARAM_INT);
+        $statement->bindParam(':limit', $limit, PDO::PARAM_INT);
+
+        if ($location != 'all'){
+            $statement->bindParam(':location', $location, PDO::PARAM_STR);
+        }
+
+        if ($industry != 'all'){
+            $statement->bindParam(':industry', $industry, PDO::PARAM_STR);
+        }
+
+        if ($course != 'all'){
+            $statement->bindParam(':course', $course, PDO::PARAM_STR);
+        }
+
+        if ($institution != 'all'){
+            $statement->bindParam(':institution', $institution, PDO::PARAM_STR);
+        }
+
         $statement->execute();
 
         $dataSet = [];

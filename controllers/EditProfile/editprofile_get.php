@@ -67,8 +67,7 @@ if ($_SESSION['user']['usertype'] == 1) {
         'allIndustries' => $industriesDataSet->fetchAllIndustries(), // get all industries
         'user' => $user,
     ]);
-} else if ($_SESSION['user']['usertype'] == 3) {
-
+} else if ($_SESSION['user']['usertype'] == 3 || $_SESSION['user']['usertype'] == 4) {
 
     view("EditProfile/editcareersofficer.phtml", [
         'pageTitle' => 'Edit Profile',

@@ -56,11 +56,22 @@
                 <label class="mb-2" for="skill1">Skill 1</label>
                 <select class="form-select" name="skill1" id="skill1">
                     <option value="" selected disabled>Select A Skill</option>
-                    <?php foreach ($skills as $skill): ?>
-                        <option value="<?= $skill->getSkillName() ?>">
-                            <?= $skill->getSkillName() ?>
-                        </option>
-                    <?php endforeach; ?>
+                    <?php
+                    $usedSkillNames = []; // Array to store used skill names
+
+                    foreach ($skills as $skill):
+                        $skillName = $skill->getSkillName();
+                        if (!in_array($skillName, $usedSkillNames)) {
+                            // Output the skill name only if it's not already in the usedSkillNames array
+                            ?>
+                            <option value="<?= $skillName ?>">
+                                <?= $skillName ?>
+                            </option>
+                            <?php
+                            $usedSkillNames[] = $skillName; // Add the skill name to the usedSkillNames array
+                        }
+                    endforeach;
+                    ?>
                 </select>
             </div>
             <div class="col-md-3">
@@ -81,11 +92,22 @@
                 <label class="mb-2" for="skill2">Skill 2</label>
                 <select class="form-select" name="skill2" id="skill2">
                     <option value="" selected disabled>Select A Skill</option>
-                    <?php foreach ($skills as $skill): ?>
-                        <option value="<?= $skill->getSkillName() ?>">
-                            <?= $skill->getSkillName() ?>
-                        </option>
-                    <?php endforeach; ?>
+                    <?php
+                    $usedSkillNames = []; // Array to store used skill names
+
+                    foreach ($skills as $skill):
+                        $skillName = $skill->getSkillName();
+                        if (!in_array($skillName, $usedSkillNames)) {
+                            // Output the skill name only if it's not already in the usedSkillNames array
+                            ?>
+                            <option value="<?= $skillName ?>">
+                                <?= $skillName ?>
+                            </option>
+                            <?php
+                            $usedSkillNames[] = $skillName; // Add the skill name to the usedSkillNames array
+                        }
+                    endforeach;
+                    ?>
                 </select>
             </div>
             <div class="col-md-3">
@@ -106,11 +128,22 @@
                 <label class="mb-2" for="skill3">Skill 3</label>
                 <select class="form-select" name="skill3" id="skill3">
                     <option value="" selected disabled>Select A Skill</option>
-                    <?php foreach ($skills as $skill): ?>
-                        <option value="<?= $skill->getSkillName() ?>">
-                            <?= $skill->getSkillName() ?>
-                        </option>
-                    <?php endforeach; ?>
+                    <?php
+                    $usedSkillNames = []; // Array to store used skill names
+
+                    foreach ($skills as $skill):
+                        $skillName = $skill->getSkillName();
+                        if (!in_array($skillName, $usedSkillNames)) {
+                            // Output the skill name only if it's not already in the usedSkillNames array
+                            ?>
+                            <option value="<?= $skillName ?>">
+                                <?= $skillName ?>
+                            </option>
+                            <?php
+                            $usedSkillNames[] = $skillName; // Add the skill name to the usedSkillNames array
+                        }
+                    endforeach;
+                    ?>
                 </select>
             </div>
 

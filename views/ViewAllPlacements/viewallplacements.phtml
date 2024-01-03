@@ -2,16 +2,27 @@
 <?php require_once(base_path('views/partials/nav.phtml')) ?>
 <?php require_once(base_path('views/partials/header.phtml')) ?>
 
-<div class="container mb-5">
-    <h1 class="mb-3 text-center">All Placements</h1>
+<?php
+function generateSortURL($page, $limit, $searchField, $sort)
+{
+    $baseURL = "placements?page=$page&limit=$limit";
+    $search = isset($searchField) ? "&search=" . urlencode($searchField) : '';
+    return "$baseURL$search&sort=$sort";
+}
+?>
 
-    <!-- Pagination -->
+
+    <div class="container mb-5">
+        <h1 class="mb-3 text-center">All Placements</h1>
+
+        <!-- Pagination -->
         <nav aria-label="Page Navigation" class="main-navigation mb-2">
             <ul class="pagination">
                 <!-- Previous Button -->
                 <?php if ($page > 1) { ?>
                     <li class="page-item">
-                        <a class="page-link" href="placements?page=<?php echo ($page - 1) . "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">Prev</a>
+                        <a class="page-link"
+                           href="placements?page=<?= ($page - 1) . "&limit=$limit"; ?><?= isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">Prev</a>
                     </li>
                 <?php } else { ?>
                     <li class="page-item disabled">
@@ -22,7 +33,8 @@
                 <!-- Page Number 1 -->
                 <?php if ($page > 3) { ?>
                     <li class="page-item">
-                        <a class="page-link" href="placements?page=1<?php echo "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">1</a>
+                        <a class="page-link"
+                           href="placements?page=1<?= "&limit=$limit"; ?><?= isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">1</a>
                     </li>
                     <li class="page-item disabled">
                         <span class="page-link">...</span>
@@ -31,9 +43,9 @@
 
                 <!-- Page Numbers between 1 and total pages -->
                 <?php for ($i = max(1, $page - 2); $i <= min($page + 2, $total); $i++) { ?>
-                    <li class="page-item <?php echo ($page == $i) ? 'active' : ''; ?>">
+                    <li class="page-item <?= ($page == $i) ? 'active' : ''; ?>">
                         <a class="page-link"
-                           href="placements?page=<?php echo $i . "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>"><?php echo $i; ?>
+                           href="placements?page=<?= $i . "&limit=$limit"; ?><?= isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>"><?= $i; ?>
                         </a>
                     </li>
                 <?php } ?>
@@ -44,7 +56,7 @@
                     </li>
                     <li class="page-item">
                         <a class="page-link"
-                           href="placements?page=<?php echo $total . "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>"><?php echo $total; ?>
+                           href="placements?page=<?= $total . "&limit=$limit"; ?><?= isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>"><?= $total; ?>
                         </a>
                     </li>
                 <?php } ?>
@@ -53,7 +65,7 @@
                 <?php if ($page < $total) { ?>
                     <li class="page-item">
                         <a class="page-link"
-                           href="placements?page=<?php echo ($page + 1) . "&limit=$limit"; ?><?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">
+                           href="placements?page=<?= ($page + 1) . "&limit=$limit"; ?><?= isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">
                             Next
                         </a>
                     </li>
@@ -69,33 +81,71 @@
                 <li class="page-item dropdown">
                     <button class="page-link dropdown-toggle" href="#" id="pageLimit" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                        <?php echo $limit . " per page"; ?>
+                        <?= $limit . " per page"; ?>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="pageLimit">
-                        <a class="dropdown-item"
-                           href="placements?page=<?php echo $page ?>&limit=16<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">16</a>
-                        <a class="dropdown-item"
-                           href="placements?page=<?php echo $page ?>&limit=24<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">24</a>
-                        <a class="dropdown-item"
-                           href="placements?page=<?php echo $page ?>&limit=32<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>">32</a>
+                        <a class="dropdown-item" href="<?= generateSortURL($page,16, '', $sort) ?>">16</a>
+                        <a class="dropdown-item" href="<?= generateSortURL($page, 24,'', $sort) ?>">24</a>
+                        <a class="dropdown-item" href="<?= generateSortURL($page, 32,'', $sort) ?>">32</a>
                     </div>
                 </li>
                 <li class="page-item dropdown">
                     <button class="page-link dropdown-toggle" href="#" id="sort" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                        <?php echo "Sort by ". strtoupper($sort); ?>
+                        <?= "Sort by " . strtoupper($sort); ?>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="sort">
-                        <a class="dropdown-item" href="placements?page=<?php echo $page ?>&limit=16<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>&sort=nameasc">Name ASC<i class="bi bi-sort-alpha-down"></i></a>
-                        <a class="dropdown-item" href="placements?page=<?php echo $page ?>&limit=16<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>&sort=namedesc">Name DESC<i class="bi bi-sort-alpha-down-alt"></i></a>
-                        <a class="dropdown-item" href="placements?page=<?php echo $page ?>&limit=16<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>&sort=locationasc">Location ASC<i class="bi bi-sort-alpha-down"></i></a>
-                        <a class="dropdown-item" href="placements?page=<?php echo $page ?>&limit=16<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>&sort=locationdesc">Location DESC<i class="bi bi-sort-alpha-down-alt"></i></a>
-                        <a class="dropdown-item" href="placements?page=<?php echo $page ?>&limit=16<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>&sort=salaryasc">Salary ASC<i class="bi bi-sort-alpha-down"></i></a>
-                        <a class="dropdown-item" href="placements?page=<?php echo $page ?>&limit=16<?php echo isset($view->searchField) ? "&search=" . urlencode($view->searchField) : ''; ?>&sort=salarydesc">Salary DESC<i class="bi bi-sort-alpha-down-alt"></i></a>
+                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit, '', 'nameasc') ?>">Name ASC <i class="bi bi-sort-alpha-down"></i></a>
+                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'namedesc') ?>">Name DESC <i class="bi bi-sort-alpha-down-alt"></i></a>
+                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'locationasc') ?>">Location ASC <i class="bi bi-sort-alpha-down"></i></a>
+                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'locationdesc') ?>">Location DESC <i class="bi bi-sort-alpha-down-alt"></i></a>
+                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'salaryasc') ?>">Salary ASC <i class="bi bi-sort-alpha-down"></i></a>
+                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'salarydesc') ?>">Salary DESC <i class="bi bi-sort-alpha-down-alt"></i></a>
+                    </div>
+                </li>
+
+                <li class="page-item">
+                    <button class="page-link filter-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#filter" aria-expanded="false" aria-controls="filter">
+                        Filter
+                    </button>
+
+                    <div class="collapse" id="filter">
+                        <div class="card card-body">
+                            <form action="/placements" method="get">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- Location Dropdown -->
+                                        <div class="mb-3">
+                                            <label for="locationDropdown" class="form-label">Location</label>
+                                            <select class="form-select" id="locationDropdown" name="location">
+                                                <option value="all">All</option>
+                                                <?php foreach ($allLocation as $location) : ?>
+                                                    <option value="<?= $location['city'] ?>"><?= $location['city'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Other dropdowns for Industry Preference, Course, Institution... -->
+                                        <div class="mb-3">
+                                        <label for="industryDropdown" class="form-label">Industry</label>
+                                        <select class="form-select" id="industryDropdown" name="industry">
+                                            <option value="all">All</option>
+                                            <?php foreach ($allIndustries as $industry) : ?>
+                                                <option value="<?= $industry->getId() ?>"><?= $industry->getIndustry() ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary" name="filter">Apply Filter</button>
+                            </form>
+                        </div>
                     </div>
                 </li>
             </ul>
-        </nav>
+    </nav>
 
     <div class="row mb-3">
         <?php foreach ($allPlacements as $placement) :
@@ -105,56 +155,59 @@
                 $placement->getSkill3()
             ];
             $placementSkills = $skillsDataSet->fetchSkillsbyIdArray($placementSkillIds);
-        ?>
+            ?>
 
-        <div class="card mb-2">
-            <div class="card-body">
-                <div class="placement-details">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <p><strong>Company:</strong> <?= $companiesDataSet->fetchCompanyName($placement->getCompanyId()) ?></p>
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="placement-details">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <p>
+                                    <strong>Company:</strong> <?= $companiesDataSet->fetchCompanyName($placement->getCompanyId()) ?>
+                                </p>
+                            </div>
+                            <div class="col-sm-4">
+                                <p><strong>Description:</strong> <?= $placement->getDescription() ?></p>
+                            </div>
                         </div>
-                        <div class="col-sm-4">
-                            <p><strong>Description:</strong> <?= $placement->getDescription() ?></p>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <p>
-                                <strong>Industry:</strong> <?= $industriesDataSet->fetchIndustryNameById($placement->getIndustry()) ?>
-                            </p>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <p>
+                                    <strong>Industry:</strong> <?= $industriesDataSet->fetchIndustryNameById($placement->getIndustry()) ?>
+                                </p>
+                            </div>
+                            <div class="col-sm-4">
+                                <p><strong>Salary:</strong>
+                                    £<?= number_format($placement->getSalary(), 0, '.', ',') ?></p>
+                            </div>
+                            <div class="col-sm-4">
+                                <p><strong>Location:</strong> <?= $placement->getLocation() ?></p>
+                            </div>
                         </div>
-                        <div class="col-sm-4">
-                            <p><strong>Salary:</strong>
-                                £<?= number_format($placement->getSalary(), 0, '.', ',') ?></p>
-                        </div>
-                        <div class="col-sm-4">
-                            <p><strong>Location:</strong> <?= $placement->getLocation() ?></p>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <p><strong>Start Date:</strong> <?= $placement->getStartDate() ?></p>
+                            </div>
+                            <div class="col-sm-4">
+                                <p><strong>End Date:</strong> <?= $placement->getEndDate() ?></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <p><strong>Start Date:</strong> <?= $placement->getStartDate() ?></p>
-                        </div>
-                        <div class="col-sm-4">
-                            <p><strong>End Date:</strong> <?= $placement->getEndDate() ?></p>
-                        </div>
-                    </div>
+                    <a href="#" class="btn btn-success text-dark">Apply!</a>
                 </div>
-                <a href="#" class="btn btn-success text-dark">Apply!</a>
+                <div class="card-footer">
+                    <small>Skills</small>
+                    <?php foreach ($placementSkills as $skill) : ?>
+                        <span class="badge rounded-pill text-dark"
+                              style="background-color:#bccf00; border-color: #bccf00"><?= $skill->getSkillName() ?>(<?= $placementHelpers->getProficiencyFromSkill($skill, $allProficiencies) ?>)</span>
+                    <?php endforeach; ?>
+                </div>
             </div>
-            <div class="card-footer">
-                <small>Skills</small>
-                <?php foreach ($placementSkills as $skill) : ?>
-                    <span class="badge rounded-pill text-dark" style="background-color:#bccf00; border-color: #bccf00"><?= $skill->getSkillName() ?>(<?= $placementHelpers->getProficiencyFromSkill($skill, $allProficiencies) ?>)</span>
-                <?php endforeach; ?>
-            </div>
-        </div>
         <?php endforeach; ?>
     </div>
 
 
-</div>
+    </div>
 
 <?php require_once(base_path('views/partials/footer.phtml')) ?>

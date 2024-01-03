@@ -42,27 +42,67 @@ $rowCount = $studentsDataSet->fetchRowCountAll();
 
 $total = ceil($rowCount / $limit); // total number of pages
 
-$sort = 'all';
+$queryParams = [
+    'page' => $_GET['page'] ?? 1,
+    'limit' => $_GET['limit'] ?? 16,
+    'sort' => 'all',
+];
 
 if (isset($_GET['sort'])){
     if ($_GET['sort'] == 'all'){
-        $sort = 'all';
-    } elseif ($_GET['sort'] == 'nameasc'){
-        $sort = 'nameasc';
-    } elseif ($_GET['sort'] == 'namedesc'){
-        $sort = 'namedesc';
-    } elseif ($_GET['sort'] == 'locationasc'){
-        $sort = 'locationasc';
-    } elseif ($_GET['sort'] == 'locationdesc') {
-        $sort = 'locationdesc';
-    } else {
+        $queryParams['sort'] = 'all';
+    }
+    elseif ($_GET['sort'] == 'nameasc'){
+        $queryParams['sort'] = 'nameasc';
+    }
+    elseif ($_GET['sort'] == 'namedesc'){
+        $queryParams['sort'] = 'namedesc';
+    }
+    elseif ($_GET['sort'] == 'locationasc'){
+        $queryParams['sort'] = 'locationasc';
+    }
+    elseif ($_GET['sort'] == 'locationdesc') {
+        $queryParams['sort'] = 'locationdesc';
+    }
+    else {
         header("Location: /students?page=1&limit=16&sort=all");
     }
 }
 
+$sort = $queryParams['sort'];
 
-$allStudents = $studentsDataSet->fetchAllByLimitAndFilter($start, $limit, $sort);
+$allStudents = null;
 
+if (isset($_GET['location'])) {
+    if ($_GET['location']) {
+        $queryParams['location'] = $_GET['location'];
+    }
+}
+if (isset($_GET['industry'])) {
+    if ($_GET['industry']) {
+        $queryParams['industry'] = $_GET['industry'];
+    }
+}
+
+if (isset($_GET['course'])) {
+    if ($_GET['course']) {
+        $queryParams['course'] = $_GET['course'];
+    }
+}
+
+if (isset($_GET['institution'])) {
+    if ($_GET['institution']) {
+        $queryParams['institution'] = $_GET['institution'];
+    }
+}
+
+if (isset($_GET['filter'])){
+    $allStudents = $studentsDataSet->fetchByLimitAndSortAndFilter($start, $limit, $sort,
+        $queryParams['location'], $queryParams['industry'], $queryParams['course'],
+        $queryParams['institution']);
+} else {
+    $allStudents = $studentsDataSet->fetchAllByLimitAndSort($start, $limit, $sort);
+}
 
 view('/ViewAllStudents/viewallstudents.phtml', [
         'pageTitle' => 'All Students',
@@ -70,6 +110,12 @@ view('/ViewAllStudents/viewallstudents.phtml', [
         'usersDataSet' => $usersDataSet,
         'coursesDataSet' => $coursesDataSet,
         'industriesDataSet' => $industriesDataSet,
+
+        'allLocations' => GeneratePlacementData::getLocations(),
+        'allIndustries' => $industriesDataSet->fetchAllIndustries(),
+        'allCourses' => $coursesDataSet->fetchAllCourses(),
+        'allInstitutions' => GeneratePlacementData::getInstitutions(),
+
         'total' => $total,
         'page' => $page,
         'limit' => $limit,
