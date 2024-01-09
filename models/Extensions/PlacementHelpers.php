@@ -35,8 +35,6 @@ class PlacementHelpers
             }
         }
 
-        echo '<script>console.log('.json_encode($studentSkillProficiencies).')</script>';
-
         $matches = [
             'excellent' => [],
             'good' => [],
@@ -265,7 +263,7 @@ class PlacementHelpers
             ];
 
             foreach ($allStudents as $studentData) {
-                $studentMatches = $this->getPlacementMatches($studentData, [$placement], $allProficiencies, $allSkills);
+                $studentMatches = $this->getPlacementMatchesNew($studentData, [$placement], $allSkills);
 
                 if (!empty($studentMatches['excellent']) || !empty($studentMatches['good']) || !empty($studentMatches['poor'])) {
                     $studentId = $studentData->getId();

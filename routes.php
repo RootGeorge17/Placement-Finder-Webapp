@@ -18,7 +18,7 @@ $router->post('/register', 'controllers/Authentication/register/store.php');
 $router->get('/editprofile', 'controllers/EditProfile/editprofile_get.php');
 $router->post('/editprofile', 'controllers/EditProfile/editprofile_post.php');
 $router->delete('/editprofile', 'controllers/DeleteProfile/deleteprofile.php');
-$router->post('/editprofile/changepassword', 'controllers/EditProfile/editprofile_post.php');
+$router->update('/editprofile', 'controllers/UpdateProfile/updateprofile.php');
 
 $router->get('/addplacement', 'controllers/AddPlacement/addplacement.php');
 $router->post('/addplacement', 'controllers/AddPlacement/addplacement_post.php');

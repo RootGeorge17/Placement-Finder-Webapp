@@ -43,10 +43,10 @@
                         <h3><?= ucfirst($matchType) ?> Matches</h3>
                         <div class="match-type">
                             <?php foreach ($placements as $placement): ?>
-                                <div class="card border-
-                                <?= ($matchType === 'excellent') ? 'success' :
-                                    (($matchType === 'good') ? 'warning' : 'danger'); // this is for the border colour of the card
-                                ?> mb-3">
+                                <?php $borderColour = ($matchType === 'excellent') ? 'success' :
+                                    (($matchType === 'good') ? 'warning' : 'danger'); // this is for the border colour of the card ?>
+
+                                <div class="card border-<?= $borderColour?> mb-3">
                                     <!-- Display placement details -->
                                     <div class="card-body">
                                         <div class="placement-details">
