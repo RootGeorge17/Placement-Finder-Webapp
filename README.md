@@ -27,7 +27,7 @@ OGs only no sweats
     - Create a student or company account and search for placements or students, respectively.
 
 2. If running on the Website:
-    - Access the website on:
+    - Access the website on: http://hc23-17.poseidon.salford.ac.uk
     - Create a student or company account and search for placements or students, respectively.
 
 ![alt text]()
