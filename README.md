@@ -1,8 +1,5 @@
 # Placement-Finder-Webapp
 
-## Description
-OGs only no sweats
-
 ## Installation
 
 #### Clone repository using SSH:
