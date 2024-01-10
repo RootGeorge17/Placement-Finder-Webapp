@@ -6,6 +6,16 @@
 
     <h1 class="mb-3 text-center">Edit Profile</h1>
 
+    <?php if (!empty($errors)) : ?>
+        <ul class="error-list list-unstyled text-center mx-6 mb-3 mb-lg-4">
+            <?php foreach ($errors as $error) : ?>
+                <strong>
+                    <li class="text-danger mt-2 list"><?= $error ?></li>
+                </strong>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+
     <form name="edit-employer" action="/editprofile" method="POST" enctype="multipart/form-data">
         <!--first name and last name-->
         <div class="row mb-3">
@@ -26,21 +36,21 @@
                 <input type="text" class="form-control" name="email" id="email" value="<?= $user->getEmail() ?>">
             </div>
             <div class="col-md-6 ">
-                <label class="mb-2" for="phonenumber">Phone Number</label>
-                <input type="text" class="form-control" name="phonenumber" id="phonenumber" value="<?= $user->getPhoneNumber() ?>">
+                <label class="mb-2" for="contactNumber">Phone Number</label>
+                <input type="text" class="form-control" name="contactNumber" id="contactNumber" value="<?= $user->getPhoneNumber() ?>">
             </div>
         </div>
 
         <!--company name and description-->
         <div class="row mb-2">
             <div class="col-md-6 mb-2">
-                <label class="mb-2" for="companyname">Company Name</label>
-                <input type="text" class="form-control" name="companyname" id="companyname" value="<?= $userCompanyData->getCompanyName()?>">
+                <label class="mb-2" for="companyName">Company Name</label>
+                <input type="text" class="form-control" name="companyName" id="companyName" value="<?= $userCompanyData->getCompanyName()?>">
             </div>
 
                 <div class="col-md-6 mb-2">
-                    <label class="mb-2" for="companyindustry">Company Industry</label>
-                    <select class="form-control" name="companyindustry" id="companyindustry">
+                    <label class="mb-2" for="industry">Company Industry</label>
+                    <select class="form-control" name="industry" id="industry">
                         <option value="<?= $companyIndustry->getId()?>"><?= $companyIndustry->getIndustry() ?></option>
                         <?php foreach ($allIndustries as $industry) : ?>
                             <?php if ($industry->getId() == $companyIndustry->getId()) :
@@ -55,8 +65,8 @@
         <div class="row mb-2">
 
             <div class="col-md-6 mb-2">
-                <label class="mb-2" for="companydescription">Company Description</label>
-                <textarea type="text" class="form-control" name="companydescription" id="companydescription" rows="6"><?= $userCompanyData->getCompanyDescription()?>
+                <label class="mb-2" for="description">Company Description</label>
+                <textarea type="text" class="form-control" name="description" id="description" rows="6"><?= $userCompanyData->getCompanyDescription()?>
                 </textarea>
             </div>
 

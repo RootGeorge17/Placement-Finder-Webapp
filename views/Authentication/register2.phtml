@@ -51,10 +51,12 @@
             </div>
         </div>
 
-        <div class="row justify-content-center mb-2">
-            <div class="col-md-3 mb-2">
-                <label class="mb-2" for="skill1">Skill 1</label>
-                <select class="form-select" name="skill1" id="skill1">
+        <?php for ($i = 0; $i < 3; $i++) : // make it three times ?>
+
+        <div class="row mb-2">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="skill<?= $i + 1 ?>">Skill <?= $i + 1 ?></label>
+                <select class="form-select" name="skill<?= $i + 1 ?>" id="skill<?= $i + 1?>">
                     <option value="" selected disabled>Select A Skill</option>
                     <?php
                     $usedSkillNames = []; // Array to store used skill names
@@ -74,9 +76,9 @@
                     ?>
                 </select>
             </div>
-            <div class="col-md-3">
-                <label class="mb-2" for="proficiency1">Proficiency</label>
-                <select class="form-select" name="proficiency1" id="proficiency1">
+            <div class="col-md-6">
+                <label class="mb-2" for="proficiency<?= $i + 1 ?>">Proficiency</label>
+                <select class="form-select" name="proficiency<?= $i + 1 ?>" id="proficiency<?= $i + 1 ?>">
                     <option value="" selected disabled>Select Proficiency</option>
                     <?php foreach ($proficiencies as $proficiency): ?>
                         <option value="<?= $proficiency->getProficiency() ?>">
@@ -87,78 +89,7 @@
             </div>
         </div>
 
-        <div class="row justify-content-center mb-2">
-            <div class="col-md-3 mb-2">
-                <label class="mb-2" for="skill2">Skill 2</label>
-                <select class="form-select" name="skill2" id="skill2">
-                    <option value="" selected disabled>Select A Skill</option>
-                    <?php
-                    $usedSkillNames = []; // Array to store used skill names
-
-                    foreach ($skills as $skill):
-                        $skillName = $skill->getSkillName();
-                        if (!in_array($skillName, $usedSkillNames)) {
-                            // Output the skill name only if it's not already in the usedSkillNames array
-                            ?>
-                            <option value="<?= $skillName ?>">
-                                <?= $skillName ?>
-                            </option>
-                            <?php
-                            $usedSkillNames[] = $skillName; // Add the skill name to the usedSkillNames array
-                        }
-                    endforeach;
-                    ?>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label class="mb-2" for="proficiency2">Proficiency</label>
-                <select class="form-select" name="proficiency2" id="proficiency2">
-                    <option value="" selected disabled>Select Proficiency</option>
-                    <?php foreach ($proficiencies as $proficiency): ?>
-                        <option value="<?= $proficiency->getProficiency() ?>">
-                            <?= $proficiency->getProficiency() ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-        </div>
-
-        <div class="row justify-content-center mb-2">
-            <div class="col-md-3 mb-2">
-                <label class="mb-2" for="skill3">Skill 3</label>
-                <select class="form-select" name="skill3" id="skill3">
-                    <option value="" selected disabled>Select A Skill</option>
-                    <?php
-                    $usedSkillNames = []; // Array to store used skill names
-
-                    foreach ($skills as $skill):
-                        $skillName = $skill->getSkillName();
-                        if (!in_array($skillName, $usedSkillNames)) {
-                            // Output the skill name only if it's not already in the usedSkillNames array
-                            ?>
-                            <option value="<?= $skillName ?>">
-                                <?= $skillName ?>
-                            </option>
-                            <?php
-                            $usedSkillNames[] = $skillName; // Add the skill name to the usedSkillNames array
-                        }
-                    endforeach;
-                    ?>
-                </select>
-            </div>
-
-            <div class="col-md-3">
-                <label class="mb-2" for="proficiency3">Proficiency</label>
-                <select class="form-select" name="proficiency3" id="proficiency3">
-                    <option value="" selected disabled>Select Proficiency</option>
-                    <?php foreach ($proficiencies as $proficiency): ?>
-                        <option value="<?= $proficiency->getProficiency() ?>">
-                            <?= $proficiency->getProficiency() ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-        </div>
+        <?php endfor; ?>
 
         <div class="row justify-content-center mb-2">
             <div class="col-md-3 mb-2 text-center">

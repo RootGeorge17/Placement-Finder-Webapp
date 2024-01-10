@@ -6,6 +6,16 @@
         <form name="edit-student" action="/editprofile" method="post">
             <h1 class="mb-3 text-center">Edit your profile</h1>
 
+            <?php if (!empty($errors)) : ?>
+                <ul class="error-list list-unstyled text-center mx-6 mb-3 mb-lg-4">
+                    <?php foreach ($errors as $error) : ?>
+                        <strong>
+                            <li class="text-danger mt-2 list"><?= $error ?></li>
+                        </strong>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+
             <!--first name and last name-->
             <div class="row mb-3">
                 <div class="col-md-6 mb-2">
@@ -32,31 +42,20 @@
             </div>
 
             <!--contact number and password button-->
-            <div class="row mb-3">
-                <!-- delete account button -->
-                <form action="/editprofile" method="POST">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <div class="col-md-3 col-sm-6 col-lg-6 order-lg-2">
-                        <button class="btn btn-danger btn-lg btn-block justify-content-end" id="deleteaccount" name="deleteaccount" value="extra" type="submit" style="background-color: #dc3545">
-                            Delete Account
-                            <i class="bi bi-arrow-right"></i>
-                        </button>
-                    </div>
-                </form>
+            <div class="row mb-3 justify-content-end">
+                <!--password button-->
+                <div class="col-md-3 col-sm-6 col-lg-6 align-self-end">
+                    <a href="/changepassword" class="btn btn-success btn-lg btn-block dark-green-bg mb-2">Change Password<i class="bi bi-arrow-right"></i></a>
 
-                <!-- password button -->
-                <div class="col-md-3 col-sm-6 col-lg-6 order-lg-1">
-                    <button class="btn btn-success btn-lg btn-block dark-green-bg" id="changepassword" name="changepassword" value="changepassword" type="submit">
-                        Change Password
-                        <i class="bi bi-arrow-right"></i>
-                    </button>
+                    <!-- delete account button -->
+                    <a href="/deleteprofile" class="btn btn-danger btn-lg btn-block text-dark mb-2" style="background-color: #dc3545">Delete Account<i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
 
             <!--submit button-->
             <div class="row justify-content-center mb-2">
                 <div class="col-md-3 text-center ">
-                    <button class="btn btn-success btn-lg btn-block dark-green-bg" id="submit" name="submit" value="first" type="submit">Save Changes    <i class="bi bi-arrow-right"></i></button>
+                    <button class="btn btn-success btn-lg btn-block dark-green-bg" id="submit" name="submit" value="careers" type="submit">Save Changes    <i class="bi bi-arrow-right"></i></button>
                 </div>
             </div>
 

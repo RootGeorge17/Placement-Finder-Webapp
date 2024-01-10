@@ -189,6 +189,26 @@ class UsersDataSet
         }
     }
 
+    public function updateUser($id, $firstName, $lastName, $email, $phoneNumber): bool
+    {
+        $sqlQuery = 'UPDATE user SET email = :email, firstName = :firstName, lastName = :lastName, phoneNumber = :phoneNumber WHERE id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        $result = $statement->execute([
+            ':id' => $id,
+            ':email' => $email,
+            ':firstName' => $firstName,
+            ':lastName' => $lastName,
+            ':phoneNumber' => $phoneNumber
+        ]);
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function fetchStudentDataById($id)
     {
         $sqlQuery = 'SELECT studentData.* 

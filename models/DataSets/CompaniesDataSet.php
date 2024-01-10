@@ -43,6 +43,42 @@ class CompaniesDataSet
         }
     }
 
+    public function isUserCompanyName($userId, $companyName): bool
+    {
+        $sqlQuery = 'SELECT company.* 
+                     FROM user
+                     INNER JOIN company ON user.companyData = company.id
+                     WHERE user.id = :userId AND company.companyName = :companyName';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        $statement->execute([
+            ':userId' => $userId,
+            ':companyName' => $companyName
+        ]);
+
+        if ($statement->fetch()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function companyNameMatch($companyName)
+    {
+        $sqlQuery = 'SELECT * FROM company WHERE companyName = :companyName';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        $statement->execute([
+            ':companyName' => $companyName
+        ]);
+
+        if ($statement->fetch()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function fetchCompanyById($id): ?Company
     {
         $sqlQuery = 'SELECT * FROM company WHERE id = :id';
@@ -54,6 +90,27 @@ class CompaniesDataSet
             return new Company($row);
         } else {
             return null;
+        }
+    }
+
+    public function updateCompanyData($id, $companyName, $companyDescription, $companyIndustry): bool
+    {
+        $sqlQuery = 'UPDATE company 
+                     SET companyName = :companyName, companyDescription = :companyDescription, companyIndustry = :companyIndustry 
+                     WHERE id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        $statement->execute([
+            ':companyName' => $companyName,
+            ':companyDescription' => $companyDescription,
+            ':companyIndustry' => $companyIndustry,
+            ':id' => $id
+        ]);
+
+        if ($statement->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 

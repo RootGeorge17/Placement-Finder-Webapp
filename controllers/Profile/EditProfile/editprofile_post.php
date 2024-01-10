@@ -4,6 +4,7 @@ require_once base_path("models/Core/Validator.php");
 require base_path("models/DataSets/CompaniesDataSet.php");
 require base_path("models/DataSets/IndustriesDataSet.php");
 require base_path("models/Extensions/GenerateStudentFormData.php");
+require base_path("models/Extensions/SaveProfileData.php");
 
 $usersDataSet = new UsersDataSet();
 $skillsDataSet = new SkillsDataSet();
@@ -11,7 +12,9 @@ $studentDataSet = new StudentsDataSet();
 $coursesDataSet = new CoursesDataSet();
 $proficienciesDataSet = new ProficienciesDataSet();
 $generateStudentFormData = new GenerateStudentFormData();
+$companiesDataSet = new CompaniesDataSet();
 $industriesDataSet = new IndustriesDataSet();
+$saveProfileData = new SaveProfileData();
 
 
 if (!authenticated()) {
@@ -29,6 +32,7 @@ if($_POST['submit'] == 'employer')
     $description = $_POST['description'];
     $industry = $_POST['industry'] ?? '';
 
+    #region validation
     if (!Validator::string($firstName, 2, 75)) {
         $errors['InvalidName'] = "First name must be between 2 and 75 characters maximum!";
     }
@@ -55,8 +59,10 @@ if($_POST['submit'] == 'employer')
 
     if (!Validator::string($companyName, 2, 75)) {
         $errors['InvalidCompanyName'] = "Company name must be between 2 and 75 characters maximum!";
-    } else {
-        // check for company Name unique
+    } elseif(!$companiesDataSet->isUserCompanyName($_SESSION['user']['id'], $companyName)) { // if the company name is not the same as the user's company name
+        if ($companiesDataSet->companyNameMatch($companyName)) {
+            $errors['InvalidCompanyName'] = "Company name belongs to an already created account!"; // check if it belongs to another account
+        }
     }
 
     if (!Validator::string($description, 10, 150)) {
@@ -66,33 +72,42 @@ if($_POST['submit'] == 'employer')
     if (empty($industry)) {
         $errors['EmptyIndustry'] = "Please select a Industry!";
     }
+    #endregion
+
+    $companiesDataSet = new CompaniesDataSet();
+
+    $generateStudentFormData->setUser($_SESSION['user']['id']); // set user data
+    $user = $generateStudentFormData->getUser(); // get user data
+
+    // Fetch company data by ID
+    $userCompanyData = $companiesDataSet->fetchCompanyById($user->getCompanyId());
+
 
     if (empty($errors)) {
-        $_SESSION['registration']->setCompanyName($companyName);
-        $_SESSION['registration']->setCompanyDescription($description);
-        $_SESSION['registration']->setCompanyIndustry($industry);
-        $_SESSION['registration']->setStep(3);
-        $_SESSION['registration']->registerCompany();
-        $userDetails = $usersDataSet->getUserDetails($_SESSION['registration']->getEmail());
+        $saveProfileData->setUser($user);
+        $saveProfileData->setFirstName($firstName);
+        $saveProfileData->setLastName($lastName);
+        $saveProfileData->setEmail($email);
+        $saveProfileData->setContactNumber($contactNumber);
+        $saveProfileData->setCompanyName($companyName);
+        $saveProfileData->setCompanyDescription($description);
+        $saveProfileData->setCompanyIndustry($industry);
+        $saveProfileData->saveCompanyData(); // save company data
 
-        registerLogin(
-            $userDetails['id'],
-            $userDetails['email'],
-            $userDetails['userType']
-        );
-
-        header('Location: /editprofile');
+        header('Location: /success');
         exit();
     } else {
-        return view('EditProfile/editemployer.phtml', [
-            'errors' => $errors,
+        view("EditProfile/editemployer.phtml", [
             'pageTitle' => 'Edit Profile',
-            'industries' => $_SESSION['registration']->generateStepThreeFormData()['industries'],
+            'errors' => $errors,
+            'userCompanyData' => $userCompanyData,
+            'companyIndustry' => $industriesDataSet->fetchIndustryById($userCompanyData->getCompanyIndustry()), // get company industry object
+            'allIndustries' => $industriesDataSet->fetchAllIndustries(), // get all industries
+            'user' => $user,
         ]);
     }
 } elseif ($_POST['submit'] == 'student') {
     // hacky solution to get all the data needed for the view. could be moved to a helper class something like GenerateEditProfileFormData
-
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
     $email = $_POST['email'];
@@ -176,6 +191,10 @@ if($_POST['submit'] == 'employer')
         $errors['EmptyProficiency3'] = "Please select a Proficiency!";
     }
 
+    if ($skill1Name == $skill2Name || $skill1Name == $skill3Name || $skill2Name == $skill3Name) {
+        $errors['DuplicateSkills'] = "Please select three different skills!";
+    }
+
     if (isset($_FILES['cvUpload']) && !empty($cv['name'])) {
         $fileName = $cv['name'];
         $fileTmpName = $cv['tmp_name'];
@@ -220,26 +239,106 @@ if($_POST['submit'] == 'employer')
 
     $universities = getUniversities(); // get universities data
 
-    return view("EditProfile/editstudent.phtml", [
-        'errors' => $errors,
-        'pageTitle' => 'Edit Profile',
-        'user' => $user,
-        'userStudentData' => $userStudentData,
-        'userSkills' => $skillsDataSet->fetchSkillsbyIdArray($userSkillIds), // get the user's skills objects
-        'userCourse' => $userCourse,
-        'courses' => $coursesDataSet->fetchAllCourses(), // get all courses
-        'universities' => $universities, // get all universities
-        'generateStudentFormData' => $generateStudentFormData,
+    if (empty($errors)){
+        // update details
+        $saveProfileData->setUser($user);
+        $saveProfileData->setFirstName($firstName);
+        $saveProfileData->setLastName($lastName);
+        $saveProfileData->setEmail($email);
+        $saveProfileData->setContactNumber($contactNumber);
+        $saveProfileData->setLocation($location);
+        $saveProfileData->setCourse($course);
+        $saveProfileData->setInstitution($institution);
+        $saveProfileData->setPreferredIndustry($preferredIndustry);
+        $saveProfileData->setSkill1($skill1Name);
+        $saveProfileData->setSkill2($skill2Name);
+        $saveProfileData->setSkill3($skill3Name);
+        $saveProfileData->setProficiency1($proficiency1);
+        $saveProfileData->setProficiency2($proficiency2);
+        $saveProfileData->setProficiency3($proficiency3);
+        $saveProfileData->saveStudentData(); // save student data
+        // no need to save the cv as it's already saved above in the validation
 
-        'studentPreferredIndustry' => $industriesDataSet->fetchIndustryById($userStudentData->getPrefIndustry()), // get student preferred industry object
+        header('Location: /success');
+        exit();
+    } else {
+        return view("EditProfile/editstudent.phtml", [
+            'errors' => $errors,
+            'pageTitle' => 'Edit Profile',
+            'user' => $user,
+            'userStudentData' => $userStudentData,
+            'userSkills' => $skillsDataSet->fetchSkillsbyIdArray($userSkillIds), // get the user's skills objects
+            'userCourse' => $userCourse,
+            'courses' => $coursesDataSet->fetchAllCourses(), // get all courses
+            'universities' => $universities, // get all universities
+            'generateStudentFormData' => $generateStudentFormData,
 
-        'allIndustries' => $industriesDataSet->fetchAllIndustries(), // get all industries
-        'allSkills' => $skillsDataSet->fetchAllSkills(), // get all skills
-        'allProficiencies' => $proficienciesDataSet->fetchAllProficiencies(), // get all proficiencies
-        'userSkillsAndProficiencies' => $generateStudentFormData->getStudentSkillsAndProficiencies( // get the user's skills and proficiencies
-            $skillsDataSet->fetchSkillsbyIdArray($userSkillIds), // get the user's skills objects
-            $proficienciesDataSet->fetchAllProficiencies()), // get all proficiencies
-        'allLocations' => $generateStudentFormData->getLocations(), // get all locations
-        'cv' => $userCV,
-    ]);
+            'studentPreferredIndustry' => $industriesDataSet->fetchIndustryById($userStudentData->getPrefIndustry()), // get student preferred industry object
+
+            'allIndustries' => $industriesDataSet->fetchAllIndustries(), // get all industries
+            'allSkills' => $skillsDataSet->fetchAllSkills(), // get all skills
+            'allProficiencies' => $proficienciesDataSet->fetchAllProficiencies(), // get all proficiencies
+            'userSkillsAndProficiencies' => $generateStudentFormData->getStudentSkillsAndProficiencies( // get the user's skills and proficiencies
+                $skillsDataSet->fetchSkillsbyIdArray($userSkillIds), // get the user's skills objects
+                $proficienciesDataSet->fetchAllProficiencies()), // get all proficiencies
+            'allLocations' => $generateStudentFormData->getLocations(), // get all locations
+            'cv' => $userCV,
+        ]);
+    }
+} elseif ($_POST['submit'] == 'careers') {
+
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $email = $_POST['email'];
+    $contactNumber = $_POST['contactNumber'];
+
+    $errors = [];
+
+    #region validation
+    if (!Validator::string($firstName, 2, 75)) {
+        $errors['InvalidName'] = "First name must be between 2 and 75 characters maximum!";
+    }
+
+    if (!Validator::string($lastName, 2, 75)) {
+        $errors['InvalidLastName'] = "Last name must be between 2 and 75 characters maximum!";
+    }
+
+    if (!Validator::email($email)) {
+        $errors['InvalidEmail'] = "You have provided an invalid email";
+    } elseif (!$usersDataSet->isUserEmail($_SESSION['user']['id'], $email)) { // if the email is not the same as the user's email
+        if ($usersDataSet->emailMatch($email)) {
+            $errors['InvalidEmail'] = "Email belongs to an already created account!"; // check if it belongs to another account
+        }
+    }
+
+    if (!Validator::phoneNumber($contactNumber)) {
+        $errors['InvalidContactNumber'] = "Phone number must contain 11 numbers";
+    } elseif(!$usersDataSet->isUserPhone($_SESSION['user']['id'], $contactNumber)) { // if the phone number is not the same as the user's phone number
+        if ($usersDataSet->phoneMatch($contactNumber)) {
+            $errors['InvalidEmail'] = "Phone number belongs to an already created account!"; // check if it belongs to another account
+        }
+    }
+    #endregion
+
+    $generateStudentFormData->setUser($_SESSION['user']['id']); // set user data
+    $user = $generateStudentFormData->getUser(); // get user data
+
+    if (empty($errors)) {
+        $saveProfileData->setUser($user);
+        $saveProfileData->setFirstName($firstName);
+        $saveProfileData->setLastName($lastName);
+        $saveProfileData->setEmail($email);
+        $saveProfileData->setContactNumber($contactNumber);
+        $saveProfileData->saveCommonData(); // save careers data
+
+        header('Location: /success');
+        exit();
+    } else {
+        view("EditProfile/editcareersofficer.phtml", [
+            'pageTitle' => 'Edit Profile',
+            'user' => $user,
+            'errors' => $errors,
+        ]);
+    }
+
 }
