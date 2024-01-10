@@ -1,26 +1,12 @@
 # Placement-Finder-Webapp
 
-## Installation
-
-#### Clone repository using SSH:
-    - Click on the "Code" button and select "SSH"
-    - Copy the SSH URL provided
-    - In your terminal, navigate to the directory where you want to clone the repository
-    - Run the command: git clone <SSH_URL> : replacing <SSH_URL> with the copied SSH URL.
-
-#### Clone repository using HTTPS:
-    - Click on the "Code" button and select "HTTPS"
-    - Copy the HTTPS URL provided
-    - In your terminal, navigate to the directory where you want to clone the repository
-    - Run the command: git clone <HTTPS_URL> : replacing <HTTPS_URL> with the copied HTTPS URL.
-
 ## Usage
 
-1. If running locally in PHPStorm:
+1. If running locally in PHPStorm or other IDE:
     - Click on `Edit Configurations`.
-    - Click the `+` icon.
+    - Click the `+` icon to add a configuration.
     - Choose `PHP Built-in Web Server`.
-    - Set the document root to the `public` folder (pathtoproject\public).
+    - Set the document root to the `public` folder (pathtoproject\public) - as the main index.php is inside of the public directory.
     - Create a student or company account and search for placements or students, respectively.
 
 2. If running on the Website:
