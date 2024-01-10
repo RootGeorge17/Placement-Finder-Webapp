@@ -27,8 +27,6 @@
     - Access the website on: http://hc23-17.poseidon.salford.ac.uk
     - Create a student or company account and search for placements or students, respectively.
 
-![alt text]()
-
 ## Credits
 
 This project was made possible by the following contributors:
@@ -42,5 +40,5 @@ This project was made possible by the following contributors:
 
 ## License
 
-MIT
+MIT License
 
