@@ -6,7 +6,7 @@
 
     <h1 class="mb-3 text-center">Edit Profile</h1>
 
-    <form name="edit-employer" action="/editprofile" method="POST">
+    <form name="edit-employer" action="/editprofile" method="POST" enctype="multipart/form-data">
         <!--first name and last name-->
         <div class="row mb-3">
             <div class="col-md-6 mb-2">
@@ -61,14 +61,12 @@
             </div>
 
             <!--change password button-->
-            <form action="/editprofile" method="POST">
-                <input type="hidden" name="_method" value="DELETE">
-                <div class="col-md-3 col-sm-6 col-lg-6 align-self-end">
-                    <button class="btn btn-success btn-lg btn-block dark-green-bg mb-2" id="changepassword" name="changepassword" value="changepassword" type="submit">Change Password<i class="bi bi-arrow-right"></i></button>
-                    <!-- delete account button -->
-                    <button class="btn btn-danger btn-lg btn-block mb-2" id="deleteaccount" name="deleteaccount" value="empoyer" type="submit" style="background-color: #dc3545">Delete Account<i class="bi bi-arrow-right"></i></button>
-                </div>
-            </form>
+            <div class="col-md-3 col-sm-6 col-lg-6 align-self-end">
+                <a href="/changepassword" class="btn btn-success btn-lg btn-block dark-green-bg mb-2">Change Password<i class="bi bi-arrow-right"></i></a>
+
+                <!-- delete account button -->
+                <a href="/deleteprofile" class="btn btn-danger btn-lg btn-block text-dark mb-2" style="background-color: #dc3545">Delete Account<i class="bi bi-arrow-right"></i></a>
+            </div>
         </div>
 
         <!--submit button-->

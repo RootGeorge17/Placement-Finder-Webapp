@@ -155,7 +155,7 @@ function generateSortURL($page, $limit, $searchField, $sort)
         <?php if (sizeof($allPlacements) == 0) : ?>
             <div class="alert alert-warning" role="alert">
                 <h3> No placements found for
-                    <br> Sort Type:<?= htmlspecialchars($_GET['sort']) ?? 'none' ?>
+                    <br> Sort Type:<?= htmlspecialchars($_GET['sort'] ?? 'none')?>
                     <br> Location:<?= htmlspecialchars($_GET['location']) ?? ''?>
                     <br> Industry:<?= htmlspecialchars($_GET['industry']) ?? ''?>
                 </h3>
@@ -180,7 +180,7 @@ function generateSortURL($page, $limit, $searchField, $sort)
                                     <strong>Company:</strong> <?= $companiesDataSet->fetchCompanyName($placement->getCompanyId()) ?>
                                 </p>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-8">
                                 <p><strong>Description:</strong> <?= $placement->getDescription() ?></p>
                             </div>
                         </div>

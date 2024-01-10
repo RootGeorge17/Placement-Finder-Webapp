@@ -15,10 +15,13 @@ $router->get('/register', 'controllers/Authentication/register/register.php');
 $router->post('/register', 'controllers/Authentication/register/store.php');
 
 // Edit Profile
-$router->get('/editprofile', 'controllers/EditProfile/editprofile_get.php');
-$router->post('/editprofile', 'controllers/EditProfile/editprofile_post.php');
-$router->delete('/editprofile', 'controllers/DeleteProfile/deleteprofile.php');
-$router->update('/editprofile', 'controllers/UpdateProfile/updateprofile.php');
+$router->get('/editprofile', 'controllers/Profile/EditProfile/editprofile_get.php');
+$router->post('/editprofile', 'controllers/Profile/EditProfile/editprofile_post.php');
+$router->update('/editprofile', 'controllers/Profile/Update/updateprofile.php'); // used for updating profile
+$router->get('/deleteprofile', 'controllers/Profile/DeleteProfile/deleteprofile.php'); // used for deleting profile
+
+$router->get('/changepassword', 'controllers/Profile/Update/updatepassword.php'); // used for updating password
+$router->post('/changepassword', 'controllers/Profile/Update/updatepassword_post.php'); // used for updating password
 
 $router->get('/addplacement', 'controllers/AddPlacement/addplacement.php');
 $router->post('/addplacement', 'controllers/AddPlacement/addplacement_post.php');
@@ -26,4 +29,6 @@ $router->post('/addplacement', 'controllers/AddPlacement/addplacement_post.php')
 $router->get('/placements', 'controllers/ViewAllPlacements/viewallplacements.php');
 
 $router->get('/students', 'controllers/ViewAllStudents/viewallstudents.php');
+
+$router->get('/success', 'controllers/Success/success.php');
 

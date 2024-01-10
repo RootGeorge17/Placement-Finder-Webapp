@@ -319,6 +319,17 @@ class StudentsDataSet
         return true;
     }
 
+    public function updateCV($id, $fileName): bool
+    {
+        $sqlQuery = 'UPDATE studentData SET cv = :cv WHERE id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        if ($statement->execute(['cv' => $fileName, 'id' => $id])) {
+            return true;
+        }
+        return false;
+    }
+
     public function fetchCV($id)
     {
         $sqlQuery = 'SELECT u.id, u.studentData, sd.cv 
