@@ -48,51 +48,28 @@ $queryParams = [
     'sort' => 'all',
 ];
 
+
 if (isset($_GET['sort'])){
-    if ($_GET['sort'] == 'all'){
-        $queryParams['sort'] = 'all';
-    }
-    elseif ($_GET['sort'] == 'nameasc'){
-        $queryParams['sort'] = 'nameasc';
-    }
-    elseif ($_GET['sort'] == 'namedesc'){
-        $queryParams['sort'] = 'namedesc';
-    }
-    elseif ($_GET['sort'] == 'locationasc'){
-        $queryParams['sort'] = 'locationasc';
-    }
-    elseif ($_GET['sort'] == 'locationdesc') {
-        $queryParams['sort'] = 'locationdesc';
-    }
-    else {
-        header("Location: /students?page=1&limit=16&sort=all");
-    }
+    $sort = $_GET['sort']; // get the sort value from the url
+    $sort = match ($sort) {
+        'nameasc' => 'nameasc',
+        'namedesc' => 'namedesc',
+        'locationasc' => 'locationasc',
+        'locationdesc' => 'locationdesc',
+        default => 'all',
+    }; // check if the sort value is valid
+    $queryParams['sort'] = $sort; // set the sort value in the query params
 }
 
-$sort = $queryParams['sort'];
+$sort = $queryParams['sort']; // get the sort value from the query params
 
 $allStudents = null;
 
-if (isset($_GET['location'])) {
-    if ($_GET['location']) {
-        $queryParams['location'] = $_GET['location'];
-    }
-}
-if (isset($_GET['industry'])) {
-    if ($_GET['industry']) {
-        $queryParams['industry'] = $_GET['industry'];
-    }
-}
+$filters = ['location', 'industry', 'course', 'institution'];
 
-if (isset($_GET['course'])) {
-    if ($_GET['course']) {
-        $queryParams['course'] = $_GET['course'];
-    }
-}
-
-if (isset($_GET['institution'])) {
-    if ($_GET['institution']) {
-        $queryParams['institution'] = $_GET['institution'];
+foreach ($filters as $filter) {
+    if (isset($_GET[$filter]) && $_GET[$filter]) {
+        $queryParams[$filter] = $_GET[$filter];
     }
 }
 

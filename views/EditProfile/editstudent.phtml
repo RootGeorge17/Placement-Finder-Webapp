@@ -56,14 +56,17 @@
             </div>
 
             <!--password button-->
-            <form action="/editprofile" method="POST">
-                <input type="hidden" name="_method" value="DELETE">
-                <div class="col-md-3 col-sm-6 col-lg-6 align-self-end">
+            <div class="col-md-3 col-sm-6 col-lg-6 align-self-end">
+                <form action="/editprofile" method="POST">
+                    <input type="hidden" name="_method" value="UPDATE">
                     <button class="btn btn-success btn-lg btn-block dark-green-bg mb-2" id="changepassword" name="changepassword" value="changepassword" type="submit">Change Password<i class="bi bi-arrow-right"></i></button>
+                </form>
+                <form action="/editprofile" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
                     <!-- delete account button -->
                     <button class="btn btn-danger btn-lg btn-block mb-2" id="deleteaccount" name="deleteaccount" value="student" type="submit" style="background-color: #dc3545">Delete Account<i class="bi bi-arrow-right"></i></button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
 
         <!--course and institution-->
@@ -93,6 +96,21 @@
                     <?php endforeach; ?>
                 </select>
             </div>
+        </div>
+
+        <!--preferred industry-->
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <label class="mb-2" for="preferredIndustry">Preferred Industry</label>
+                <select class="form-select" name="preferredIndustry" id="preferredIndustry">
+                    <option value="<?= $studentPreferredIndustry->getId() ?>"><?= $studentPreferredIndustry->getIndustry() ?></option> <!-- get the preferred industry name from the user's student data object -->
+                    <?php foreach ($allIndustries as $industry) : ?>
+                        <?php if ($industry->getId() == $studentPreferredIndustry->getId()) :
+                            continue; // check if the industry is already in selection ?>
+                        <?php endif; ?>
+                        <option value="<?= $industry->getId() ?>"><?= $industry->getIndustry() ?></option>
+                    <?php endforeach; ?>
+                </select>
         </div>
 
         <!-- skill and proficiency -->

@@ -95,12 +95,16 @@ function generateSortURL($page, $limit, $searchField, $sort)
                         <?= "Sort by " . strtoupper($sort); ?>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="sort">
-                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit, '', 'nameasc') ?>">Name ASC <i class="bi bi-sort-alpha-down"></i></a>
-                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'namedesc') ?>">Name DESC <i class="bi bi-sort-alpha-down-alt"></i></a>
-                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'locationasc') ?>">Location ASC <i class="bi bi-sort-alpha-down"></i></a>
-                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'locationdesc') ?>">Location DESC <i class="bi bi-sort-alpha-down-alt"></i></a>
-                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'salaryasc') ?>">Salary ASC <i class="bi bi-sort-alpha-down"></i></a>
-                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'salarydesc') ?>">Salary DESC <i class="bi bi-sort-alpha-down-alt"></i></a>
+                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit, '', 'nameasc') ?>">Name Asc <i class="bi bi-sort-alpha-down"></i></a>
+                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'namedesc') ?>">Name Desc <i class="bi bi-sort-alpha-down-alt"></i></a>
+                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'locationasc') ?>">Location Asc <i class="bi bi-sort-alpha-down"></i></a>
+                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'locationdesc') ?>">Location Desc <i class="bi bi-sort-alpha-down-alt"></i></a>
+                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'salaryasc') ?>">Salary Asc <i class="bi bi-sort-alpha-down"></i></a>
+                        <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'salarydesc') ?>">Salary Desc <i class="bi bi-sort-alpha-down-alt"></i></a>
+                        <?php if ($_SESSION['user']['usertype'] == 1) : ?>
+                            <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'compatibilityasc') ?>">Compatibility Asc <i class="bi bi-sort-alpha-down"></i></a>
+                            <a class="dropdown-item" href="<?= generateSortURL($page, $limit,'', 'compatibilitydesc') ?>">Compatibility Desc <i class="bi bi-sort-alpha-down-alt"></i></a>
+                        <?php endif; ?>
                     </div>
                 </li>
 
@@ -148,6 +152,16 @@ function generateSortURL($page, $limit, $searchField, $sort)
     </nav>
 
     <div class="row mb-3">
+        <?php if (sizeof($allPlacements) == 0) : ?>
+            <div class="alert alert-warning" role="alert">
+                <h3> No placements found for
+                    <br> Sort Type:<?= htmlspecialchars($_GET['sort']) ?? 'none' ?>
+                    <br> Location:<?= htmlspecialchars($_GET['location']) ?? ''?>
+                    <br> Industry:<?= htmlspecialchars($_GET['industry']) ?? ''?>
+                </h3>
+            </div>
+        <?php endif;?>
+
         <?php foreach ($allPlacements as $placement) :
             $placementSkillIds = [
                 $placement->getSkill1(),

@@ -11,6 +11,7 @@ $studentDataSet = new StudentsDataSet();
 $coursesDataSet = new CoursesDataSet();
 $proficienciesDataSet = new ProficienciesDataSet();
 $generateStudentFormData = new GenerateStudentFormData();
+$industriesDataSet = new IndustriesDataSet();
 
 if (!authenticated()) {
     header('location: /login');
@@ -44,6 +45,10 @@ if ($_SESSION['user']['usertype'] == 1) {
         'courses' => $coursesDataSet->fetchAllCourses(), // get all courses
         'universities' => $universities, // get all universities
         'generateStudentFormData' => $generateStudentFormData,
+
+        'studentPreferredIndustry' => $industriesDataSet->fetchIndustryById($userStudentData->getPrefIndustry()), // get student preferred industry object
+
+        'allIndustries' => $industriesDataSet->fetchAllIndustries(), // get all industries
         'allSkills' => $skillsDataSet->fetchAllSkills(), // get all skills
         'allProficiencies' => $proficienciesDataSet->fetchAllProficiencies(), // get all proficiencies
         'userSkillsAndProficiencies' => $generateStudentFormData->getStudentSkillsAndProficiencies( // get the user's skills and proficiencies
@@ -55,7 +60,6 @@ if ($_SESSION['user']['usertype'] == 1) {
 
 } else if ($_SESSION['user']['usertype'] == 2) {
     $companiesDataSet = new CompaniesDataSet();
-    $industriesDataSet = new IndustriesDataSet();
 
     // Fetch company data by ID
     $userCompanyData = $companiesDataSet->fetchCompanyById($user->getCompanyId());
