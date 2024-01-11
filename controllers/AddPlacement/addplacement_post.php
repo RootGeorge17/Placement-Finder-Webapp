@@ -20,6 +20,7 @@ if ($_POST['submit'] == 'addPlacement'){
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
     $salary = $_POST['salary'];
+    $salary = filter_var(str_replace(",", "", $salary), FILTER_SANITIZE_NUMBER_INT);
     $skill1Name = $_POST['skill1'];
     $skill2Name = $_POST['skill2'];
     $skill3Name = $_POST['skill3'];
@@ -49,6 +50,8 @@ if ($_POST['submit'] == 'addPlacement'){
 
     if (empty($salary)) {
         $errors['EmptySalary'] = "Please enter a Salary!";
+    } elseif ($salary < 0) {
+        $errors['InvalidSalary'] = "Salary must be a positive number!";
     }
 
     if (empty($skill1Name)) {

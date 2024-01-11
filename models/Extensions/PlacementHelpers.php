@@ -286,8 +286,12 @@ class PlacementHelpers
                 $gradeA = $a['grade'];
                 $gradeB = $b['grade'];
 
+                if ($grades[$gradeA] === $grades[$gradeB]) {
+                    return $a['studentData']->getId() - $b['studentData']->getId();
+                }
+
                 // Compare grades based on their position in the defined order
-                return $grades[$gradeB] - $grades[$gradeA];
+                return $grades[$gradeA] - $grades[$gradeB];
             });
 
             if (!empty($placementMatches['students'])) {

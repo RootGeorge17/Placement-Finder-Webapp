@@ -112,6 +112,9 @@ $matches = $placementHelpers->getStudentMatchesForCompany($user->getCompanyId(),
                                 <div class="row">
                                     <?php
                                     $cardCounter = 0;
+
+                                    $placementMatches['students'] = array_reverse($placementMatches['students']); // reverse the array so the highest grade is first
+
                                     foreach ($placementMatches['students'] as $studentId => $studentData) :
                                             $user = $usersDataSet->fetchUserByStudentId($studentId);
                                             if ($user == null)

@@ -155,9 +155,9 @@ function generateSortURL($page, $limit, $searchField, $sort)
         <?php if (sizeof($allPlacements) == 0) : ?>
             <div class="alert alert-warning" role="alert">
                 <h3> No placements found for
-                    <br> Sort Type:<?= htmlspecialchars($_GET['sort'] ?? 'none')?>
-                    <br> Location:<?= htmlspecialchars($_GET['location']) ?? ''?>
-                    <br> Industry:<?= htmlspecialchars($_GET['industry']) ?? ''?>
+                    <br> Sort Type:<?= $_GET['sort'] ?? 'None'?>
+                    <br> Location:<?= $_GET['location'] ?? "None" ?>
+                    <br> Industry:<?= $_GET['industry'] ?? 'None'?>
                 </h3>
             </div>
         <?php endif;?>

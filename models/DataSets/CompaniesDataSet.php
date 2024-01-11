@@ -132,4 +132,20 @@ class CompaniesDataSet
         }
     }
 
+    public function deleteCompanyData($id): bool
+    {
+        $sqlQuery = 'DELETE FROM company WHERE id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        $statement->execute([
+            ':id' => $id
+        ]);
+
+        if ($statement->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
