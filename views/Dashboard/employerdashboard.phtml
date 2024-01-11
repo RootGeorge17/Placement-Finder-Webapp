@@ -4,7 +4,7 @@
 
 <?php
 $user = $usersDataSet->fetchUserById($_SESSION['user']['id']);
-$matches = $placementHelpers->getStudentMatchesForCompany($user->getCompanyId(), $allStudents);
+//$matches = $placementHelpers->getStudentMatchesForCompany($user->getCompanyId(), $allStudents);
 
 ?>
 
@@ -48,7 +48,7 @@ $matches = $placementHelpers->getStudentMatchesForCompany($user->getCompanyId(),
                 <h3 class="mb-3">You don't have any placements!</h3>
             <?php else : ?>
 
-            <?php foreach ($matches as $placementId => $placementMatches) : ?>
+            <?php foreach ($matches as $placementId => $placementMatches) :?>
                 <div class="row">
                     <div class="card col-md-12 mb-3">
 
@@ -117,7 +117,7 @@ $matches = $placementHelpers->getStudentMatchesForCompany($user->getCompanyId(),
 
                                     foreach ($placementMatches['students'] as $studentId => $studentData) :
                                             $user = $usersDataSet->fetchUserByStudentId($studentId);
-                                            if ($user == null)
+                                            if ($user == null || $placementMatches['students'][$studentId]['grade'] == "No Match")
                                                 continue; // skip this student if they don't exist
                                             $studentCourse = $coursesDataSet->fetchCourseById($studentData['studentData']->getCourse()); // course of the student
                                             $prefIndustry = $industriesDataSet->fetchIndustryNameById($studentData['studentData']->getPrefIndustry()); // preferred industry of the student

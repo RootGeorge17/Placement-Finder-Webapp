@@ -277,6 +277,12 @@ class PlacementHelpers
                         'grade' => $matchGrade, // Add match grade here
                         'studentData' => $studentData,
                     ];
+                } else {
+                    $placementMatches['students'][$studentData->getId()] = [
+                        'matches' => $studentMatches,
+                        'grade' => 'No Match',
+                        'studentData' => $studentData,
+                    ];
                 }
             }
 
