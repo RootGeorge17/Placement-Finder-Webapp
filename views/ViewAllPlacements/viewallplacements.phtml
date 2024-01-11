@@ -142,6 +142,16 @@ function generateSortURL($page, $limit, $searchField, $sort)
                                         </select>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <label for "companyDropdown" class="form-label">Company</label>
+                                        <select class="form-select" id="companyDropdown" name="company">
+                                            <option value="all">All</option>
+                                            <?php foreach ($allCompanies as $company) : ?>
+                                                <option value="<?= $company->getCompanyName() ?>"><?= $company->getCompanyName() ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary" name="filter">Apply Filter</button>
                             </form>
