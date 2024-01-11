@@ -36,18 +36,18 @@ class UsersDataSetTest extends TestCase
 
     public function testPhoneMatch()
     {
-        $user = $this->usersDataSet->phoneMatch('0161999998');
+        $user = $this->usersDataSet->phoneMatch('0161999997');
         $this->assertTrue($user, 'UsersDataSet::phoneMatch should return true');
     }
 
     public function testGetUserDetails()
     {
-        $user = $this->usersDataSet->getUserDetails('test@asda.com');
-        $this->assertEquals(2, $user['id'], 'UsersDataSet::getUserDetails should return the correct id');
-        $this->assertEquals(2, $user['userType'], 'UsersDataSet::getUserDetails should return the correct user type');
-        $this->assertEquals(2, $user['companyData'], 'UsersDataSet::getUserDetails should return the correct company data id');
-        $this->assertEquals(null, $user['studentData'], 'UsersDataSet::getUserDetails should return null for student data: test@asda.com');
-        $this->assertEquals('test@asda.com', $user['email'], 'UsersDataSet::getUserDetails should return the correct email');
-        $this->assertEquals('0161999998', $user['phoneNumber'], 'UsersDataSet::getUserDetails should return the correct phone number');
+        $user = $this->usersDataSet->getUserDetails('jane@gmail.com');
+        $this->assertEquals(3, $user['id'], 'UsersDataSet::getUserDetails should return the correct id');
+        $this->assertEquals(1, $user['userType'], 'UsersDataSet::getUserDetails should return the correct user type');
+        $this->assertEquals(2, $user['studentData'], 'UsersDataSet::getUserDetails should return the correct student data id');
+        $this->assertEquals(null, $user['companyData'], 'UsersDataSet::getUserDetails should return null for student data: test@asda.com');
+        $this->assertEquals('jane@gmail.com', $user['email'], 'UsersDataSet::getUserDetails should return the correct email');
+        $this->assertEquals('0161999997', $user['phoneNumber'], 'UsersDataSet::getUserDetails should return the correct phone number');
     }
 }
