@@ -110,6 +110,11 @@ if (isset($_GET['skill'])) { // get skill query param like ?skill=Programming
         $queryParams['skill'] = $_GET['skill'];
     }
 }
+if (isset($_GET['company'])) { // get proficiency query param like ?proficiency=Beginner
+    if ($_GET['company']) {
+        $queryParams['company'] = $_GET['company'];
+    }
+}
 //endregion
 
 /*
@@ -133,7 +138,8 @@ if ($compatibility !== null){
                 $limit,
                 $sort,
                 $queryParams['location'],
-                $queryParams['industry']
+                $queryParams['industry'],
+                $queryParams['company'],
             ); // get placements with location and industry filter
         } else {
             $allPlacements = $placementsDataSet->fetchAllByLimitAndSort($start, $limit, $sort); // get placements without location and industry filter
@@ -169,7 +175,7 @@ else {
     if ($sort == 'compatibilityasc' || $sort == 'compatibilitydesc') { $sort = 'all'; }
     if (isset($_GET['filter'])) {
         $allPlacements = $placementsDataSet->fetchAllByLimitAndSortAndFilter($start, $limit, $sort,
-            $queryParams['location'], $queryParams['industry']); // get placements with location and industry filter
+            $queryParams['location'], $queryParams['industry'], $queryParams['company']); // get placements with location and industry filter
     } else {
         $allPlacements = $placementsDataSet->fetchAllByLimitAndSort($start, $limit, $sort); // get placements without location and industry filter
     }
@@ -192,6 +198,7 @@ view('/ViewAllPlacements/viewallplacements.phtml', [
         'allLocation' => GeneratePlacementData::getLocations(),
         'allIndustries' => $industriesDataSet->fetchAllIndustries(),
         'allInstitutions' => GeneratePlacementData::getInstitutions(),
+        'allCompanies' => $companiesDataSet->fetchAllCompanies(),
         'allCourses' => $coursesDataSet->fetchAllCourses(),
 
         'total' => $total,

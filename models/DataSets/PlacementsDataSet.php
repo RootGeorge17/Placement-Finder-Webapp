@@ -232,14 +232,14 @@ class PlacementsDataSet
         return $dataSet;
     }
 
-    public function fetchAllByLimitAndSortAndFilter($start, $limit, $sort, $location = 'all', $industry = 'all')
+    public function fetchAllByLimitAndSortAndFilter($start, $limit, $sort, $location = 'all', $industry = 'all', $company = 'all'): array
     {
         $sqlQuery = 'SELECT pd.*, cmp.companyName AS companyName
                  FROM placementData pd
                  INNER JOIN company cmp ON pd.companyId = cmp.id';
 
         // all is the default value for location and industry
-        if ($location !== 'all' || $industry !== 'all') { // if location or industry is not all
+        if ($location !== 'all' || $industry !== 'all' || $company !== 'all') { // if location or industry is not all
             $sqlQuery .= ' WHERE';
             if ($location !== 'all') { // if location is not all
                 $sqlQuery .= ' pd.location = :location';
@@ -249,6 +249,12 @@ class PlacementsDataSet
             }
             if ($industry !== 'all') { // if industry is not all
                 $sqlQuery .= ' pd.industry = :industry';
+            }
+            if (($location !== 'all' && $company !== 'all') || ($industry !== 'all' && $company !== 'all')) { // if location and company is not all
+                $sqlQuery .= ' AND';
+            }
+            if ($company !== 'all') { // if company is not all
+                $sqlQuery .= ' cmp.companyName = :company';
             }
         }
 
@@ -284,6 +290,9 @@ class PlacementsDataSet
         }
         if ($industry !== 'all') { // if industry is not all
             $statement->bindParam(':industry', $industry, PDO::PARAM_STR);
+        }
+        if ($company !== 'all') { // if company is not all
+            $statement->bindParam(':company', $company, PDO::PARAM_STR);
         }
 
         $statement->bindParam(':start', $start, PDO::PARAM_INT);
