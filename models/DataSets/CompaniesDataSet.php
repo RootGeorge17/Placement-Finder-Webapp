@@ -43,6 +43,24 @@ class CompaniesDataSet
         }
     }
 
+    public function fetchCompanyEmail($id): mixed
+    {
+        $sqlQuery = 'SELECT u.email FROM company c
+                 JOIN user u ON c.id = u.companyData
+                 WHERE u.companyData = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        $statement->execute([
+            ':id' => $id
+        ]);
+
+        if ($row = $statement->fetch()){
+            return $row['email'];
+        } else {
+            return null;
+        }
+    }
+
     public function isUserCompanyName($userId, $companyName): bool
     {
         $sqlQuery = 'SELECT company.* 
