@@ -30,7 +30,7 @@ if($_POST['submit'] == 'employer')
     $contactNumber = $_POST['contactNumber'];
     $companyName = $_POST['companyName'];
     $description = $_POST['description'];
-    $industry = $_POST['industry'] ?? '';
+    $industry = $_POST['industry'];
 
     #region validation
     if (!Validator::string($firstName, 2, 75)) {
