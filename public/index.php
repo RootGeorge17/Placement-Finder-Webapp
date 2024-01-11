@@ -5,6 +5,7 @@ ini_set('display_errors', 1);
 
 // Define a constant for the base path directory for the project
 const BASE_PATH = __DIR__ . '/../';
+const BASE_UPLOADS_PATH = __DIR__ . '/uploads/';
 
 // Require necessary files
 require BASE_PATH . 'models/Core/functions.php'; // Including functions file

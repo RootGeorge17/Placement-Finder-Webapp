@@ -168,11 +168,19 @@
             </div>
         </div>
         <?php if ($cv !== null && isset($cv['cv'])) : ?>
-            <object data="../uploads/<?= $cv['cv'] ?>" type="application/pdf" width="100%" height="500px">
+            <?php if (file_exists(uploads_path($cv['cv']))) : ?>
+                <object data="../uploads/<?= $cv['cv'] ?>" type="application/pdf" width="100%" height="500px">
 
             </object>
+            <?php else : ?>
+                    <div class="alert alert-danger" role="alert">
+                        <p>CV not found!! Please upload a new one!</p>
+                    </div>
+            <?php endif; ?>
         <?php else : ?>
-            <p>You don't have a CV uploaded. Upload one instead!</p>
+                <div class="alert alert-danger" role="alert">
+                    <p>You don't have a CV uploaded. Upload one instead!</p>
+                </div>
         <?php endif; ?>
 
         <!--submit button-->

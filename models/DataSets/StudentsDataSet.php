@@ -241,9 +241,8 @@ class StudentsDataSet
 
     public function updateStudentUser(string $email, string $location,
                                       int $course, string $institution, int $prefIndustry,
-                                      string $skill1Name, int $skill1Proficiency,
-                                      string $skill2Name, int $skill2Proficiency,
-                                      string $skill3Name, int $skill3Proficiency) : bool
+                                      string $skill1Name, string $skill2Name, string $skill3Name,
+                                      int $skill1Proficiency, int $skill2Proficiency, int $skill3Proficiency) : bool
     {
         $studentDataID = null;
 
