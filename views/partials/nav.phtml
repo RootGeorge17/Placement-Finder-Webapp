@@ -11,10 +11,12 @@
 
                     <!-- Top Contact -->
                     <ul class="top-contact">
-                        <li><a href="https://www.bcs.org/about-us" target="_blank" class="nav-items"><span class="navigation-item-text">About us<span></span></a></li>
-                        <li><a href="https://impact.bcs.org/" target="_blank" class="nav-items"><span class="navigation-item-text">Making IT good for
+                        <li><a href="https://www.bcs.org/about-us" target="_blank" class="nav-items"><span
+                                        class="navigation-item-text">About us<span></span></a></li>
+                        <li><a href="https://impact.bcs.org/" target="_blank" class="nav-items"><span
+                                        class="navigation-item-text">Making IT good for
                                     society</span></a></li>
-                        <li><a href="/team" class="nav-items"><span class="navigation-item-text">Our Team</span></a></li>
+                        </li>
                         <li>|</li>
                         <li><a href="/" class="nav-items"><span class="navigation-item-text">Home</span></a></li>
                         <?php if (authenticated()) : ?>
@@ -22,17 +24,21 @@
                                 <li><a href="/dashboard"><span class="navigation-item-text">Dashboard</span></a></li>
                             <?php endif; ?>
                             <?php if (($_SESSION['user']['usertype'] == 1) || ($_SESSION['user']['usertype'] == 3) || ($_SESSION['user']['usertype'] == 4)) : ?>
-                                <li><a href="/placements"><span class="navigation-item-text">All Placements</span></a></li>
+                                <li><a href="/placements"><span class="navigation-item-text">All Placements</span></a>
+                                </li>
                             <?php endif; ?>
-                                    <?php if ($_SESSION['user']['usertype'] == 2) : ?>
+                            <?php if ($_SESSION['user']['usertype'] == 2) : ?>
                                 <li><a href="/students"><span class="navigation-item-text">All Students</span></a></li>
-                                <li><a href="/addplacement"><span class="navigation-item-text">Add Placement</span></a></li>
+                                <li><a href="/addplacement"><span class="navigation-item-text">Add Placement</span></a>
+                                </li>
                             <?php endif; ?>
                             <?php if (authenticated()) : ?>
-                                <li><a href="/editprofile"><span class="navigation-item-text">Edit Profile</span></a></li>
+                                <li><a href="/editprofile"><span class="navigation-item-text">Edit Profile</span></a>
+                                </li>
 
                                 <li class="nav-item btn">
-                                    <a class="nav-link btn-block bcs-login-btn" href="/signout"><span class="bcs-login-text">Sign out</span></a>
+                                    <a class="nav-link btn-block bcs-login-btn" href="/signout"><span
+                                                class="bcs-login-text">Sign out</span></a>
                                 </li>
                             <?php endif; ?>
                         <?php else : ?>
@@ -187,19 +193,7 @@
                         </div>
                         <div class="offcanvas-body">
                             <ul class="navbar-nav justify-content-end flex-grew-1 pe-3">
-                                <li><a href="https://www.bcs.org/membership-and-registrations/">Membership &
-                                        Registrations</a></li>
-                                <li><a href="https://www.bcs.org/it-careers/">IT Careers </a></li>
-                                <li><a href="https://www.bcs.org/qualifications-and-certifications">Qualifications &
-                                        Certifications </a></li>
-                                <li><a href="https://www.bcs.org/events/awards-and-competitions/">Event & Awards</a>
-                                </li>
-                                <li><a href="https://www.bcs.org/articles-opinion-and-research/">Opinion & Research</a>
-                                </li>
-
-                                <li><a href="https://www.bcs.org/about-us">About us</a></li>
-                                <li><a href="http://impact.bcs.org">Making IT good for society</a></li>
-                                <li><a href="/team">Our Team</a></li>
+                                <li><a href="/"><span>Home</span></a></li>
                                 <?php if (authenticated()) : ?>
                                     <?php if ($_SESSION['user']['usertype'] == 1 || $_SESSION['user']['usertype'] == 2) : ?>
                                         <li><a href="/dashboard">Dashboard</a></li>
@@ -217,17 +211,139 @@
                                     <?php if (authenticated()) : ?>
                                         <li><a href="/editprofile">Edit Profile</a></li>
 
-                                        <li class="nav-item btn">
+                                        <li class="nav-item">
                                             <a class="nav-link btn-block bcs-login-btn" href="/signout">Sign out</a>
                                         </li>
                                     <?php endif; ?>
 
                                 <?php else : ?>
-                                    <li class="nav-item btn">
-                                        <a class="nav-link btn-block bcs-login-btn" href="/login"><span
+                                    <li class="nav-item">
+                                        <a class="nav-link btn-block bcs-login-btn mr-0" href="/login"><span
                                                     class="bcs-login-text">Login to MyBCS</span></a>
                                     </li>
                                 <?php endif; ?>
+
+                                <li><a href="https://www.bcs.org/membership-and-registrations/" target="_blank">Membership
+                                        &
+                                        Registrations</a></li>
+                                <li><a href="https://www.bcs.org/it-careers/" target="_blank">IT Careers </a></li>
+                                <li><a href="https://www.bcs.org/qualifications-and-certifications" target="_blank">Qualifications
+                                        &
+                                        Certifications </a></li>
+                                <li><a href="https://www.bcs.org/events/awards-and-competitions/" target="_blank">Event
+                                        & Awards</a>
+                                </li>
+                                <li><a href="https://www.bcs.org/articles-opinion-and-research/" target="_blank">Opinion
+                                        & Research</a>
+                                </li>
+
+                                <li><a href="https://www.bcs.org/about-us" target="_blank">About us</a></li>
+                                <li><a href="http://impact.bcs.org" target="_blank">Making IT good for society</a></li>
+
+                                <li><a href="#"><span
+                                                class="dropdown">About BCS Membership</span></a>
+                                    <ul class="dropdown">
+                                        <li>
+                                            <a href="https://www.bcs.org/membership-and-registrations/become-a-member/"
+                                               target="_blank">Become a member</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/membership-and-registrations/member-communities/"
+                                               target="_blank">Member communities</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/membership-and-registrations/get-registered/"
+                                               target="_blank">Get registered</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/membership-and-registrations/membership-for-organisations/"
+                                               target="_blank">Membership for organisations</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/membership-and-registrations/academic-membership/"
+                                               target="_blank">Academic membership</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/membership-and-registrations/register-of-bcs-members/"
+                                               target="_blank">Register of BCS members</a></li>
+                                        <li><a href="https://www.bcs.org/membership-and-registrations/our-members/"
+                                               target="_blank">Our members in BCS</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/membership-and-registrations/member-communities/"
+                                               target="_blank">Community</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#"><span class="dropdown">IT careers</span></a>
+                                    <ul class="dropdown">
+                                        <li><a href="https://www.bcs.org/it-careers/apprenticeships/"
+                                               target="_blank">Apprenticeships</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/it-careers/continuing-professional-development-cpd/"
+                                               target="_blank">Continuing professional development (CPD)</a></li>
+                                        <li><a href="https://www.bcs.org/it-careers/sfiaplus-it-skills-framework/"
+                                               target="_blank">SFIAplus - IT skills framework</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/deliver-and-teach-qualifications/training-providers-and-adult-education-centres/"
+                                               target="_blank">Training providers in BCS</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/develop-your-people/develop-your-team-or-organisation/"
+                                               target="_blank">Employers in BCS</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#"><span class="dropdown">Qualifications & Certifications</span></a>
+                                    <ul class="dropdown">
+                                        <li>
+                                            <a href="https://www.bcs.org/qualifications-and-certifications/certifications-for-professionals/"
+                                               target="_blank">Certifications for professionals</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/qualifications-and-certifications/digital-literacy-qualifications/"
+                                               target="_blank">Digital literacy qualifications</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/qualifications-and-certifications/higher-education-qualifications-heq/"
+                                               target="_blank">Higher education qualifications (HEQ)</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/qualifications-and-certifications/training-and-scholarships-for-teachers/"
+                                               target="_blank">Training and scholarships for teachers</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/qualifications-and-certifications/training-and-scholarships-for-teachers/"
+                                               target="_blank">Home education</a></li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="#"><span
+                                                class="dropdown">Articles, Opinion & Research</span></a>
+                                    <ul class="dropdown">
+                                        <li><a href="https://www.bcs.org/articles-opinion-and-research/green-it/"
+                                               target="_blank">Green IT and net zero</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/articles-opinion-and-research/computing-in-society/"
+                                               target="_blank">Computing in society</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/articles-opinion-and-research/security-data-privacy/"
+                                               target="_blank">Security, data and privacy</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/articles-opinion-and-research/careers-and-skills/"
+                                               target="_blank">Careers and skills</a></li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="#"><span class="dropdown">Event & Awards</span></a>
+                                    <ul class="dropdown">
+                                        <li><a href="https://www.bcs.org/events/awards-and-competitions/"
+                                               target="_blank">Awards and competitions</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/events/awards-and-competitions/uk-it-industry-awards/"
+                                               target="_blank">UK IT Industry Awards</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/events/awards-and-competitions/bcs-it-digital-apprenticeship-awards/"
+                                               target="_blank">BCS IT & Digital Apprenticeship Awards</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/events/awards-and-competitions/lovelace-medal/"
+                                               target="_blank">Lovelace Medal</a></li>
+                                        <li><a href="https://www.bcs.org/events/karen-sparck-jones-lecture/"
+                                               target="_blank">Karen Spärck Jones Lecture</a></li>
+                                        <li>
+                                            <a href="https://www.bcs.org/events/awards-and-competitions/roger-needham-award/"
+                                               target="_blank">Roger Needham Award</a></li>
+                                        <li><a href="https://www.bcs.org/events-calendar/" target="_blank">Events
+                                                calendar</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </div>
