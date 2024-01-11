@@ -56,7 +56,7 @@ if($_SESSION['user']['usertype'] == 1)
         'placementHelpers' => $placementHelpers,
     ]);
 
-} elseif($_SESSION['user']['usertype'] == 2)
+} elseif($_SESSION['user']['usertype'] == 2) // employer
 {
     require_once base_path("models/DataSets/CoursesDataSet.php");
 
@@ -69,6 +69,8 @@ if($_SESSION['user']['usertype'] == 1)
     $usersDataSet = new UsersDataSet();
     $coursesDataSet = new CoursesDataSet();
     $allStudents = $studentsDataSet->fetchAllStudentData();
+    $user = $usersDataSet->fetchUserById($_SESSION['user']['id']);
+    $matches = $placementHelpers->getStudentMatchesForCompany($user->getCompanyId(), $allStudents);
 
 
     view("Dashboard/employerdashboard.phtml",[
@@ -79,6 +81,7 @@ if($_SESSION['user']['usertype'] == 1)
         'industriesDataSet' => $industriesDataSet,
         'coursesDataSet' => $coursesDataSet,
         'allStudents' => $allStudents,
+        'matches' => $matches,
         'placementHelpers' => $placementHelpers,
     ]);
 }
