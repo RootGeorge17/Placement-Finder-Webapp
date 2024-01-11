@@ -347,4 +347,15 @@ class StudentsDataSet
         }
         return null;
     }
+
+    public function deleteStudentData($id): bool
+    {
+        $sqlQuery = 'DELETE FROM studentData WHERE id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        if ($statement->execute(['id' => $id])) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -6,10 +6,18 @@ if(!authenticated()){
 }
 
 require_once base_path("models/DataSets/UsersDataSet.php");
+require_once base_path("models/DataSets/CompaniesDataSet.php");
+require_once base_path("models/DataSets/StudentsDataSet.php");
+
 $usersDataSet = new UsersDataSet();
+$studentsDataSet = new StudentsDataSet();
+$companiesDataSet = new CompaniesDataSet();
+
+$user = $usersDataSet->fetchUserById($_SESSION['user']['id']);
 
 if ($_SESSION['user']['usertype'] == 1) {
     // ------------------------- Student
+    $studentsDataSet->deleteStudentData($user->getStudentData()); // delete the student data first
     $usersDataSet->deleteUser($_SESSION['user']['id']);
 
     // Perform the logout process
@@ -21,6 +29,7 @@ if ($_SESSION['user']['usertype'] == 1) {
 
 } elseif($_SESSION['user']['usertype'] == 2) {
     // ------------------------- Employer
+    $companiesDataSet->deleteCompanyData($user->getCompanyId()); // delete the company data first
     $usersDataSet->deleteUser($_SESSION['user']['id']);
 
     // Perform the logout process

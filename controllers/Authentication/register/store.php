@@ -1,7 +1,9 @@
 <?php
 require_once(base_path("models/Core/Validator.php"));
 require_once(base_path("models/DataSets/UsersDataSet.php"));
+require_once(base_path("models/DataSets/CompaniesDataSet.php"));
 $usersDataSet = new UsersDataSet();
+$companiesDataSet = new CompaniesDataSet();
 $errors = [];
 
 if ($_POST['submit'] == "first") {
@@ -224,8 +226,8 @@ if ($_POST['submit'] == "third") {
 
     if (!Validator::string($companyName, 2, 75)) {
         $errors['InvalidCompanyName'] = "Company name must be between 2 and 75 characters maximum!";
-    } else {
-        // check for company Name unique
+    } elseif ($companiesDataSet->companyNameMatch($companyName)) {
+        $errors['InvalidCompanyName'] = "Company name belongs to an already created account!";
     }
 
     if (!Validator::string($description, 10, 150)) {
