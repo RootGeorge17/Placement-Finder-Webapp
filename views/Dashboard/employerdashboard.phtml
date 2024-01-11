@@ -134,7 +134,7 @@ $matches = $placementHelpers->getStudentMatchesForCompany($user->getCompanyId(),
                                                 <strong>Student Preferred Industry:</strong> <?= $prefIndustry ?><br>
                                                 <strong>Student Location:</strong> <?= $studentData['studentData']->getLocation() ?>
                                                 <br>
-                                                <a href="#" class="btn btn-success float-end mb-2">Contact</a>
+                                                <a href="mailto:<?= $usersDataSet->fetchEmailById($studentId) ?>?subject=&amp;body=" target="_blank" class="btn btn-success float-end mb-2">Contact</a>
                                                 <span class="badge rounded-pill text-dark mb-3" style="background-color:#bccf00; border-color: #bccf00">(Compatibility: <?= $studentData['grade'] ?>)</span>
                                             </p>
                                         </div>

@@ -175,6 +175,22 @@ class UsersDataSet
         }
     }
 
+    public function fetchEmailById($id): mixed
+    {
+        $sqlQuery = 'SELECT u.email FROM studentData s
+                    JOIN user u ON s.id = u.studentData
+                    WHERE u.studentData = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(['id' => $id]); // execute the PDO statement
+
+        if ($row = $statement->fetch()) {
+            return $row['email'];
+        } else {
+            return null;
+        }
+    }
+
     public function fetchUserByStudentId($id)
     {
         $sqlQuery = 'SELECT * FROM user WHERE studentData = :id';

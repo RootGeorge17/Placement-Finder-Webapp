@@ -188,7 +188,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="btn text-dark" style="background-color:#bccf00; border-color: #bccf00">Contact</a>
+                        <a href="mailto:<?= $usersDataSet->fetchEmailById($student->getId()) ?>?subject=&amp;body=" target="_blank" class="btn text-dark" style="background-color:#bccf00; border-color: #bccf00">Contact</a>
                     </div>
                 </div>
             <?php endforeach; ?>
