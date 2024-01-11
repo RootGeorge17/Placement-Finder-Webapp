@@ -26,6 +26,9 @@ switch ($step) {
         $courses = $_SESSION['registration']->generateStepTwoFormData()['courses'];
         $skills = $_SESSION['registration']->generateStepTwoFormData()['skills'];
         $proficiencies = $_SESSION['registration']->generateStepTwoFormData()['proficiencies'];
+        usort($proficiencies, function($a, $b) {
+            return $a->getId() <=> $b->getId();
+        });
         $industries = $_SESSION['registration']->generateStepTwoFormData()['industries'];
         $locations = $_SESSION['registration']->generateStepTwoFormData()['locations'];
 

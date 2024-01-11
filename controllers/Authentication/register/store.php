@@ -144,6 +144,10 @@ if ($_POST['submit'] == "second") {
         $errors['EmptyIndustry3'] = "Please select a proficiency!";
     }
 
+    if ($skill1 == $skill2 || $skill1 == $skill3 || $skill2 == $skill3) {
+        $errors['DuplicateSkills'] = "Please select 3 different skills!";
+    }
+
     if (empty($prefIndustry)) {
         $errors['EmptyPrefIndustry'] = "Please select a preferred industry!";
     }

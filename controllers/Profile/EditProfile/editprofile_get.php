@@ -2,7 +2,6 @@
 
 require base_path("models/DataSets/CompaniesDataSet.php");
 require base_path("models/DataSets/IndustriesDataSet.php");
-
 require base_path("models/Extensions/GenerateStudentFormData.php");
 
 $usersDataSet = new UsersDataSet();

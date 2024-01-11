@@ -3,7 +3,7 @@
 <?php require_once(base_path('views/partials/header.phtml')) ?>
 
 <div class="container mb-5">
-    <form name="edit-student" action="/editprofile" method="post">
+    <form name="edit-student" id="editForm" action="/editprofile" method="POST" enctype="multipart/form-data">
         <h1 class="mb-3 text-center">Edit your profile</h1>
 
         <?php if (sizeof($userSkills) < 3):?>
@@ -14,6 +14,16 @@
             </div>
         </div>
         <?php else: ?>
+
+            <?php if (!empty($errors)) : ?>
+                <ul class="error-list list-unstyled text-center mx-6 mb-3 mb-lg-4">
+                    <?php foreach ($errors as $error) : ?>
+                        <strong>
+                            <li class="text-danger mt-2 list"><?= $error ?></li>
+                        </strong>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
 
         <!--first name and last name-->
         <div class="row mb-3">
@@ -57,15 +67,10 @@
 
             <!--password button-->
             <div class="col-md-3 col-sm-6 col-lg-6 align-self-end">
-                <form action="/editprofile" method="POST">
-                    <input type="hidden" name="_method" value="UPDATE">
-                    <button class="btn btn-success btn-lg btn-block dark-green-bg mb-2" id="changepassword" name="changepassword" value="changepassword" type="submit">Change Password<i class="bi bi-arrow-right"></i></button>
-                </form>
-                <form action="/editprofile" method="POST">
-                    <input type="hidden" name="_method" value="DELETE">
+                    <a href="/changepassword" class="btn btn-success btn-lg btn-block dark-green-bg mb-2">Change Password<i class="bi bi-arrow-right"></i></a>
+
                     <!-- delete account button -->
-                    <button class="btn btn-danger btn-lg btn-block mb-2" id="deleteaccount" name="deleteaccount" value="student" type="submit" style="background-color: #dc3545">Delete Account<i class="bi bi-arrow-right"></i></button>
-                </form>
+                    <a href="/deleteprofile" class="btn btn-danger btn-lg btn-block text-dark mb-2" style="background-color: #dc3545">Delete Account<i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
 
@@ -111,6 +116,7 @@
                         <option value="<?= $industry->getId() ?>"><?= $industry->getIndustry() ?></option>
                     <?php endforeach; ?>
                 </select>
+            </div>
         </div>
 
         <!-- skill and proficiency -->
@@ -162,19 +168,27 @@
             </div>
         </div>
         <?php if ($cv !== null && isset($cv['cv'])) : ?>
-            <object data="../uploads/<?= $cv['cv'] ?>" type="application/pdf" width="100%" height="500px">
+            <?php if (file_exists(uploads_path($cv['cv']))) : ?>
+                <object data="../uploads/<?= $cv['cv'] ?>" type="application/pdf" width="100%" height="500px">
 
             </object>
+            <?php else : ?>
+                    <div class="alert alert-danger" role="alert">
+                        <p>CV not found!! Please upload a new one!</p>
+                    </div>
+            <?php endif; ?>
         <?php else : ?>
-            <p>You don't have a CV uploaded. Upload one instead!</p>
+                <div class="alert alert-danger" role="alert">
+                    <p>You don't have a CV uploaded. Upload one instead!</p>
+                </div>
         <?php endif; ?>
 
         <!--submit button-->
-        <div class="row justify-content-center mb-2">
-            <div class="col-md-3 text-center ">
-                <button class="btn btn-success btn-lg btn-block dark-green-bg" id="submit" name="submit" value="first" type="submit">Save Changes    <i class="bi bi-arrow-right"></i></button>
+            <div class="row justify-content-center mb-2">
+                <div class="col-md-3 text-center ">
+                    <button class="btn btn-success btn-lg btn-block dark-green-bg" id="submit" name="submit" value="student" type="submit">Save Changes    <i class="bi bi-arrow-right"></i></button>
+                </div>
             </div>
-        </div>
 
         <?php endif; ?>
     </form>

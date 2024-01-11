@@ -30,6 +30,12 @@ function base_path($path): string
     return BASE_PATH . $path;
 }
 
+// Function that constructs the base path for files within the project
+function uploads_path($file): string
+{
+    return BASE_UPLOADS_PATH . ltrim($file, '/');
+}
+
 // Render a view file with data fields
 function view($path, $fields = [])
 {

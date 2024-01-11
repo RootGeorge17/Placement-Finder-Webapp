@@ -239,11 +239,10 @@ class StudentsDataSet
         return $dataSet;
     }
 
-    public function updateStudentUser(string $email, string $location, string $cv,
+    public function updateStudentUser(string $email, string $location,
                                       int $course, string $institution, int $prefIndustry,
-                                      string $skill1Name, int $skill1Proficiency,
-                                      string $skill2Name, int $skill2Proficiency,
-                                      string $skill3Name, int $skill3Proficiency) : bool
+                                      string $skill1Name, string $skill2Name, string $skill3Name,
+                                      int $skill1Proficiency, int $skill2Proficiency, int $skill3Proficiency) : bool
     {
         $studentDataID = null;
 
@@ -296,7 +295,6 @@ class StudentsDataSet
                         skill2 = :skill2Id,
                         skill3 = :skill3Id,
                         location = :location,
-                        cv = :cv,
                         course = :course,
                         institution = :institution,
                         prefIndustry = :prefIndustry
@@ -304,19 +302,33 @@ class StudentsDataSet
 
         // Execute the UPDATE query
         $statement = $this->dbHandle->prepare($sqlQuery);
-        $statement->execute([
+        $result = $statement->execute([
             'skill1Id' => $skill1Id,
             'skill2Id' => $skill2Id,
             'skill3Id' => $skill3Id,
             'location' => $location,
-            'cv' => $cv,
             'course' => $course,
             'institution' => $institution,
             'prefIndustry' => $prefIndustry,
             'studentDataId' => $studentDataID
         ]);
 
-        return true;
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateCV($id, $fileName): bool
+    {
+        $sqlQuery = 'UPDATE studentData SET cv = :cv WHERE id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        if ($statement->execute(['cv' => $fileName, 'id' => $id])) {
+            return true;
+        }
+        return false;
     }
 
     public function fetchCV($id)

@@ -48,6 +48,37 @@ class UsersDataSet
         return false;
     }
 
+    public function updateUserPassword($id, $oldPassword, $password)
+    {
+        $sqlQuery = 'SELECT * from user where id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        $statement->execute([
+            ':id' => $id,
+        ]);
+
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ($user) {
+            $storedHashedPassword = $user['password'];
+            if (password_verify($oldPassword, $storedHashedPassword)) { // check old password matches
+                $sqlQuery = 'UPDATE user SET password = :password WHERE id = :id'; // set new password
+
+                $statement = $this->dbHandle->prepare($sqlQuery);
+                $statement->execute([
+                    ':id' => $id,
+                    ':password' => password_hash($password, PASSWORD_BCRYPT),
+                ]);
+
+                return true; // Passwords match
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     public function emailMatch($email): bool
     {
         $sqlQuery = 'SELECT email from user where email = :email';
@@ -61,6 +92,42 @@ class UsersDataSet
 
         if ($user) {
             return true; // Email match
+        }
+        return false;
+    }
+
+    public function isUserEmail($userId, $email): bool
+    {
+        $sqlQuery = 'SELECT email from user where id = :userId and email = :email';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        $statement->execute([
+            ':userId' => $userId,
+            ':email' => $email,
+        ]);
+
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ($user) {
+            return true; // this is the users email!
+        }
+        return false;
+    }
+
+    public function isUserPhone($userId, $phoneNumber):bool
+    {
+        $sqlQuery = 'SELECT phoneNumber from user where id = :userId and phoneNumber = :phoneNumber';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        $statement->execute([
+            ':userId' => $userId,
+            ':phoneNumber' => $phoneNumber,
+        ]);
+
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ($user) {
+            return true; // this is the users phone number!
         }
         return false;
     }
@@ -119,6 +186,26 @@ class UsersDataSet
             return new User($row);
         } else {
             return null;
+        }
+    }
+
+    public function updateUser($id, $firstName, $lastName, $email, $phoneNumber): bool
+    {
+        $sqlQuery = 'UPDATE user SET email = :email, firstName = :firstName, lastName = :lastName, phoneNumber = :phoneNumber WHERE id = :id';
+
+        $statement = $this->dbHandle->prepare($sqlQuery);
+        $result = $statement->execute([
+            ':id' => $id,
+            ':email' => $email,
+            ':firstName' => $firstName,
+            ':lastName' => $lastName,
+            ':phoneNumber' => $phoneNumber
+        ]);
+
+        if ($result) {
+            return true;
+        } else {
+            return false;
         }
     }
 
