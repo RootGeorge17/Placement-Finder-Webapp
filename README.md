@@ -19,8 +19,6 @@ This project was made possible by the following contributors:
 - George Sopov (Scrum Master)
 - Mujahid Islam 
 - Arslan Iqbal
-- Abdulla Alfedhala
-- Ahmad S Gh M Alenezi
 - Firaas Mir
 - Sheryar Afzal
 
